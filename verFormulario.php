@@ -70,20 +70,20 @@ $query_materias  = $_form->get_formulario_materias($id);
 $query_materia    = $query_materias->fetch_assoc();
 
 //Se agrega la consulta del lote de materia prima
-if(isset($row["lote_nan000"]) && $row["lote_nan000"] != ''){
-    $lote_nan000   =  $row["lote_nan000"];
-    $d_lote_nan000 = "readonly";
+if(isset($row["lote_nanace"]) && $row["lote_nanace"] != ''){
+    $lote_nanace   =  $row["lote_nanace"];
+    $d_lote_nanace = "readonly";
 }else{
-    $lote_nan000   =  "";
-    $d_lote_nan000 = "";
+    $lote_nanace   =  "";
+    $d_lote_nanace = "";
 }
 
-if(isset($row["nan000"]) && $row["nan000"] != ''){
-    $nan000   =  $row["nan000"];
-    $d_nan000 = "readonly";
+if(isset($row["nanace"]) && $row["nanace"] != ''){
+    $nanace   =  $row["nanace"];
+    $d_nanace = "readonly";
 }else{
-    $nan000   =  "";
-    $d_nan000 = "";
+    $nanace   =  "";
+    $d_nanace = "";
 }
 
 if(isset($row["lote_swf098"]) && $row["lote_swf098"] != ''){
@@ -200,7 +200,7 @@ if(isset($row["total_materia_p"]) && $row["total_materia_p"] != ''){
                  intval($fdo037) + 
                  intval($stw000) + 
                  intval($swf098) + 
-                 intval($nan000);
+                 intval($nanace);
     $d_totalMP = "readonly";
 }else{
     $totalMP   = "";
@@ -2391,7 +2391,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
         <main>       
             <section id="formulario">
                 
-                <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
+                <form id="formNfo" name="formNfo" method="POST" action="guardarFormularioNFOB00.php">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <input type="hidden" name="pasos" value="1">
                     <fieldset>
@@ -2431,7 +2431,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                         <hr> 
 
                         <div class="container">
-                            <br><br>
+                        <br><br>
                             <h1>FORMULACIÓN</h1>
                             <br>
                             <b> Indique la cantidad utilizada de cada materia prima y su lote</b><br/></br>
@@ -2440,16 +2440,16 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                             <!--Se agrega el lote de materia prima-->
                 
                             <div style="display: block;">
-                                <h4 style="font-weight: bold;">MATERIA PRIMA NAN000</h4>
+                                <h4 style="font-weight: bold;">MATERIA PRIMA NANACE</h4>
                                 <br>
                                 <div style="display: grid; grid-template-columns: 50% 50%">
                                     <div>
-                                        <label for="lote_nan000">LOTE</label>
-                                        <input type="text" id="lote_nan000" placeholder="Lote de Materia Prima"  name="lote_nan000"  height="50" width="200" value="<?php echo $lote_nan000; ?>" <?php echo $d_lote_nan000; ?> required />
+                                        <label for="lote_nanace">LOTE</label>
+                                        <input type="text" id="lote_nanace" placeholder="Lote de Materia Prima"  name="lote_nanace"  height="50" width="200" value="<?php echo $lote_nanace; ?>" <?php echo $d_lote_nanace; ?> required />
                                     </div>
                                     <div>
-                                        <label for="nan000">CANTIDAD</label>
-                                        <input type="number" id="nan000" placeholder="Kg"  name="nan000"  height="50" width="200" value="<?php echo $nan000; ?>" <?php echo $d_nan000; ?> required />
+                                        <label for="nanace">CANTIDAD</label>
+                                        <input type="number" id="nanace" placeholder="Kg"  name="nanace"  height="50" width="200" value="<?php echo $nanace; ?>" <?php echo $d_nanace; ?> required />
                                     </div>
                                 </div>
                             </div>
@@ -2616,7 +2616,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                         </div>
                         <hr>
                 </form>
-                <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
+                <form id="formNfo" name="formNfo" method="POST" action="guardarFormularioNFOB00.php">
                         <!-- Paso 2 -->
                         <div class="container" id="CheckEquipo" style="display: <?php echo $displayMatPriSeparada;?>;">
                             <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -2727,7 +2727,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                             <br />
                         </div>
                     </form>
-                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
+                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormularioNFOB00.php">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="pasos" value="3">
                         <!-- Paso 4 -->
@@ -2843,7 +2843,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                                 </div>
                         </div>
                 </form>
-                <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
+                <form id="formNfo" name="formNfo" method="POST" action="guardarFormularioNFOB00.php">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="pasos" value="4">
                         <!-- Paso 6 -->
@@ -3010,7 +3010,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                             <i>En caso de respuesta negativa, contactar a Salud Ocupacional para reemplazo o entrega del EPP apropiado.</i><br />
                         </div>
                     </form>
-                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
+                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormularioNFOB00.php">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="pasos" value="5">
                         <!-- Paso 8 -->
@@ -3180,7 +3180,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                             <br />
                         </div>
                     </form>
-                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
+                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormularioNFOB00.php">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="pasos" value="6">
                         <!-- Paso 10 -->
@@ -3217,7 +3217,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                             <i>En caso de respuesta negativa, contactar a Salud Ocupacional para reemplazo o entrega del EPP apropiado.</i>
                         </div>
                     </form>
-                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
+                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormularioNFOB00.php">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="pasos" value="7">
                         <br />
@@ -3335,7 +3335,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                                 <br>
                                 <div>
                                     <b>Evaluar presencia de formol, si hay presencia dar una hora más de reacción.</b>
-                                    <br>
+                                <br>
                                     <b>¿Sigue habiendo presencia de olor a FDO035?.</b>
                                     <table class="table" style="width:50%;">
                                         <tr>
@@ -3364,7 +3364,7 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                         </div>
                     </form>
                     <hr>
-                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
+                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormularioNFOB00.php">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="pasos" value="8">
                         <div class="container" id="Enfriet85">
@@ -3403,18 +3403,18 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                             <!-- Validar con el no -->
                             <!-- Falta filtrado con el no. -->
                             <div id="FiltroLukas" style="display: <?php echo $FiltroLukas; ?>;">
-                                <i>Si la respuesta es negativa, filtre por el Filtro lukas directamente desde el reactor</i><br />
-                                <label for="HoraInicioLukas">Hora de Inicio:</label>
-                                <input type="time" id="HoraInicioLukas" name="HoraInicioLukas" value="<?php echo $HoraInicioLukas; ?>" <?php echo $d_HoraInicioLukas; ?> />
-                                <label for="HoraFinLukas">Hora de Fin:</label>
-                                <input type="time" id="HoraFinLukas" name="HoraFinLukas" value="<?php echo $HoraFinLukas; ?>" <?php echo $d_HoraFinLukas; ?> /><br />
-                                <b>El aspecto final del producto despues de la filtracion es brillante, sin sedimento y sin turbidez?</b><br />
-                                <table class="table" style="width:50%;">
-                                    <tr>
+                            <i>Si la respuesta es negativa, filtre por el Filtro lukas directamente desde el reactor</i><br />
+                            <label for="HoraInicioLukas">Hora de Inicio:</label>
+                            <input type="time" id="HoraInicioLukas" name="HoraInicioLukas" value="<?php echo $HoraInicioLukas; ?>" <?php echo $d_HoraInicioLukas; ?> />
+                            <label for="HoraFinLukas">Hora de Fin:</label>
+                            <input type="time" id="HoraFinLukas" name="HoraFinLukas" value="<?php echo $HoraFinLukas; ?>" <?php echo $d_HoraFinLukas; ?> /><br />
+                            <b>El aspecto final del producto despues de la filtracion es brillante, sin sedimento y sin turbidez?</b><br />
+                            <table class="table" style="width:50%;">
+                                <tr>
                                         <td align="center"><label>Si <input type="radio" id="ProductoBrillante2Si" name="ProductoBrillante2" value="1" <?php echo $ProductoBrillante2Si . ' ' . $d_ProductoBrillante2; ?> /></label></td>
                                         <td align="center"><label>No <input type="radio" id="ProductoBrillante2No" name="ProductoBrillante2" value="0" <?php echo $ProductoBrillante2No . ' ' . $d_ProductoBrillante2; ?> /></label></td>
-                                    </tr>
-                                </table>
+                                </tr>
+                            </table>
                             </div>
 
                             <div  id="ProcesoDescarga" style="display: <?php echo $ProcesoDescarga; ?>;">
@@ -3422,15 +3422,15 @@ if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
                                 <input type="text" name="NotificarLaboratorio" value="<?php echo $NotificarLaboratorio; ?>" <?php echo $d_NotificarLaboratorio; ?>><br />
                             </div>
                             <div id="ProcesoDescarga" style="display: <?php echo $ProcesoDescarga; ?>;">
-                                <br />
-                                <i>Si la respuesta es afirmativa, se da por terminado el proceso de produccion y se continua con la descarga del producto</i>
-                                <br />
+                            <br />
+                            <i>Si la respuesta es afirmativa, se da por terminado el proceso de produccion y se continua con la descarga del producto</i>
+                            <br />
                             </div>
                             <br />
                         </div>
                     </form>
                     <br>
-                    <hr>
+                            <hr>
                     <br>
 
                     <!-- AQUI FORMULARIO PREVIA -->
