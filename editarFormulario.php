@@ -778,17 +778,17 @@ if (isset($row_etapas7["HoraFin"]) && $row_etapas7["HoraFin"] != '') {
 if (isset($row_nfo["ProblemaSWFO"]) && $row_nfo["ProblemaSWFO"] == '1') {
     $ProblemaSWFOSi = "checked";
     $ProblemaSWFONo = "";
-    $d_TextoProblemaSWFO = "show";
+    $_TextoProblemaSWFO = "show";
     $d_ProblemaSWFO = "readonly";
 } else if (isset($row_nfo["ProblemaSWFO"]) && $row_nfo["ProblemaSWFO"] == '0') {
     $ProblemaSWFOSi = "";
     $ProblemaSWFONo = "checked";
-    $d_TextoProblemaSWFO = "none";
+    $_TextoProblemaSWFO = "none";
     $d_ProblemaSWFO = "";
 } else {
     $ProblemaSWFOSi = "";
     $ProblemaSWFONo = "";
-    $d_TextoProblemaSWFO = "none";
+    $_TextoProblemaSWFO = "none";
     $d_ProblemaSWFO = "";
 }
 
@@ -3389,7 +3389,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                     <label for="temperaturaFDO_1">Temperatura</label>
                                     <input type="number" id="temperaturaFDO_1" name="temperaturaFDO_1" value="<?php echo $temperaturaFDO_1; ?>" placeholder="°C" <?php echo $d_temperaturaFDO_1; ?> />
                                     <label for="presionFDO_1">Presión de Vapor</label>
-                                    <input type="number" id="presionFDO_1" name="presionFDO_1" placeholder="PSI" value="<?php echo $presionFDO_1; ?>" <?php echo $presionFDO_1; ?> />
+                                    <input type="number" id="presionFDO_1" name="presionFDO_1" placeholder="PSI" value="<?php echo $presionFDO_1; ?>" <?php echo $d_presionFDO_1; ?> />
                                     <br>
                                     <label for="horaFinFDO_1">Hora de Fin</label>
                                     <input type="time" id="horaFinFDO_1" name="horaFinFDO_1" value="<?php echo $horaFinFDO_1; ?>" <?php echo $d_horaFinFDO_1; ?> />
