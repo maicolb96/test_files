@@ -3,18 +3,18 @@ session_start();
 
 if (!isset($_SESSION['login'])) {
 
-    header("Location: ../../login.html");
-    exit();
-
+	header("Location: ../../login.html");
+	exit();
+	
 }
 
-if (isset($_SESSION['rol'])) {
+if (isset($_SESSION['rol'])){
 
-    $idrol = $_SESSION['rol'];
+	$idrol 	= $_SESSION['rol'];
 }
 
 $display = "";
-if ($idrol == 1) {
+if($idrol == 1 ){
     $display = "style='display:none;'";
 }
 
@@ -23,195 +23,187 @@ require_once "../usuarios/acciones.php";
 
 $id = $_GET['id'];
 $disabled = "";
-$autoFocus1 = '';
-$autoFocus2 = '';
-$autoFocus3 = '';
-$autoFocus4 = '';
-$autoFocus5 = '';
-$autoFocus6 = '';
-$autoFocus7 = '';
-$autoFocus8 = '';
 
 $_form = new formulario();
 $_user = new usuarios();
 $query_operators = $_user->get_users_rol(1);
 $query_coordinator = $_user->get_users_rol(3);
 
-$query = $_form->get_formulario($id);
-$row = $query->fetch_assoc();
+$query  = $_form->get_formulario($id);
+$row    = $query->fetch_assoc();
 
-$nfo = isset($row["nfo"]) && $row["nfo"] != "" ? $row["nfo"] : '';
-$numeroLote = isset($row["numeroLote"]) ? $row["numeroLote"] : '';
+$nfo        = isset($row["nfo"]) && $row["nfo"] != "" ? $row["nfo"] : '';
+$numeroLote = isset($row["numeroLote"])   ? $row["numeroLote"]  : '';
 
 // Inicio validación Equipos
-$query_equipos = $_form->get_formulario_equipos($id);
-$row_equipos = $query_equipos->fetch_assoc();
+$query_equipos  = $_form->get_formulario_equipos($id);
+$row_equipos    = $query_equipos->fetch_assoc();
 
-if ($row_equipos['dietrich2'] == '1') {
-    $dietrich2 = "checked";
-    $d_dietrich2 = "readonly";
-} else {
-    $dietrich2 = "";
-    $d_dietrich2 = "";
+if($row_equipos['dietrich2'] == '1'){
+    $dietrich2     = "checked";
+    $d_dietrich2   = "readonly";
+}else{
+    $dietrich2     = "";
+    $d_dietrich2   = "";
 }
 
-if ($row_equipos['fLukas'] == '1') {
-    $fLukas = "checked";
-    $d_fLukas = "readonly";
-} else {
-    $fLukas = "";
-    $d_fLukas = "";
+if($row_equipos['fLukas']    == '1'){
+    $fLukas     = "checked";
+    $d_fLukas   = "readonly";
+}else{
+    $fLukas     = "";
+    $d_fLukas   = "";
 }
 
-if ($row_equipos['contOlor'] == '1') {
-    $contOlor = "checked";
+if($row_equipos['contOlor']  == '1'){
+    $contOlor   = "checked";
     $d_contOlor = "readonly";
-} else {
-    $contOlor = "";
+}else{
+    $contOlor   = "";
     $d_contOlor = "";
 }
 
 // Finaliza validación Equipos
 
 // Inicio validación Materia Prima
-$query_materias = $_form->get_formulario_materias($id);
-$query_materia = $query_materias->fetch_assoc();
+$query_materias  = $_form->get_formulario_materias($id);
+$query_materia    = $query_materias->fetch_assoc();
 
 //Se agrega la consulta del lote de materia prima
-if (isset($row["lote_nan000"]) && $row["lote_nan000"] != '') {
-    $lote_nan000 = $row["lote_nan000"];
+if(isset($row["lote_nan000"]) && $row["lote_nan000"] != ''){
+    $lote_nan000   =  $row["lote_nan000"];
     $d_lote_nan000 = "readonly";
-} else {
-    $lote_nan000 = "";
+}else{
+    $lote_nan000   =  "";
     $d_lote_nan000 = "";
 }
 
-if (isset($row["nan000"]) && $row["nan000"] != '') {
-    $nan000 = $row["nan000"];
+if(isset($row["nan000"]) && $row["nan000"] != ''){
+    $nan000   =  $row["nan000"];
     $d_nan000 = "readonly";
-} else {
-    $nan000 = "";
+}else{
+    $nan000   =  "";
     $d_nan000 = "";
 }
 
-if (isset($row["lote_swf098"]) && $row["lote_swf098"] != '') {
-    $lote_swf098 = $row["lote_swf098"];
+if(isset($row["lote_swf098"]) && $row["lote_swf098"] != ''){
+    $lote_swf098   =  $row["lote_swf098"];
     $d_lote_swf098 = "readonly";
-} else {
-    $lote_swf098 = "";
+}else{
+    $lote_swf098   =  "";
     $d_lote_swf098 = "";
 }
 
-if (isset($row["swf098"]) && $row["swf098"] != '') {
-    $swf098 = $row["swf098"];
+if(isset($row["swf098"]) && $row["swf098"] != ''){
+    $swf098   = $row["swf098"];
     $d_swf098 = "readonly";
-} else {
-    $swf098 = "";
+}else{
+    $swf098   = "";
     $d_swf098 = "";
 }
 
-if (isset($row["lote_stw000"]) && $row["lote_stw000"] != '') {
-    $lote_stw000 = $row["lote_stw000"];
+if(isset($row["lote_stw000"]) && $row["lote_stw000"] != ''){
+    $lote_stw000   =  $row["lote_stw000"];
     $d_lote_stw000 = "readonly";
-} else {
-    $lote_stw000 = "";
+}else{
+    $lote_stw000   =  "";
     $d_lote_stw000 = "";
 }
-if (isset($row["stw000"]) && $row["stw000"] != '') {
-    $stw000 = $row["stw000"];
+if(isset($row["stw000"]) && $row["stw000"] != ''){
+    $stw000   =  $row["stw000"];
     $d_stw000 = "readonly";
-} else {
-    $stw000 = "";
+}else{
+    $stw000   = "";
     $d_stw000 = "";
 }
 
-if (isset($row["lote_fdo037"]) && $row["lote_fdo037"] != '') {
-    $lote_fdo037 = $row["lote_fdo037"];
+if(isset($row["lote_fdo037"]) && $row["lote_fdo037"] != ''){
+    $lote_fdo037   =  $row["lote_fdo037"];
     $d_lote_fdo037 = "readonly";
-} else {
-    $lote_fdo037 = "";
+}else{
+    $lote_fdo037   =  "";
     $d_lote_fdo037 = "";
 }
-if (isset($row["fdo037"]) && $row["fdo037"] != '') {
-    $fdo037 = $row["fdo037"];
+if(isset($row["fdo037"]) && $row["fdo037"] != ''){
+    $fdo037   =  $row["fdo037"];
     $d_fdo037 = "readonly";
-} else {
-    $fdo037 = "";
+}else{
+    $fdo037   = "";
     $d_fdo037 = "";
 }
 
-if (isset($row["lote_myo000"]) && $row["lote_myo000"] != '') {
-    $lote_myo000 = $row["lote_myo000"];
+if(isset($row["lote_myo000"]) && $row["lote_myo000"] != ''){
+    $lote_myo000   =  $row["lote_myo000"];
     $d_lote_myo000 = "readonly";
-} else {
-    $lote_myo000 = "";
+}else{
+    $lote_myo000   =  "";
     $d_lote_myo000 = "";
 }
-if (isset($row["myo000"]) && $row["myo000"] != '') {
-    $myo000 = $row["myo000"];
+if(isset($row["myo000"]) && $row["myo000"] != ''){
+    $myo000   =  $row["myo000"];
     $d_myo000 = "readonly";
-} else {
-    $myo000 = "";
+}else{
+    $myo000   = "";
     $d_myo000 = "";
 }
 
-if (isset($row["lote_stw0002"]) && $row["lote_stw0002"] != '') {
-    $lote_stw0002 = $row["lote_stw0002"];
+if(isset($row["lote_stw0002"]) && $row["lote_stw0002"] != ''){
+    $lote_stw0002   =  $row["lote_stw0002"];
     $d_lote_stw0002 = "readonly";
-} else {
-    $lote_stw0002 = "";
+}else{
+    $lote_stw0002   =  "";
     $d_lote_stw0002 = "";
 }
-if (isset($row["stw0002"]) && $row["stw0002"] != '') {
-    $stw0002 = $row["stw0002"];
+if(isset($row["stw0002"]) && $row["stw0002"] != ''){
+    $stw0002   = $row["stw0002"];
     $d_stw0002 = "readonly";
-} else {
-    $stw0002 = "";
+}else{
+    $stw0002   = "";
     $d_stw0002 = "";
 }
 
-if (isset($row["lote_csc050"]) && $row["lote_csc050"] != '') {
-    $lote_csc050 = $row["lote_csc050"];
+if(isset($row["lote_csc050"]) && $row["lote_csc050"] != ''){
+    $lote_csc050   =  $row["lote_csc050"];
     $d_lote_csc050 = "readonly";
-} else {
-    $lote_csc050 = "";
+}else{
+    $lote_csc050   =  "";
     $d_lote_csc050 = "";
 }
-if (isset($row["csc050"]) && $row["csc050"] != '') {
-    $csc050 = $row["csc050"];
+if(isset($row["csc050"]) && $row["csc050"] != ''){
+    $csc050   =  $row["csc050"];
     $d_csc050 = "readonly";
-} else {
-    $csc050 = "";
-    $d_csc050 = "";
+}else{
+    $csc050   =  "";
+    $d_csc050 =  "";
 }
 
-if (isset($row["lote_stw0003"]) && $row["lote_stw0003"] != '') {
-    $lote_stw0003 = $row["lote_stw0003"];
+if(isset($row["lote_stw0003"]) && $row["lote_stw0003"] != ''){
+    $lote_stw0003   =  $row["lote_stw0003"];
     $d_lote_stw0003 = "readonly";
-} else {
-    $lote_stw0003 = "";
+}else{
+    $lote_stw0003   =  "";
     $d_lote_stw0003 = "";
 }
-if (isset($row["stw0003"]) && $row["stw0003"] != '') {
-    $stw0003 = $row["stw0003"];
+if(isset($row["stw0003"]) && $row["stw0003"] != ''){
+    $stw0003   = $row["stw0003"];
     $d_stw0003 = "readonly";
-} else {
-    $stw0003 = "";
+}else{
+    $stw0003   = "";
     $d_stw0003 = "";
 }
 
-if (isset($row["total_materia_p"]) && $row["total_materia_p"] != '') {
-    $totalMP = intval($stw0003) +
-        intval($csc050) +
-        intval($stw0002) +
-        intval($myo000) +
-        intval($fdo037) +
-        intval($stw000) +
-        intval($swf098) +
-        intval($nan000);
+if(isset($row["total_materia_p"]) && $row["total_materia_p"] != ''){
+    $totalMP   = intval($stw0003) + 
+                 intval($csc050) + 
+                 intval($stw0002) + 
+                 intval($myo000) + 
+                 intval($fdo037) + 
+                 intval($stw000) + 
+                 intval($swf098) + 
+                 intval($nan000);
     $d_totalMP = "readonly";
-} else {
-    $totalMP = "";
+}else{
+    $totalMP   = "";
     $d_totalMP = "";
 }
 
@@ -219,559 +211,554 @@ if (isset($row["total_materia_p"]) && $row["total_materia_p"] != '') {
 
 $script = '';
 
-if (isset($row["MatPriFP04"]) && $row["MatPriFP04"] == '1') {
+if(isset($row["MatPriFP04"]) && $row["MatPriFP04"] == '1'){
     $MatPriFP04Si = "checked";
     $MatPriFP04No = "";
     $d_MatPriFP04 = "readonly";
-} else if (isset($row["MatPriFP04"]) && $row["MatPriFP04"] == '0') {
+}else if(isset($row["MatPriFP04"]) && $row["MatPriFP04"] == '0'){
     $MatPriFP04Si = "";
     $MatPriFP04No = "checked";
     $d_MatPriFP04 = "";
-} else {
+}else{
     $MatPriFP04Si = "";
     $MatPriFP04No = "";
     $d_MatPriFP04 = "";
 }
 
-if (isset($row["MatPriSeparada"]) && $row["MatPriSeparada"] == '1') {
+if(isset($row["MatPriSeparada"]) && $row["MatPriSeparada"] == '1'){
     $MatPriSeparadaSi = "checked";
     $MatPriSeparadaNo = "";
-    $displayMatPriSeparada = "show";
+    $displayMatPriSeparada   = "show";
     $d_MatPriSeparada = "readonly";
-} else if (isset($row["MatPriSeparada"]) && $row["MatPriSeparada"] == '0') {
+}else if(isset($row["MatPriSeparada"]) && $row["MatPriSeparada"] == '0'){
     $MatPriSeparadaSi = "";
     $MatPriSeparadaNo = "checked";
-    $displayMatPriSeparada = "none";
+    $displayMatPriSeparada   = "none";
     $d_MatPriSeparada = "";
-} else {
+}else{
     $MatPriSeparadaSi = "";
     $MatPriSeparadaNo = "";
-    $displayMatPriSeparada = "none";
+    $displayMatPriSeparada   = "none";
     $d_MatPriSeparada = "";
 }
 
-if (isset($row["ReactorLimpio"]) && $row["ReactorLimpio"] == '1') {
+if(isset($row["ReactorLimpio"]) && $row["ReactorLimpio"] == '1'){
     $ReactorLimpioSi = "checked";
     $ReactorLimpioNo = "";
-    $displayReactorLimpio = "show";
+    $displayReactorLimpio   = "show";
     $d_ReactorLimpio = "readonly";
-    $autoFocus1 = 'autofocus';
-} else if (isset($row["ReactorLimpio"]) && $row["ReactorLimpio"] == '0') {
+}else if(isset($row["ReactorLimpio"]) && $row["ReactorLimpio"] == '0'){
     $ReactorLimpioSi = "";
     $ReactorLimpioNo = "checked";
-    $displayReactorLimpio = "none";
+    $displayReactorLimpio   = "none";
     $d_ReactorLimpio = "";
-} else {
+}else{
     $ReactorLimpioSi = "";
     $ReactorLimpioNo = "";
-    $displayReactorLimpio = "none";
+    $displayReactorLimpio   = "none";
     $d_ReactorLimpio = "";
 }
 
 // Inicio validación Equipos
-$query_nfo = $_form->get_formulario_nfo($id);
-$row_nfo = $query_nfo->fetch_assoc();
+$query_nfo  = $_form->get_formulario_nfo($id);
+$row_nfo    = $query_nfo->fetch_assoc();
 
-if (isset($row_nfo["HermeticidadReactor"]) && $row_nfo["HermeticidadReactor"] == '1') {
+if(isset($row_nfo["HermeticidadReactor"]) && $row_nfo["HermeticidadReactor"] == '1'){
     $HermeticidadReactorSi = "checked";
     $HermeticidadReactorNo = "";
     $d_HermeticidadReactor = "readonly";
-} else if (isset($row_nfo["HermeticidadReactor"]) && $row_nfo["HermeticidadReactor"] == '0') {
+}else if(isset($row_nfo["HermeticidadReactor"]) && $row_nfo["HermeticidadReactor"] == '0'){
     $HermeticidadReactorSi = "";
     $HermeticidadReactorNo = "checked";
     $d_HermeticidadReactor = "";
-} else {
+}else{
     $HermeticidadReactorSi = "";
     $HermeticidadReactorNo = "";
     $d_HermeticidadReactor = "";
 }
 
-if (isset($row_nfo["ReactorFunciona"]) && $row_nfo["ReactorFunciona"] == '1') {
+if(isset($row_nfo["ReactorFunciona"]) && $row_nfo["ReactorFunciona"] == '1'){
     $ReactorFuncionaSi = "checked";
     $ReactorFuncionaNo = "";
     $d_ReactorFunciona = "readonly";
-} else if (isset($row_nfo["ReactorFunciona"]) && $row_nfo["ReactorFunciona"] == '0') {
+}else if(isset($row_nfo["ReactorFunciona"]) && $row_nfo["ReactorFunciona"] == '0'){
     $ReactorFuncionaSi = "";
     $ReactorFuncionaNo = "checked";
     $d_ReactorFunciona = "";
-} else {
+}else{
     $ReactorFuncionaSi = "";
     $ReactorFuncionaNo = "";
     $d_ReactorFunciona = "";
 }
 
-if (isset($row_nfo["VacioFunciona"]) && $row_nfo["VacioFunciona"] == '1') {
+if(isset($row_nfo["VacioFunciona"]) && $row_nfo["VacioFunciona"] == '1'){
     $VacioFuncionaSi = "checked";
     $VacioFuncionaNo = "";
     $d_VacioFunciona = "readonly";
-} else if (isset($row_nfo["VacioFunciona"]) && $row_nfo["VacioFunciona"] == '0') {
+}else if(isset($row_nfo["VacioFunciona"]) && $row_nfo["VacioFunciona"] == '0'){
     $VacioFuncionaSi = "";
     $VacioFuncionaNo = "checked";
     $d_VacioFunciona = "";
-} else {
+}else{
     $VacioFuncionaSi = "";
     $VacioFuncionaNo = "";
     $d_VacioFunciona = "";
 }
 
-if (isset($row_nfo["VaporFunciona"]) && $row_nfo["VaporFunciona"] == '1') {
+if(isset($row_nfo["VaporFunciona"]) && $row_nfo["VaporFunciona"] == '1'){
     $VaporFuncionaSi = "checked";
     $VaporFuncionaNo = "";
     $d_VaporFunciona = "readonly";
-} else if (isset($row_nfo["VaporFunciona"]) && $row_nfo["VaporFunciona"] == '0') {
+}else if(isset($row_nfo["VaporFunciona"]) && $row_nfo["VaporFunciona"] == '0'){
     $VaporFuncionaSi = "";
     $VaporFuncionaNo = "checked";
     $d_VaporFunciona = "";
-} else {
+}else{
     $VaporFuncionaSi = "";
     $VaporFuncionaNo = "";
     $d_VaporFunciona = "";
 }
 
-if (isset($row_nfo["EnfriamientoFunciona"]) && $row_nfo["EnfriamientoFunciona"] == '1') {
+if(isset($row_nfo["EnfriamientoFunciona"]) && $row_nfo["EnfriamientoFunciona"] == '1'){
     $EnfriamientoFuncionaSi = "checked";
     $EnfriamientoFuncionaNo = "";
     $d_EnfriamientoFunciona = "readonly";
-} else if (isset($row_nfo["EnfriamientoFunciona"]) && $row_nfo["EnfriamientoFunciona"] == '0') {
+}else if(isset($row_nfo["EnfriamientoFunciona"]) && $row_nfo["EnfriamientoFunciona"] == '0'){
     $EnfriamientoFuncionaSi = "";
     $EnfriamientoFuncionaNo = "checked";
     $d_EnfriamientoFunciona = "";
-} else {
+}else{
     $EnfriamientoFuncionaSi = "";
     $EnfriamientoFuncionaNo = "";
     $d_EnfriamientoFunciona = "";
 }
 
-if (isset($row_nfo["EmisionesFunciona"]) && $row_nfo["EmisionesFunciona"] == '1') {
+if(isset($row_nfo["EmisionesFunciona"]) && $row_nfo["EmisionesFunciona"] == '1'){
     $EmisionesFuncionaSi = "checked";
     $EmisionesFuncionaNo = "";
     $displayEmisionesFunciona = "show";
     $d_EmisionesFunciona = "readonly";
-} else if (isset($row_nfo["EmisionesFunciona"]) && $row_nfo["EmisionesFunciona"] == '0') {
+}else if(isset($row_nfo["EmisionesFunciona"]) && $row_nfo["EmisionesFunciona"] == '0'){
     $EmisionesFuncionaSi = "";
     $EmisionesFuncionaNo = "checked";
     $displayEmisionesFunciona = "none";
     $d_EmisionesFunciona = "";
-} else {
+}else{
     $EmisionesFuncionaSi = "";
     $EmisionesFuncionaNo = "";
     $displayEmisionesFunciona = "none";
     $d_EmisionesFunciona = "";
 }
 
-if (isset($row_nfo["phsodatanque"]) && $row_nfo["phsodatanque"] == '1') {
-    $phsodatanqueSi = "checked";
-    $phsodatanqueNo = "";
+if(isset($row_nfo["phsodatanque"]) && $row_nfo["phsodatanque"] == '1'){
+    $phsodatanqueSi             = "checked";
+    $phsodatanqueNo             = "";
     $displayCondensadorFunciona = "show";
-    $d_phsodatanque = "readonly";
-} else if (isset($row_nfo["phsodatanque"]) && $row_nfo["phsodatanque"] == '0') {
-    $phsodatanqueSi = "";
-    $phsodatanqueNo = "checked";
+    $d_phsodatanque             = "readonly";
+}else if(isset($row_nfo["phsodatanque"]) && $row_nfo["phsodatanque"] == '0'){
+    $phsodatanqueSi             = "";
+    $phsodatanqueNo             = "checked";
     $displayCondensadorFunciona = "none";
-    $d_phsodatanque = "";
-} else {
-    $phsodatanqueSi = "";
-    $phsodatanqueNo = "";
+    $d_phsodatanque             = "";
+}else{
+    $phsodatanqueSi             = "";
+    $phsodatanqueNo             = "";
     $displayCondensadorFunciona = "none";
-    $d_phsodatanque = "";
+    $d_phsodatanque             = "";
 }
 
-if (isset($row_nfo["CondensadorFunciona"]) && $row_nfo["CondensadorFunciona"] == '1') {
-    $CondensadorFuncionaSi = "checked";
-    $CondensadorFuncionaNo = "";
-    $displayApruebaInicio = "show";
-    $d_CondensadorFunciona = "readonly";
-} else if (isset($row_nfo["CondensadorFunciona"]) && $row_nfo["CondensadorFunciona"] == '0') {
+if(isset($row_nfo["CondensadorFunciona"]) && $row_nfo["CondensadorFunciona"] == '1'){
+    $CondensadorFuncionaSi  = "checked";
+    $CondensadorFuncionaNo  = "";
+    $displayApruebaInicio   = "show";
+    $d_CondensadorFunciona  = "readonly";
+}else if(isset($row_nfo["CondensadorFunciona"]) && $row_nfo["CondensadorFunciona"] == '0'){
     $CondensadorFuncionaSi = "";
     $CondensadorFuncionaNo = "";
-    $displayApruebaInicio = "none";
+    $displayApruebaInicio  = "none";
     $d_CondensadorFunciona = "";
-} else {
+}else{
     $CondensadorFuncionaSi = "";
     $CondensadorFuncionaNo = "";
-    $displayApruebaInicio = "none";
+    $displayApruebaInicio  = "none";
     $d_CondensadorFunciona = "";
 }
 
-if (isset($row_nfo["ApruebaInicio"]) && $row_nfo["ApruebaInicio"] == '1') {
-    $ApruebaInicioSi = "checked";
-    $ApruebaInicioNo = "";
-    $displayRazonesNoAprob = "none";
-    $displayInicioProceso = "show";
-    $d_ApruebaInicio = "readonly";
-} else if (isset($row_nfo["ApruebaInicio"]) && $row_nfo["ApruebaInicio"] == '0') {
+if(isset($row_nfo["ApruebaInicio"]) && $row_nfo["ApruebaInicio"] == '1'){
+    $ApruebaInicioSi        = "checked";
+    $ApruebaInicioNo        = "";
+    $displayRazonesNoAprob  = "none";
+    $displayInicioProceso   = "show";
+    $d_ApruebaInicio        = "readonly";
+}else if(isset($row_nfo["ApruebaInicio"]) && $row_nfo["ApruebaInicio"] == '0'){
     $ApruebaInicioSi = "";
     $ApruebaInicioNo = "checked";
     $displayRazonesNoAprob = "show";
     $displayInicioProceso = "none";
-    $d_ApruebaInicio = "";
-} else {
+    $d_ApruebaInicio      = "";
+}else{
     $ApruebaInicioSi = "";
     $ApruebaInicioNo = "";
     $displayRazonesNoAprob = "show";
     $displayInicioProceso = "none";
-    $d_ApruebaInicio = "";
+    $d_ApruebaInicio      = "";
 }
 
-if (isset($row["RazonesNoAprob"])) {
-    $RazonesNoAprob = $row["RazonesNoAprob"];
-    $d_RazonesNoAprob = "readonly";
-} else {
-    $RazonesNoAprob = "";
-    $d_RazonesNoAprob = "";
+if(isset($row["RazonesNoAprob"])){
+    $RazonesNoAprob  = $row["RazonesNoAprob"];
+    $d_RazonesNoAprob= "readonly";
+}else{
+    $RazonesNoAprob  = "";
+    $d_RazonesNoAprob= "";
 }
 
-if (isset($row_nfo["SeguridadNaftaleno"]) && $row_nfo["SeguridadNaftaleno"] == '1') {
-    $SeguridadNaftalenoSi = "checked";
-    $SeguridadNaftalenoNo = "";
-    $EquipoSeguridad = "show";
-    $d_SeguridadNaftaleno = "readonly";
-    $autoFocus1 = '';
-    $autoFocus2 = 'autofocus';
-} else if (isset($row_nfo["SeguridadNaftaleno"]) && $row_nfo["SeguridadNaftaleno"] == '0') {
+if(isset($row_nfo["SeguridadNaftaleno"]) && $row_nfo["SeguridadNaftaleno"] == '1'){
+    $SeguridadNaftalenoSi   = "checked";
+    $SeguridadNaftalenoNo   = "";
+    $EquipoSeguridad        = "show";
+    $d_SeguridadNaftaleno   = "readonly";
+}else if(isset($row_nfo["SeguridadNaftaleno"]) && $row_nfo["SeguridadNaftaleno"] == '0'){
     $SeguridadNaftalenoSi = "";
     $SeguridadNaftalenoNo = "checked";
     $EquipoSeguridad = "none";
-    $d_SeguridadNaftaleno = "";
-} else {
-    $SeguridadNaftalenoSi = "";
-    $SeguridadNaftalenoNo = "";
-    $EquipoSeguridad = "none";
-    $d_SeguridadNaftaleno = "";
+    $d_SeguridadNaftaleno   = "";
+}
+else{
+    $SeguridadNaftalenoSi   = "";
+    $SeguridadNaftalenoNo   = "";
+    $EquipoSeguridad        = "none";
+    $d_SeguridadNaftaleno   = "";
 }
 
-if (isset($row_nfo["EquipoNaftaleno"]) && $row_nfo["EquipoNaftaleno"] == '1') {
+if(isset($row_nfo["EquipoNaftaleno"]) && $row_nfo["EquipoNaftaleno"] == '1'){
     $EquipoNaftalenoSi = "checked";
     $EquipoNaftalenoNo = "";
-    $TrituradoSaco = "show";
+    $TrituradoSaco     = "show";
     $d_EquipoNaftaleno = "readonly";
-} else if (isset($row_nfo["EquipoNaftaleno"]) && $row_nfo["EquipoNaftaleno"] == '0') {
+}else if(isset($row_nfo["EquipoNaftaleno"]) && $row_nfo["EquipoNaftaleno"] == '0'){
     $EquipoNaftalenoSi = "";
     $EquipoNaftalenoNo = "checked";
-    $TrituradoSaco = "none";
+    $TrituradoSaco     = "none";
     $d_EquipoNaftaleno = "";
-} else {
+}else{
     $EquipoNaftalenoSi = "";
     $EquipoNaftalenoNo = "";
-    $TrituradoSaco = "none";
+    $TrituradoSaco     = "none";
     $d_EquipoNaftaleno = "";
 }
 
-if (isset($row_nfo["EnfriamientoCerrado"]) && $row_nfo["EnfriamientoCerrado"] == '1') {
-    $EnfriamientoCerrado = "checked";
-    $TrituradoSaco2 = "show";
-    $d_EnfriamientoCerrado = "readonly";
-} else {
-    $EnfriamientoCerrado = "";
-    $TrituradoSaco2 = "none";
-    $d_EnfriamientoCerrado = "";
+if(isset($row_nfo["EnfriamientoCerrado"]) && $row_nfo["EnfriamientoCerrado"] == '1'){
+    $EnfriamientoCerrado    = "checked";
+    $TrituradoSaco2         = "show";
+    $d_EnfriamientoCerrado  = "readonly";
+}else{
+    $EnfriamientoCerrado    = "";
+    $TrituradoSaco2         = "none";
+    $d_EnfriamientoCerrado  = "";
 }
 
 // Paso 5   28
 // Inicio validación Equipos
-$query_etapas = $_form->get_formulario_etapas($id, 'triturado');
-$row_etapas1 = $query_etapas->fetch_assoc();
-if (isset($row_etapas1["HoraInicio"]) && $row_etapas1["HoraInicio"] != '') {
-    $horainiciocarganaf = $row_etapas1["HoraInicio"];
-    $d_horainiciocarganaf = "readonly";
-} else {
-    $horainiciocarganaf = "";
-    $d_horainiciocarganaf = "";
+$query_etapas  = $_form->get_formulario_etapas($id,'triturado');
+$row_etapas1    = $query_etapas->fetch_assoc();
+if(isset($row_etapas1["HoraInicio"]) && $row_etapas1["HoraInicio"] != ''){
+    $horainiciocarganaf     =  $row_etapas1["HoraInicio"];
+    $d_horainiciocarganaf   = "readonly";
+}else{
+    $horainiciocarganaf     = "";
+    $d_horainiciocarganaf   = "";
 }
 
-if (isset($row_etapas1["HoraFin"]) && $row_etapas1["HoraFin"] != '') {
-    $horafincarganaf = $row_etapas1["HoraFin"];
-    $d_horafincarganaf = "readonly";
-} else {
-    $horafincarganaf = "";
-    $d_horafincarganaf = "";
+if(isset($row_etapas1["HoraFin"]) && $row_etapas1["HoraFin"] != ''){
+    $horafincarganaf    = $row_etapas1["HoraFin"];
+    $d_horafincarganaf  = "readonly";
+}else{
+    $horafincarganaf    = "";
+    $d_horafincarganaf  = "";
 }
 
-if (isset($row_nfo["ValvBloqueo"]) && $row_nfo["ValvBloqueo"] == '1') {
-    $ValvBloqueo = "checked";
-    $d_ValvBloqueo = "readonly";
-} else {
-    $ValvBloqueo = "";
-    $d_ValvBloqueo = "";
+if(isset($row_nfo["ValvBloqueo"]) && $row_nfo["ValvBloqueo"] == '1'){
+    $ValvBloqueo    = "checked";
+    $d_ValvBloqueo  = "readonly";
+}else{
+    $ValvBloqueo    = "";
+    $d_ValvBloqueo  = "";
 }
 
-if (isset($row_nfo["AbrirControlOlores"]) && $row_nfo["AbrirControlOlores"] == '1') {
-    $AbrirControlOlores = "checked";
-    $d_AbrirControlOlores = "readonly";
-} else {
-    $AbrirControlOlores = "";
-    $d_AbrirControlOlores = "";
+if(isset($row_nfo["AbrirControlOlores"]) && $row_nfo["AbrirControlOlores"] == '1'){
+    $AbrirControlOlores     = "checked";
+    $d_AbrirControlOlores   = "readonly";
+}else{
+    $AbrirControlOlores     = "";
+    $d_AbrirControlOlores   = "";
 }
 
-if (isset($row_nfo["Estartazos"]) && $row_nfo["Estartazos"] == '1') {
-    $Estartazos = "checked";
-    $d_Estartazos = "readonly";
-} else {
-    $Estartazos = "";
-    $d_Estartazos = "";
+if(isset($row_nfo["Estartazos"]) && $row_nfo["Estartazos"] == '1'){
+    $Estartazos     = "checked";
+    $d_Estartazos   = "readonly";
+}else{
+    $Estartazos     = "";
+    $d_Estartazos   = "";
 }
 
-$query_etapas = $_form->get_formulario_etapas($id, 'fusion');
-$row_etapas2 = $query_etapas->fetch_assoc();
+$query_etapas  = $_form->get_formulario_etapas($id,'fusion');
+$row_etapas2    = $query_etapas->fetch_assoc();
 
-if (isset($row_etapas2["HoraInicio"]) && $row_etapas2["HoraInicio"] != '') {
-    $horainiciofusionnaf = $row_etapas2["HoraInicio"];
-    $d_horainiciofusionnaf = "readonly";
-} else {
-    $horainiciofusionnaf = "";
+if(isset($row_etapas2["HoraInicio"]) && $row_etapas2["HoraInicio"] != ''){
+    $horainiciofusionnaf    =  $row_etapas2["HoraInicio"];
+    $d_horainiciofusionnaf  = "readonly";
+}else{
+    $horainiciofusionnaf   = "";
     $d_horainiciofusionnaf = "";
 }
 
-if (isset($row_etapas2["Temperatura"]) && $row_etapas2["Temperatura"] != '') {
-    $temp1 = $row_etapas2["Temperatura"];
+if(isset($row_etapas2["Temperatura"]) && $row_etapas2["Temperatura"] != ''){
+    $temp1   =  $row_etapas2["Temperatura"];
     $d_temp1 = "readonly";
-} else {
-    $temp1 = "";
+}else{
+    $temp1   = "";
     $d_temp1 = "";
 }
 
-if (isset($row_etapas2["Presion"]) && $row_etapas2["Presion"] != '') {
-    $presion1 = $row_etapas2["Presion"];
+if(isset($row_etapas2["Presion"]) && $row_etapas2["Presion"] != ''){
+    $presion1   =  $row_etapas2["Presion"];
     $d_presion1 = "readonly";
-} else {
-    $presion1 = "";
+}else{
+    $presion1   = "";
     $d_presion1 = "";
 }
 
-if (isset($row_etapas2["HoraFin"]) && $row_etapas2["HoraFin"] != '') {
-    $horafinfusionnaf = $row_etapas2["HoraFin"];
-    $d_horafinfusionnaf = "readonly";
-} else {
-    $horafinfusionnaf = "";
-    $d_horafinfusionnaf = "";
+if(isset($row_etapas2["HoraFin"]) && $row_etapas2["HoraFin"] != ''){
+    $horafinfusionnaf    =  $row_etapas2["HoraFin"];
+    $d_horafinfusionnaf  = "readonly";
+}else{
+    $horafinfusionnaf    = "";
+    $d_horafinfusionnaf  = "";
 }
 
 
-if (isset($row_nfo["AgitadorOk"]) && $row_nfo["AgitadorOk"] == '1') {
-    $AgitadorOkSi = "checked";
-    $AgitadorOkNo = "";
-    $d_AgitadorOk = "readonly";
-} else if (isset($row_nfo["AgitadorOk"]) && $row_nfo["AgitadorOk"] == '0') {
-    $AgitadorOkSi = "";
-    $AgitadorOkNo = "checked";
-    $d_AgitadorOk = "";
-} else {
-    $AgitadorOkSi = "";
-    $AgitadorOkNo = "";
-    $d_AgitadorOk = "";
+if(isset($row_nfo["AgitadorOk"]) && $row_nfo["AgitadorOk"] == '1'){
+    $AgitadorOkSi     = "checked";
+    $AgitadorOkNo     = "";
+    $d_AgitadorOk     = "readonly";
+}else if(isset($row_nfo["AgitadorOk"]) && $row_nfo["AgitadorOk"] == '0'){
+    $AgitadorOkSi     = "";
+    $AgitadorOkNo     = "checked";
+    $d_AgitadorOk     = "";
+}else{
+    $AgitadorOkSi     = "";
+    $AgitadorOkNo     = "";
+    $d_AgitadorOk     = "";
 }
 
-if (isset($row_nfo["ProblemaFund"]) && $row_nfo["ProblemaFund"] == '1') {
-    $ProblemaFundSi = "checked";
-    $ProblemaFundNo = "";
+if(isset($row_nfo["ProblemaFund"]) && $row_nfo["ProblemaFund"] == '1'){
+    $ProblemaFundSi     = "checked";
+    $ProblemaFundNo     = "";
     $AfirmativaRespuesta = "show";
-    $Carga710 = "none";
-    $d_ProblemaFund = "readonly";
-} else if (isset($row_nfo["ProblemaFund"]) && $row_nfo["ProblemaFund"] == '0') {
-    $ProblemaFundSi = "";
-    $ProblemaFundNo = "checked";
+    $Carga710            = "none";
+    $d_ProblemaFund      = "readonly";
+}else if(isset($row_nfo["ProblemaFund"]) && $row_nfo["ProblemaFund"] == '0'){
+    $ProblemaFundSi     = "";
+    $ProblemaFundNo     = "checked";
     $AfirmativaRespuesta = "none";
-    $Carga710 = "show";
-    $d_ProblemaFund = "";
-} else {
-    $ProblemaFundSi = "";
-    $ProblemaFundNo = "";
+    $Carga710            = "show";
+    $d_ProblemaFund      = "";
+}else{
+    $ProblemaFundSi     = "";
+    $ProblemaFundNo     = "";
     $AfirmativaRespuesta = "none";
-    $Carga710 = "none";
-    $d_ProblemaFund = "";
+    $Carga710            = "none";
+    $d_ProblemaFund      = "";
 }
 
-if (isset($row_nfo["ProblemaFundirNaf"]) && $row_nfo["ProblemaFundirNaf"] != '') {
-    $ProblemaFundirNaf = $row_nfo["ProblemaFundirNaf"];
+if(isset($row_nfo["ProblemaFundirNaf"]) && $row_nfo["ProblemaFundirNaf"] != ''){
+    $ProblemaFundirNaf   =  $row_nfo["ProblemaFundirNaf"];
     $d_ProblemaFundirNaf = "readonly";
-} else {
-    $ProblemaFundirNaf = "";
+}else{
+    $ProblemaFundirNaf   = "";
     $d_ProblemaFundirNaf = "";
 }
 
 // Paso 6
-if (isset($row_nfo["SeguridadSulfurico"]) && $row_nfo["SeguridadSulfurico"] == '1') {
-    $SeguridadSulfuricoSi = "checked";
-    $SeguridadSulfuricoNo = "";
-    $d_SeguridadSulfurico = "readonly";
-    $autoFocus1 = '';
-    $autoFocus2 = '';
-    $autoFocus3 = 'autofocus';
-} else if (isset($row_nfo["SeguridadSulfurico"]) && $row_nfo["SeguridadSulfurico"] == '0') {
-    $SeguridadSulfuricoSi = "";
-    $SeguridadSulfuricoNo = "checked";
-    $d_SeguridadSulfurico = "";
-} else {
-    $SeguridadSulfuricoSi = "";
-    $SeguridadSulfuricoNo = "";
-    $d_SeguridadSulfurico = "";
+if(isset($row_nfo["SeguridadSulfurico"]) && $row_nfo["SeguridadSulfurico"] == '1'){
+    $SeguridadSulfuricoSi   = "checked";
+    $SeguridadSulfuricoNo   = "";
+    $d_SeguridadSulfurico   = "readonly";
+}else if(isset($row_nfo["SeguridadSulfurico"]) && $row_nfo["SeguridadSulfurico"] == '0'){
+    $SeguridadSulfuricoSi     = "";
+    $SeguridadSulfuricoNo     = "checked";
+    $d_SeguridadSulfurico     = "";
+}else{
+    $SeguridadSulfuricoSi     = "";
+    $SeguridadSulfuricoNo     = "";
+    $d_SeguridadSulfurico     = "";
 }
 
-if (isset($row_nfo["EquipoSulfurico"]) && $row_nfo["EquipoSulfurico"] == '1') {
-    $EquipoSulfuricoSi = "checked";
-    $EquipoSulfuricoNo = "";
-    $CargueSWF098 = "show";
-    $d_EquipoSulfurico = "readonly";
-} else if (isset($row_nfo["EquipoSulfurico"]) && $row_nfo["EquipoSulfurico"] == '0') {
-    $EquipoSulfuricoSi = "";
-    $EquipoSulfuricoNo = "checked";
-    $CargueSWF098 = "none";
-    $d_EquipoSulfurico = "";
-} else {
-    $EquipoSulfuricoSi = "";
-    $EquipoSulfuricoNo = "";
-    $CargueSWF098 = "none";
-    $d_EquipoSulfurico = "";
+if(isset($row_nfo["EquipoSulfurico"]) && $row_nfo["EquipoSulfurico"] == '1'){
+    $EquipoSulfuricoSi     = "checked";
+    $EquipoSulfuricoNo     = "";
+    $CargueSWF098          = "show";
+    $d_EquipoSulfurico     = "readonly";
+}else if(isset($row_nfo["EquipoSulfurico"]) && $row_nfo["EquipoSulfurico"] == '0'){
+    $EquipoSulfuricoSi     = "";
+    $EquipoSulfuricoNo     = "checked";
+    $CargueSWF098          = "none";
+    $d_EquipoSulfurico     = "";
+}else{
+    $EquipoSulfuricoSi     = "";
+    $EquipoSulfuricoNo     = "";
+    $CargueSWF098          = "none";
+    $d_EquipoSulfurico     = "";
 }
 
-$query_etapas3 = $_form->get_formulario_etapas($id, 'sulfurico');
-$row_etapas2 = $query_etapas3->fetch_assoc();
+$query_etapas3  = $_form->get_formulario_etapas($id,'sulfurico');
+$row_etapas2    = $query_etapas3->fetch_assoc();
 
 // Paso 7     41
-if (isset($row_etapas2["HoraInicio"]) && $row_etapas2["HoraInicio"] != '') {
-    $horainiciocargaswfo = $row_etapas2["HoraInicio"];
+if(isset($row_etapas2["HoraInicio"]) && $row_etapas2["HoraInicio"] != ''){
+    $horainiciocargaswfo   =  $row_etapas2["HoraInicio"];
     $d_horainiciocargaswfo = "readonly";
-} else {
-    $horainiciocargaswfo = "";
+}else{
+    $horainiciocargaswfo   = "";
     $d_horainiciocargaswfo = "";
 }
 
-if (isset($row_etapas2["HoraFin"]) && $row_etapas2["HoraFin"] != '') {
-    $horafincargaswfo = $row_etapas2["HoraFin"];
-    $d_horafincargaswfo = "readonly";
-} else {
-    $horafincargaswfo = "";
-    $d_horafincargaswfo = "";
+if(isset($row_etapas2["HoraFin"]) && $row_etapas2["HoraFin"] != ''){
+    $horafincargaswfo      =  $row_etapas2["HoraFin"];
+    $d_horafincargaswfo    = "readonly";
+}else{
+    $horafincargaswfo      = "";
+    $d_horafincargaswfo    = "";
 }
 
-if (isset($row_nfo["CierreControlOlores"]) && $row_nfo["CierreControlOlores"] == '1') {
-    $CierreControlOlores = "checked";
-    $d_CierreControlOlores = "readonly";
-} else {
-    $CierreControlOlores = "";
-    $d_CierreControlOlores = "";
+if(isset($row_nfo["CierreControlOlores"]) && $row_nfo["CierreControlOlores"] == '1'){
+    $CierreControlOlores    = "checked";
+    $d_CierreControlOlores  = "readonly";
+}else{
+    $CierreControlOlores    = "";
+    $d_CierreControlOlores  = "";
 }
 
-$query_etapas4 = $_form->get_formulario_etapas($id, 'sulfurico1');
-$row_etapas4 = $query_etapas4->fetch_assoc();
+$query_etapas4  = $_form->get_formulario_etapas($id,'sulfurico1');
+$row_etapas4    = $query_etapas4->fetch_assoc();
 
-if (isset($row_etapas4["HoraInicio"]) && $row_etapas4["HoraInicio"] != '') {
-    $horainiciocargaswfo2 = $row_etapas4["HoraInicio"];
+if(isset($row_etapas4["HoraInicio"]) && $row_etapas4["HoraInicio"] != ''){
+    $horainiciocargaswfo2   = $row_etapas4["HoraInicio"];
     $d_horainiciocargaswfo2 = "readonly";
-} else {
-    $horainiciocargaswfo2 = "";
+}else{
+    $horainiciocargaswfo2   = "";
     $d_horainiciocargaswfo2 = "";
 }
 
-if (isset($row_etapas4["HoraFin"]) && $row_etapas4["HoraFin"] != '') {
-    $horafincargaswfo2 = $row_etapas4["HoraFin"];
-    $d_horafincargaswfo2 = "readonly";
-} else {
-    $horafincargaswfo2 = "";
-    $d_horafincargaswfo2 = "";
+if(isset($row_etapas4["HoraFin"]) && $row_etapas4["HoraFin"] != ''){
+    $horafincargaswfo2     = $row_etapas4["HoraFin"];
+    $d_horafincargaswfo2   = "readonly";
+}else{
+    $horafincargaswfo2     = "";
+    $d_horafincargaswfo2   = "";
 }
 
-if (isset($row_etapas4["Temperatura"]) && $row_etapas4["Temperatura"] != '') {
-    $tempswfo1 = $row_etapas4["Temperatura"];
-    $d_tempswfo1 = "readonly";
-} else {
-    $tempswfo1 = "";
-    $d_tempswfo1 = "";
+if(isset($row_etapas4["Temperatura"]) && $row_etapas4["Temperatura"] != ''){
+    $tempswfo1             = $row_etapas4["Temperatura"];
+    $d_tempswfo1           = "readonly";
+}else{
+    $tempswfo1             = "";
+    $d_tempswfo1           = "";
 }
 
-if (isset($row_etapas4["Presion"]) && $row_etapas4["Presion"] != '') {
-    $presionswfo1 = $row_etapas4["Presion"];
-    $d_presionswfo1 = "readonly";
-} else {
-    $presionswfo1 = "";
-    $d_presionswfo1 = "";
+if(isset($row_etapas4["Presion"]) && $row_etapas4["Presion"] != ''){
+    $presionswfo1          = $row_etapas4["Presion"];
+    $d_presionswfo1        = "readonly";
+}else{
+    $presionswfo1          = "";
+    $d_presionswfo1        = "";
 }
 
 
-if (isset($row_nfo["Vapor"]) && $row_nfo["Vapor"] == '0') {
-    $VaporSi = "checked";
-    $VaporNo = "";
-    $d_Vapor = "readonly";
-} else if (isset($row_nfo["Vapor"]) && $row_nfo["Vapor"] == '1') {
-    $VaporSi = "";
-    $VaporNo = "checked";
-    $d_Vapor = "";
-} else {
-    $VaporSi = "";
-    $VaporNo = "";
-    $d_Vapor = "";
+if(isset($row_nfo["Vapor"]) && $row_nfo["Vapor"] == '0'){
+    $VaporSi     = "checked";
+    $VaporNo     = "";
+    $d_Vapor     = "readonly";
+}else if(isset($row_nfo["Vapor"]) && $row_nfo["Vapor"] == '1'){
+    $VaporSi     = "";
+    $VaporNo     = "checked";
+    $d_Vapor     = "";
+}else{
+    $VaporSi     = "";
+    $VaporNo     = "";
+    $d_Vapor     = "";
 }
 
-$query_etapas5 = $_form->get_formulario_etapas($id, 'sostener1');
-$row_etapas5 = $query_etapas5->fetch_assoc();
+$query_etapas5  = $_form->get_formulario_etapas($id,'sostener1');
+$row_etapas5    = $query_etapas5->fetch_assoc();
 
-if (isset($row_etapas5["HoraInicio"]) && $row_etapas5["HoraInicio"] != '') {
-    $horainiciosostenertemp = $row_etapas5["HoraInicio"];
-    $d_horainiciosostenertemp = "readonly";
-} else {
-    $horainiciosostenertemp = "";
-    $d_horainiciosostenertemp = "";
+if(isset($row_etapas5["HoraInicio"]) && $row_etapas5["HoraInicio"] != ''){
+    $horainiciosostenertemp     = $row_etapas5["HoraInicio"];
+    $d_horainiciosostenertemp   = "readonly";
+}else{
+    $horainiciosostenertemp     = "";
+    $d_horainiciosostenertemp   = "";
 }
 
-if (isset($row_etapas5["Temperatura"]) && $row_etapas5["Temperatura"] != '') {
-    $temphr1 = $row_etapas5["Temperatura"];
-    $d_temphr1 = "readonly";
-} else {
-    $temphr1 = "";
-    $d_temphr1 = "";
+if(isset($row_etapas5["Temperatura"]) && $row_etapas5["Temperatura"] != ''){
+    $temphr1     = $row_etapas5["Temperatura"];
+    $d_temphr1   = "readonly";
+}else{
+    $temphr1     = "";
+    $d_temphr1   = "";
 }
 
-if (isset($row_etapas5["Presion"]) && $row_etapas5["Presion"] != '') {
-    $presionhr1 = $row_etapas5["Presion"];
+if(isset($row_etapas5["Presion"]) && $row_etapas5["Presion"] != ''){
+    $presionhr1   = $row_etapas5["Presion"];
     $d_presionhr1 = "readonly";
-} else {
-    $presionhr1 = "";
-    $d_presionhr1 = "";
+}else{
+    $presionhr1     = "";
+    $d_presionhr1   = "";
 }
 
-$query_etapas6 = $_form->get_formulario_etapas($id, 'sostener2');
-$row_etapas6 = $query_etapas6->fetch_assoc();
+$query_etapas6  = $_form->get_formulario_etapas($id,'sostener2');
+$row_etapas6    = $query_etapas6->fetch_assoc();
 
-if (isset($row_etapas6["Temperatura"]) && $row_etapas6["Temperatura"] != '') {
-    $temphr2 = $row_etapas6["Temperatura"];
-    $d_temphr2 = "readonly";
-} else {
-    $temphr2 = "";
-    $d_temphr2 = "";
+if(isset($row_etapas6["Temperatura"]) && $row_etapas6["Temperatura"] != ''){
+    $temphr2     = $row_etapas6["Temperatura"];
+    $d_temphr2   = "readonly";
+}else{
+    $temphr2     = "";
+    $d_temphr2   = "";
 }
 
-if (isset($row_etapas6["Presion"]) && $row_etapas6["Presion"] != '') {
-    $presionhr2 = $row_etapas6["Presion"];
-    $d_presionhr2 = "readonly";
-} else {
-    $presionhr2 = "";
-    $d_presionhr2 = "";
+if(isset($row_etapas6["Presion"]) && $row_etapas6["Presion"] != ''){
+    $presionhr2     = $row_etapas6["Presion"];
+    $d_presionhr2   = "readonly";
+}else{
+    $presionhr2     = "";
+    $d_presionhr2   = "";
 }
 
-$query_etapas7 = $_form->get_formulario_etapas($id, 'sostener3');
-$row_etapas7 = $query_etapas7->fetch_assoc();
+$query_etapas7  = $_form->get_formulario_etapas($id,'sostener3');
+$row_etapas7    = $query_etapas7->fetch_assoc();
 
-if (isset($row_etapas7["Temperatura"]) && $row_etapas7["Temperatura"] != '') {
-    $temphr3 = $row_etapas7["Temperatura"];
-    $d_temphr3 = "readonly";
-} else {
-    $temphr3 = "";
-    $d_temphr3 = "";
+if(isset($row_etapas7["Temperatura"]) && $row_etapas7["Temperatura"] != ''){
+    $temphr3     = $row_etapas7["Temperatura"];
+    $d_temphr3   = "readonly";
+}else{
+    $temphr3     = "";
+    $d_temphr3   = "";
 }
 
-if (isset($row_etapas7["Presion"]) && $row_etapas7["Presion"] != '') {
-    $presionhr3 = $row_etapas7["Presion"];
-    $d_presionhr3 = "readonly";
-} else {
-    $presionhr3 = "";
-    $d_presionhr3 = "";
+if(isset($row_etapas7["Presion"]) && $row_etapas7["Presion"] != ''){
+    $presionhr3     = $row_etapas7["Presion"];
+    $d_presionhr3   = "readonly";
+}else{
+    $presionhr3     = "";
+    $d_presionhr3   = "";
 }
 
-if (isset($row_etapas7["HoraFin"]) && $row_etapas7["HoraFin"] != '') {
-    $horafinsostenertemp = $row_etapas7["HoraFin"];
-    $d_horafinsostenertemp = ""; //SE MODIFICA PARA HABILITAR SU EDICIÓN
-} else {
-    $horafinsostenertemp = "";
+if(isset($row_etapas7["HoraFin"]) && $row_etapas7["HoraFin"] != ''){
+    $horafinsostenertemp   = $row_etapas7["HoraFin"];
+    $d_horafinsostenertemp = "readonly";
+}else{
+    $horafinsostenertemp   = "";
     $d_horafinsostenertemp = "";
 }
 
@@ -794,948 +781,921 @@ if (isset($row_nfo["ProblemaSWFO"]) && $row_nfo["ProblemaSWFO"] == '1') {
 
 $TextoProblemaSWFO = isset($row["TextoProblemaSWFO"]) ? $row["TextoProblemaSWFO"] : '';
 
-if (isset($row_nfo["EnfriarOk"]) && $row_nfo["EnfriarOk"] == '1') {
-    $EnfriarOkSi = "checked";
-    $EnfriarOkNo = "";
-    $d_EnfriarOk = "readonly";
-} else if (isset($row_nfo["EnfriarOk"]) && $row_nfo["EnfriarOk"] == '0') {
-    $EnfriarOkSi = "";
-    $EnfriarOkNo = "checked";
-    $d_EnfriarOk = "";
-} else {
-    $EnfriarOkSi = "";
-    $EnfriarOkNo = "";
-    $d_EnfriarOk = "";
+if(isset($row_nfo["EnfriarOk"]) && $row_nfo["EnfriarOk"] == '1'){
+    $EnfriarOkSi     = "checked";
+    $EnfriarOkNo     = "";
+    $d_EnfriarOk     = "readonly";
+}else if(isset($row_nfo["EnfriarOk"]) && $row_nfo["EnfriarOk"] == '0'){
+    $EnfriarOkSi     = "";
+    $EnfriarOkNo     = "checked";
+    $d_EnfriarOk     = "";
+}else{
+    $EnfriarOkSi     = "";
+    $EnfriarOkNo     = "";
+    $d_EnfriarOk     = "";
 }
 
-$query_etapas8 = $_form->get_formulario_etapas($id, 'enfriado1');
-$row_etapas8 = $query_etapas8->fetch_assoc();
-if (isset($row_etapas8["Temperatura"]) && $row_etapas8["Temperatura"] != '') {
-    $tempenfriado = $row_etapas8["Temperatura"];
-    $d_tempenfriado = "readonly";
-} else {
-    $tempenfriado = "";
-    $d_tempenfriado = "";
+$query_etapas8  = $_form->get_formulario_etapas($id,'enfriado1');
+$row_etapas8    = $query_etapas8->fetch_assoc();
+if(isset($row_etapas8["Temperatura"]) && $row_etapas8["Temperatura"] != ''){
+    $tempenfriado    = $row_etapas8["Temperatura"];
+    $d_tempenfriado  = "readonly";
+}else{
+    $tempenfriado    = "";
+    $d_tempenfriado  = "";
 }
-if (isset($row_etapas8["Presion"]) && $row_etapas8["Presion"] != '') {
+if(isset($row_etapas8["Presion"]) && $row_etapas8["Presion"] != ''){
     $presionenfriado = $row_etapas8["Presion"];
-    $d_presionenfriado = "readonly";
-} else {
-    $presionenfriado = "";
-    $d_presionenfriado = "";
+    $d_presionenfriado  = "readonly";
+}else{
+    $presionenfriado    = "";
+    $d_presionenfriado  = "";
 }
 
-$query_etapas9 = $_form->get_formulario_etapas($id, 'enfriado2');
-$row_etapas9 = $query_etapas9->fetch_assoc();
-if (isset($row_etapas9["Temperatura"]) && $row_etapas9["Temperatura"] != '') {
-    $tempadicionstw = $row_etapas9["Temperatura"];
-    $d_tempadicionstw = "readonly";
-} else {
-    $tempadicionstw = "";
-    $d_tempadicionstw = "";
+$query_etapas9  = $_form->get_formulario_etapas($id,'enfriado2');
+$row_etapas9    = $query_etapas9->fetch_assoc();
+if(isset($row_etapas9["Temperatura"]) && $row_etapas9["Temperatura"] != ''){
+    $tempadicionstw     = $row_etapas9["Temperatura"];
+    $d_tempadicionstw   = "readonly";
+}else{
+    $tempadicionstw     = "";
+    $d_tempadicionstw   = "";
 }
-if (isset($row_etapas9["Presion"]) && $row_etapas9["Presion"] != '') {
-    $presionadicionstw = $row_etapas9["Presion"];
-    $d_presionadicionstw = "readonly";
-} else {
-    $presionadicionstw = "";
-    $d_presionadicionstw = "";
+if(isset($row_etapas9["Presion"]) && $row_etapas9["Presion"] != ''){
+    $presionadicionstw  = $row_etapas9["Presion"];
+    $d_presionadicionstw= "readonly";
+}else{
+    $presionadicionstw     = "";
+    $d_presionadicionstw   = "";
 }
 
-if (isset($row_nfo["EvacuarCamisa"]) && $row_nfo["EvacuarCamisa"] == '1') {
-    $EvacuarCamisa = "checked";
+if(isset($row_nfo["EvacuarCamisa"]) && $row_nfo["EvacuarCamisa"] == '1'){
+    $EvacuarCamisa   = "checked";
     $d_EvacuarCamisa = "readonly";
-} else {
-    $EvacuarCamisa = "";
-    $d_EvacuarCamisa = "";
+}else{
+    $EvacuarCamisa     = "";
+    $d_EvacuarCamisa   = "";
 }
 
-if (isset($row_nfo["SuministroVapor"]) && $row_nfo["SuministroVapor"] == '1') {
-    $SuministroVaporSi = "checked";
-    $SuministroVaporNo = "";
-    $d_SuministroVapor = "readonly";
-} else if (isset($row_nfo["SuministroVapor"]) && $row_nfo["SuministroVapor"] == '0') {
-    $SuministroVaporSi = "";
-    $SuministroVaporNo = "checked";
-    $d_SuministroVapor = "";
-} else {
-    $SuministroVaporSi = "";
-    $SuministroVaporNo = "";
-    $d_SuministroVapor = "";
+if(isset($row_nfo["SuministroVapor"]) && $row_nfo["SuministroVapor"] == '1'){
+    $SuministroVaporSi     = "checked";
+    $SuministroVaporNo     = "";
+    $d_SuministroVapor     = "readonly";
+}else if(isset($row_nfo["SuministroVapor"]) && $row_nfo["SuministroVapor"] == '0'){
+    $SuministroVaporSi     = "";
+    $SuministroVaporNo     = "checked";
+    $d_SuministroVapor     = "";
+}else{
+    $SuministroVaporSi     = "";
+    $SuministroVaporNo     = "";
+    $d_SuministroVapor     = "";
 }
 
-if (isset($row_nfo["SeguridadFDO"]) && $row_nfo["SeguridadFDO"] == '1') {
-    $SeguridadFDOSi = "checked";
-    $SeguridadFDONo = "";
-    $d_SeguridadFDO = "readonly";
-} else if (isset($row_nfo["SeguridadFDO"]) && $row_nfo["SeguridadFDO"] == '0') {
-    $SeguridadFDOSi = "";
-    $SeguridadFDONo = "checked";
-    $d_SeguridadFDO = "";
-} else {
-    $SeguridadFDOSi = "";
-    $SeguridadFDONo = "";
-    $d_SeguridadFDO = "";
+if(isset($row_nfo["SeguridadFDO"]) && $row_nfo["SeguridadFDO"] == '1'){
+    $SeguridadFDOSi     = "checked";
+    $SeguridadFDONo     = "";
+    $d_SeguridadFDO     = "readonly";
+}else if(isset($row_nfo["SeguridadFDO"]) && $row_nfo["SeguridadFDO"] == '0'){
+    $SeguridadFDOSi     = "";
+    $SeguridadFDONo     = "checked";
+    $d_SeguridadFDO     = "";
+}else{
+    $SeguridadFDOSi     = "";
+    $SeguridadFDONo     = "";
+    $d_SeguridadFDO     = "";
 }
 
-if (isset($row_nfo["EquipoFDO"]) && $row_nfo["EquipoFDO"] == '1') {
-    $EquipoFDOSi = "checked";
-    $EquipoFDONo = "";
-    $RevisoConexion = "show";
-    $Carga700 = "show";
-    $d_EquipoFDO = "readonly";
-} else if (isset($row_nfo["EquipoFDO"]) && $row_nfo["EquipoFDO"] == '0') {
-    $EquipoFDOSi = "";
-    $EquipoFDONo = "checked";
-    $RevisoConexion = "none";
-    $Carga700 = "none";
-    $d_EquipoFDO = "";
-} else {
-    $EquipoFDOSi = "";
-    $EquipoFDONo = "";
-    $RevisoConexion = "none";
-    $Carga700 = "none";
-    $d_EquipoFDO = "";
+if(isset($row_nfo["EquipoFDO"]) && $row_nfo["EquipoFDO"] == '1'){
+    $EquipoFDOSi     = "checked";
+    $EquipoFDONo     = "";
+    $RevisoConexion  = "show";
+    $Carga700        = "show";
+    $d_EquipoFDO     = "readonly";
+}else if(isset($row_nfo["EquipoFDO"]) && $row_nfo["EquipoFDO"] == '0'){
+    $EquipoFDOSi     = "";
+    $EquipoFDONo     = "checked";
+    $RevisoConexion  = "none";
+    $Carga700        = "none";
+    $d_EquipoFDO     = "";
+}else{
+    $EquipoFDOSi     = "";
+    $EquipoFDONo     = "";
+    $RevisoConexion  = "none";
+    $Carga700        = "none";
+    $d_EquipoFDO     = "";
 }
 
 //  Paso 8      67
-if (isset($row_nfo["LineaTierraOk"]) && $row_nfo["LineaTierraOk"] == '1') {
-    $LineaTierraOk = "checked";
-    $d_LineaTierraOk = "readonly";
-    $autoFocus1 = '';
-    $autoFocus2 = '';
-    $autoFocus3 = '';
-    $autoFocus4 = 'autofocus';
-} else {
-    $LineaTierraOk = "";
-    $d_LineaTierraOk = "";
+if(isset($row_nfo["LineaTierraOk"]) && $row_nfo["LineaTierraOk"] == '1'){
+    $LineaTierraOk     = "checked";
+    $d_LineaTierraOk   = "readonly";
+}else{
+    $LineaTierraOk     = "";
+    $d_LineaTierraOk   = "";
 }
 
-if (isset($row_nfo["BombaNeumaticaOk"]) && $row_nfo["BombaNeumaticaOk"] == '1') {
-    $BombaNeumaticaOk = "checked";
-    $d_BombaNeumaticaOk = "readonly";
-} else {
-    $BombaNeumaticaOk = "";
-    $d_BombaNeumaticaOk = "";
+if(isset($row_nfo["BombaNeumaticaOk"]) && $row_nfo["BombaNeumaticaOk"] == '1'){
+    $BombaNeumaticaOk     = "checked";
+    $d_BombaNeumaticaOk   = "readonly";
+}else{
+    $BombaNeumaticaOk     = "";
+    $d_BombaNeumaticaOk   = "";
 }
-if (isset($row_nfo["ConexionOk"]) && $row_nfo["ConexionOk"] == '1') {
-    $ConexionOk = "checked";
-    $d_ConexionOk = "readonly";
-} else {
-    $ConexionOk = "";
-    $d_ConexionOk = "";
+if(isset($row_nfo["ConexionOk"]) && $row_nfo["ConexionOk"] == '1'){
+    $ConexionOk     = "checked";
+    $d_ConexionOk   = "readonly";
+}else{
+    $ConexionOk     = "";
+    $d_ConexionOk   = "";
 }
-if (isset($row_nfo["MangueraOk"]) && $row_nfo["MangueraOk"] == '1') {
-    $MangueraOk = "checked";
-    $d_MangueraOk = "readonly";
-} else {
-    $MangueraOk = "";
-    $d_MangueraOk = "";
+if(isset($row_nfo["MangueraOk"]) && $row_nfo["MangueraOk"] == '1'){
+    $MangueraOk     = "checked";
+    $d_MangueraOk   = "readonly";
+}else{
+    $MangueraOk     = "";
+    $d_MangueraOk   = "";
 }
-if (isset($row_nfo["LineaCargaOk"]) && $row_nfo["LineaCargaOk"] == '1') {
-    $LineaCargaOk = "checked";
-    $d_LineaCargaOk = "readonly";
-} else {
-    $LineaCargaOk = "";
-    $d_LineaCargaOk = "";
+if(isset($row_nfo["LineaCargaOk"]) && $row_nfo["LineaCargaOk"] == '1'){
+    $LineaCargaOk     = "checked";
+    $d_LineaCargaOk   = "readonly";
+}else{
+    $LineaCargaOk     = "";
+    $d_LineaCargaOk   = "";
 }
-if (isset($row_nfo["ValvulasCerradas"]) && $row_nfo["ValvulasCerradas"] == '1') {
-    $ValvulasCerradas = "checked";
+if(isset($row_nfo["ValvulasCerradas"]) && $row_nfo["ValvulasCerradas"] == '1'){
+    $ValvulasCerradas   = "checked";
     $d_ValvulasCerradas = "readonly";
-} else {
-    $ValvulasCerradas = "";
-    $d_ValvulasCerradas = "";
+}else{
+    $ValvulasCerradas     = "";
+    $d_ValvulasCerradas   = "";
 }
-if (isset($row_nfo["CapacidadTanque"]) && $row_nfo["CapacidadTanque"] == '1') {
-    $CapacidadTanque = "checked";
-    $d_CapacidadTanque = "readonly";
-} else {
-    $CapacidadTanque = "";
-    $d_CapacidadTanque = "";
+if(isset($row_nfo["CapacidadTanque"]) && $row_nfo["CapacidadTanque"] == '1'){
+    $CapacidadTanque    = "checked";
+    $d_CapacidadTanque  = "readonly";
+}else{
+    $CapacidadTanque     = "";
+    $d_CapacidadTanque   = "";
 }
 
 // Paso 9
-$query_etapas10 = $_form->get_formulario_etapas($id, 'carga7001');
-$row_etapas10 = $query_etapas10->fetch_assoc();
-if (isset($row_etapas10["HoraInicio"]) && $row_etapas10["HoraInicio"] != '') {
-    $horainicioadc = $row_etapas10["HoraInicio"];
+$query_etapas10  = $_form->get_formulario_etapas($id,'carga7001');
+$row_etapas10    = $query_etapas10->fetch_assoc();
+if(isset($row_etapas10["HoraInicio"]) && $row_etapas10["HoraInicio"] != ''){
+    $horainicioadc   = $row_etapas10["HoraInicio"];
     $d_horainicioadc = "readonly";
-} else {
-    $horainicioadc = "";
+}else{
+    $horainicioadc   = "";
     $d_horainicioadc = "";
 }
 
-if (isset($row_etapas10["Temperatura"]) && $row_etapas10["Temperatura"] != '') {
-    $tempadc1 = $row_etapas10["Temperatura"];
-    $d_tempadc1 = "readonly";
-} else {
-    $tempadc1 = "";
-    $d_tempadc1 = "";
+if(isset($row_etapas10["Temperatura"]) && $row_etapas10["Temperatura"] != ''){
+    $tempadc1        = $row_etapas10["Temperatura"];
+    $d_tempadc1      = "readonly";
+}else{
+    $tempadc1        = "";
+    $d_tempadc1      = "";
 }
 
-if (isset($row_etapas10["Presion"]) && $row_etapas10["Presion"] != '') {
-    $presionadc1 = $row_etapas10["Presion"];
-    $d_presionadc1 = "readonly";
-} else {
-    $presionadc1 = "";
-    $d_presionadc1 = "";
+if(isset($row_etapas10["Presion"]) && $row_etapas10["Presion"] != ''){
+    $presionadc1     = $row_etapas10["Presion"];
+    $d_presionadc1   = "readonly";
+}else{
+    $presionadc1     = "";
+    $d_presionadc1   = "";
 }
 
-if (isset($row_etapas10["Comentario"]) && $row_etapas10["Comentario"] != '') {
-    $comentarioadc1 = $row_etapas10["Comentario"];
-    $d_comentarioadc1 = "readonly";
-} else {
-    $comentarioadc1 = "";
-    $d_comentarioadc1 = "";
-}
-
-
-$query_etapas11 = $_form->get_formulario_etapas($id, 'carga7002');
-$row_etapas11 = $query_etapas11->fetch_assoc();
-if (isset($row_etapas11["Temperatura"]) && $row_etapas11["Temperatura"] != '') {
-    $tempadc2 = $row_etapas11["Temperatura"];
-    $d_tempadc2 = "readonly";
-} else {
-    $tempadc2 = "";
-    $d_tempadc2 = "";
-}
-
-if (isset($row_etapas11["Presion"]) && $row_etapas11["Presion"] != '') {
-    $presionadc2 = $row_etapas11["Presion"];
-    $d_presionadc2 = "readonly";
-} else {
-    $presionadc2 = "";
-    $d_presionadc2 = "";
-}
-
-if (isset($row_etapas11["Comentario"]) && $row_etapas11["Comentario"] != '') {
-    $comentarioadc2 = $row_etapas11["Comentario"];
-    $d_comentarioadc2 = "readonly";
-} else {
-    $comentarioadc2 = "";
-    $d_comentarioadc2 = "";
+if(isset($row_etapas10["Comentario"]) && $row_etapas10["Comentario"] != ''){
+    $comentarioadc1     = $row_etapas10["Comentario"];
+    $d_comentarioadc1   = "readonly";
+}else{
+    $comentarioadc1     = "";
+    $d_comentarioadc1   = "";
 }
 
 
-$query_etapas12 = $_form->get_formulario_etapas($id, 'carga7003');
-$row_etapas12 = $query_etapas12->fetch_assoc();
-if (isset($row_etapas12["Temperatura"]) && $row_etapas12["Temperatura"] != '') {
-    $tempadc3 = $row_etapas12["Temperatura"];
-    $d_tempadc3 = "readonly";
-} else {
-    $tempadc3 = "";
-    $d_tempadc3 = "";
+$query_etapas11  = $_form->get_formulario_etapas($id,'carga7002');
+$row_etapas11    = $query_etapas11->fetch_assoc();
+if(isset($row_etapas11["Temperatura"]) && $row_etapas11["Temperatura"] != ''){
+    $tempadc2        = $row_etapas11["Temperatura"];
+    $d_tempadc2      = "readonly";
+}else{
+    $tempadc2        = "";
+    $d_tempadc2      = "";
 }
 
-if (isset($row_etapas12["Presion"]) && $row_etapas12["Presion"] != '') {
-    $presionadc3 = $row_etapas12["Presion"];
-    $d_presionadc3 = "readonly";
-} else {
-    $presionadc3 = "";
-    $d_presionadc3 = "";
+if(isset($row_etapas11["Presion"]) && $row_etapas11["Presion"] != ''){
+    $presionadc2     = $row_etapas11["Presion"];
+    $d_presionadc2   = "readonly";
+}else{
+    $presionadc2     = "";
+    $d_presionadc2   = "";
 }
 
-if (isset($row_etapas12["Comentario"]) && $row_etapas12["Comentario"] != '') {
-    $comentarioadc3 = $row_etapas12["Comentario"];
-    $d_comentarioadc3 = "readonly";
-} else {
-    $comentarioadc3 = "";
-    $d_comentarioadc3 = "";
-}
-
-
-$query_etapas13 = $_form->get_formulario_etapas($id, 'carga7004');
-$row_etapas13 = $query_etapas13->fetch_assoc();
-if (isset($row_etapas13["Temperatura"]) && $row_etapas13["Temperatura"] != '') {
-    $tempadc4 = $row_etapas13["Temperatura"];
-    $d_tempadc4 = "readonly";
-} else {
-    $tempadc4 = "";
-    $d_tempadc4 = "";
-}
-
-if (isset($row_etapas13["Presion"]) && $row_etapas13["Presion"] != '') {
-    $presionadc4 = $row_etapas13["Presion"];
-    $d_presionadc4 = "readonly";
-} else {
-    $presionadc4 = "";
-    $d_presionadc4 = "";
-}
-
-if (isset($row_etapas13["Comentario"]) && $row_etapas13["Comentario"] != '') {
-    $comentarioadc4 = $row_etapas13["Comentario"];
-    $d_comentarioadc4 = "readonly";
-} else {
-    $comentarioadc4 = "";
-    $d_comentarioadc4 = "";
+if(isset($row_etapas11["Comentario"]) && $row_etapas11["Comentario"] != ''){
+    $comentarioadc2     = $row_etapas11["Comentario"];
+    $d_comentarioadc2   = "readonly";
+}else{
+    $comentarioadc2     = "";
+    $d_comentarioadc2   = "";
 }
 
 
-$query_etapas14 = $_form->get_formulario_etapas($id, 'carga7005');
-$row_etapas14 = $query_etapas14->fetch_assoc();
-if (isset($row_etapas14["Temperatura"]) && $row_etapas14["Temperatura"] != '') {
-    $tempadc5 = $row_etapas14["Temperatura"];
-    $d_tempadc5 = "readonly";
-} else {
-    $tempadc5 = "";
-    $d_tempadc5 = "";
+$query_etapas12  = $_form->get_formulario_etapas($id,'carga7003');
+$row_etapas12    = $query_etapas12->fetch_assoc();
+if(isset($row_etapas12["Temperatura"])&& $row_etapas12["Temperatura"] != ''){
+    $tempadc3        = $row_etapas12["Temperatura"];
+    $d_tempadc3      = "readonly";
+}else{
+    $tempadc3        = "";
+    $d_tempadc3      = "";
 }
 
-if (isset($row_etapas14["Presion"]) && $row_etapas14["Presion"] != '') {
-    $presionadc5 = $row_etapas14["Presion"];
-    $d_presionadc5 = "readonly";
-} else {
-    $presionadc5 = "";
-    $d_presionadc5 = "";
+if(isset($row_etapas12["Presion"]) && $row_etapas12["Presion"] != ''){
+    $presionadc3     = $row_etapas12["Presion"];
+    $d_presionadc3   = "readonly";
+}else{
+    $presionadc3     = "";
+    $d_presionadc3   = "";
 }
 
-if (isset($row_etapas14["Comentario"]) && $row_etapas14["Comentario"] != '') {
-    $comentarioadc5 = $row_etapas14["Comentario"];
-    $d_comentarioadc5 = "readonly";
-} else {
-    $comentarioadc5 = "";
-    $d_comentarioadc5 = "";
-}
-
-if (isset($row_etapas14["HoraFin"]) && $row_etapas14["HoraFin"] != '') {
-    $horafinadc = $row_etapas14["HoraFin"];
-    $d_horafinadc = "readonly";
-} else {
-    $horafinadc = "";
-    $d_horafinadc = "";
+if(isset($row_etapas12["Comentario"]) && $row_etapas12["Comentario"] != ''){
+    $comentarioadc3     = $row_etapas12["Comentario"];
+    $d_comentarioadc3   = "readonly";
+}else{
+    $comentarioadc3     = "";
+    $d_comentarioadc3   = "";
 }
 
 
-$query_etapas15 = $_form->get_formulario_etapas($id, 'reaccion1');
-$row_etapas15 = $query_etapas15->fetch_assoc();
-if (isset($row_etapas15["HoraInicio"]) && $row_etapas15["HoraInicio"] != '') {
-    $horainicioreac = $row_etapas15["HoraInicio"];
-    $d_horainicioreac = "readonly";
-    $autoFocus1 = '';
-    $autoFocus2 = '';
-    $autoFocus3 = '';
-    $autoFocus4 = '';
-    $autoFocus8 = 'autofocus';
-} else {
-    $horainicioreac = "";
-    $d_horainicioreac = "";
+$query_etapas13  = $_form->get_formulario_etapas($id,'carga7004');
+$row_etapas13    = $query_etapas13->fetch_assoc();
+if(isset($row_etapas13["Temperatura"]) && $row_etapas13["Temperatura"] != ''){
+    $tempadc4        = $row_etapas13["Temperatura"];
+    $d_tempadc4      = "readonly";
+}else{
+    $tempadc4        = "";
+    $d_tempadc4      = "";
 }
 
-if (isset($row_etapas15["Temperatura"]) && $row_etapas15["Temperatura"] != '') {
-    $tempreac1 = $row_etapas15["Temperatura"];
-    $d_tempreac1 = "readonly";
-} else {
-    $tempreac1 = "";
-    $d_tempreac1 = "";
+if(isset($row_etapas13["Presion"]) && $row_etapas13["Presion"] != ''){
+    $presionadc4     = $row_etapas13["Presion"];
+    $d_presionadc4   = "readonly";
+}else{
+    $presionadc4     = "";
+    $d_presionadc4   = "";
 }
 
-if (isset($row_etapas15["Presion"]) && $row_etapas15["Presion"] != '') {
-    $presionreac1 = $row_etapas15["Presion"];
-    $d_presionreac1 = "readonly";
-} else {
-    $presionreac1 = "";
-    $d_presionreac1 = "";
-}
-
-if (isset($row_etapas15["Comentario"]) && $row_etapas15["Comentario"] != '') {
-    $comentarioreac1 = $row_etapas15["Comentario"];
-    $d_comentarioreac1 = "readonly";
-} else {
-    $comentarioreac1 = "";
-    $d_comentarioreac1 = "";
+if(isset($row_etapas13["Comentario"]) && $row_etapas13["Comentario"] != ''){
+    $comentarioadc4     = $row_etapas13["Comentario"];
+    $d_comentarioadc4   = "readonly";
+}else{
+    $comentarioadc4     = "";
+    $d_comentarioadc4   = "";
 }
 
 
-$query_etapas16 = $_form->get_formulario_etapas($id, 'reaccion2');
-$row_etapas16 = $query_etapas16->fetch_assoc();
-if (isset($row_etapas16["Temperatura"]) && $row_etapas16["Temperatura"] != '') {
-    $tempreac2 = $row_etapas16["Temperatura"];
-    $d_tempreac2 = "readonly";
-} else {
-    $tempreac2 = "";
-    $d_tempreac2 = "";
+$query_etapas14  = $_form->get_formulario_etapas($id,'carga7005');
+$row_etapas14    = $query_etapas14->fetch_assoc();
+if(isset($row_etapas14["Temperatura"])&& $row_etapas14["Temperatura"] != ''){
+    $tempadc5        = $row_etapas14["Temperatura"];
+    $d_tempadc5      = "readonly";
+}else{
+    $tempadc5        = "";
+    $d_tempadc5      = "";
 }
 
-if (isset($row_etapas16["Presion"]) && $row_etapas16["Presion"] != '') {
-    $presionreac2 = $row_etapas16["Presion"];
-    $d_presionreac2 = "readonly";
-} else {
-    $presionreac2 = "";
-    $d_presionreac2 = "";
+if(isset($row_etapas14["Presion"]) && $row_etapas14["Presion"] != ''){
+    $presionadc5     = $row_etapas14["Presion"];
+    $d_presionadc5   = "readonly";
+}else{
+    $presionadc5     = "";
+    $d_presionadc5   = "";
 }
 
-if (isset($row_etapas16["Comentario"]) && $row_etapas16["Comentario"] != '') {
-    $comentarioreac2 = $row_etapas16["Comentario"];
-    $d_comentarioreac2 = "readonly";
-} else {
-    $comentarioreac2 = "";
-    $d_comentarioreac2 = "";
+if(isset($row_etapas14["Comentario"]) && $row_etapas14["Comentario"] != ''){
+    $comentarioadc5     = $row_etapas14["Comentario"];
+    $d_comentarioadc5   = "readonly";
+}else{
+    $comentarioadc5     = "";
+    $d_comentarioadc5   = "";
 }
 
-
-$query_etapas17 = $_form->get_formulario_etapas($id, 'reaccion3');
-$row_etapas17 = $query_etapas17->fetch_assoc();
-if (isset($row_etapas17["Temperatura"]) && $row_etapas17["Temperatura"] != '') {
-    $tempreac3 = $row_etapas17["Temperatura"];
-    $d_tempreac3 = "readonly";
-} else {
-    $tempreac3 = "";
-    $d_tempreac3 = "";
-}
-
-if (isset($row_etapas17["Presion"]) && $row_etapas17["Presion"] != '') {
-    $presionreac3 = $row_etapas17["Presion"];
-    $d_presionreac3 = "readonly";
-} else {
-    $presionreac3 = "";
-    $d_presionreac3 = "";
-}
-
-if (isset($row_etapas17["Comentario"]) && $row_etapas17["Comentario"] != '') {
-    $comentarioreac3 = $row_etapas17["Comentario"];
-    $d_comentarioreac3 = "readonly";
-} else {
-    $comentarioreac3 = "";
-    $d_comentarioreac3 = "";
+if(isset($row_etapas14["HoraFin"]) && $row_etapas14["HoraFin"] != ''){
+    $horafinadc      = $row_etapas14["HoraFin"];
+    $d_horafinadc    = "readonly";
+}else{
+    $horafinadc      = "";
+    $d_horafinadc    = "";
 }
 
 
-$query_etapas18 = $_form->get_formulario_etapas($id, 'reaccion4');
-$row_etapas18 = $query_etapas18->fetch_assoc();
-if (isset($row_etapas18["Temperatura"]) && $row_etapas18["Temperatura"] != '') {
-    $tempreac4 = $row_etapas18["Temperatura"];
-    $d_tempreac4 = "readonly";
-} else {
-    $tempreac4 = "";
-    $d_tempreac4 = "";
+$query_etapas15  = $_form->get_formulario_etapas($id,'reaccion1');
+$row_etapas15    = $query_etapas15->fetch_assoc();
+if(isset($row_etapas15["HoraInicio"]) && $row_etapas15["HoraInicio"] != ''){
+    $horainicioreac     = $row_etapas15["HoraInicio"];
+    $d_horainicioreac   = "readonly";
+}else{
+    $horainicioreac     = "";
+    $d_horainicioreac   = "readonly";
 }
 
-if (isset($row_etapas18["Presion"]) && $row_etapas18["Presion"] != '') {
-    $presionreac4 = $row_etapas18["Presion"];
-    $d_presionreac4 = "readonly";
-} else {
-    $presionreac4 = "";
-    $d_presionreac4 = "";
+if(isset($row_etapas15["Temperatura"]) && $row_etapas15["Temperatura"] != ''){
+    $tempreac1       = $row_etapas15["Temperatura"];
+    $d_tempreac1     = "readonly";
+}else{
+    $tempreac1       = "";
+    $d_tempreac1     = "";
 }
 
-if (isset($row_etapas18["Comentario"]) && $row_etapas18["Comentario"] != '') {
-    $comentarioreac4 = $row_etapas18["Comentario"];
-    $d_comentarioreac4 = "readonly";
-} else {
-    $comentarioreac4 = "";
-    $d_comentarioreac4 = "";
+if(isset($row_etapas15["Presion"]) && $row_etapas15["Presion"] != ''){
+    $presionreac1    = $row_etapas15["Presion"];
+    $d_presionreac1  = "readonly";
+}else{
+    $presionreac1    = "";
+    $d_presionreac1  = "";
 }
 
-
-$query_etapas19 = $_form->get_formulario_etapas($id, 'reaccion5');
-$row_etapas19 = $query_etapas19->fetch_assoc();
-if (isset($row_etapas19["Temperatura"]) && $row_etapas19["Temperatura"] != '') {
-    $tempreac5 = $row_etapas19["Temperatura"];
-    $d_tempreac5 = "readonly";
-} else {
-    $tempreac5 = "";
-    $d_tempreac5 = "";
-}
-
-if (isset($row_etapas19["Presion"]) && $row_etapas19["Presion"] != '') {
-    $presionreac5 = $row_etapas19["Presion"];
-    $d_presionreac5 = "readonly";
-} else {
-    $presionreac5 = "";
-    $d_presionreac5 = "";
-}
-
-if (isset($row_etapas19["Comentario"]) && $row_etapas19["Comentario"] != '') {
-    $comentarioreac5 = $row_etapas19["Comentario"];
-    $d_comentarioreac5 = "readonly";
-} else {
-    $comentarioreac5 = "";
-    $d_comentarioreac5 = "";
+if(isset($row_etapas15["Comentario"]) && $row_etapas15["Comentario"] != ''){
+    $comentarioreac1    = $row_etapas15["Comentario"];
+    $d_comentarioreac1  = "readonly";
+}else{
+    $comentarioreac1    = "";
+    $d_comentarioreac1  = "";
 }
 
 
-$query_etapas20 = $_form->get_formulario_etapas($id, 'reaccion6');
-$row_etapas20 = $query_etapas20->fetch_assoc();
-if (isset($row_etapas20["Temperatura"]) && $row_etapas20["Temperatura"] != '') {
-    $tempreac6 = $row_etapas20["Temperatura"];
-    $d_tempreac6 = "readonly";
-} else {
-    $tempreac6 = "";
-    $d_tempreac6 = "";
+$query_etapas16  = $_form->get_formulario_etapas($id,'reaccion2');
+$row_etapas16    = $query_etapas16->fetch_assoc();
+if(isset($row_etapas16["Temperatura"]) && $row_etapas16["Temperatura"] != ''){
+    $tempreact2      = $row_etapas16["Temperatura"];
+    $d_tempreact2    = "readonly";
+}else{
+    $tempreact2      = "";
+    $d_tempreact2    = "";
 }
 
-if (isset($row_etapas20["Presion"]) && $row_etapas20["Presion"] != '') {
-    $presionreac6 = $row_etapas20["Presion"];
-    $d_presionreac6 = "readonly";
-} else {
-    $presionreac6 = "";
-    $d_presionreac6 = "";
+if(isset($row_etapas16["Presion"]) && $row_etapas16["Presion"] != ''){
+    $presionreact2   = $row_etapas16["Presion"];
+    $d_presionreact2 = "readonly";
+}else{
+    $presionreact2   = "";
+    $d_presionreact2 = "";
 }
 
-if (isset($row_etapas20["Comentario"]) && $row_etapas20["Comentario"] != '') {
-    $comentarioreac6 = $row_etapas20["Comentario"];
-    $d_comentarioreac6 = "readonly";
-} else {
-    $comentarioreac6 = "";
-    $d_comentarioreac6 = "";
-}
-
-
-$query_etapas21 = $_form->get_formulario_etapas($id, 'reaccion7');
-$row_etapas21 = $query_etapas21->fetch_assoc();
-if (isset($row_etapas21["Temperatura"]) && $row_etapas21["Temperatura"] != '') {
-    $tempreac7 = $row_etapas21["Temperatura"];
-    $d_tempreac7 = "readonly";
-} else {
-    $tempreac7 = "";
-    $d_tempreac7 = "";
-}
-
-if (isset($row_etapas21["Presion"]) && $row_etapas21["Presion"] != '') {
-    $presionreac7 = $row_etapas21["Presion"];
-    $d_presionreac7 = "readonly";
-} else {
-    $presionreac7 = "";
-    $d_presionreac7 = "";
-}
-
-if (isset($row_etapas21["Comentario"]) && $row_etapas21["Comentario"] != '') {
-    $comentarioreac7 = $row_etapas21["Comentario"];
-    $d_comentarioreac7 = "";
-} else {
-    $comentarioreac7 = "";
-    $d_comentarioreac7 = "";
-}
-
-if (isset($row_etapas21["HoraFin"]) && $row_etapas21["HoraFin"] != '') {
-    $horafinreac = $row_etapas21["HoraFin"];
-    $d_horafinreac = "readonly";
-} else {
-    $horafinreac = "";
-    $d_horafinreac = "";
+if(isset($row_etapas16["Comentario"]) && $row_etapas16["Comentario"] != ''){
+    $comentarioreac2    = $row_etapas16["Comentario"];
+    $d_comentarioreac2  = "readonly";
+}else{
+    $comentarioreac2    = "";
+    $d_comentarioreac2  = "";
 }
 
 
-if (isset($row_nfo["ProblemaCondensacion"]) && $row_nfo["ProblemaCondensacion"] == '1') {
-    $ProblemaCondensacionSi = "checked";
-    $ProblemaCondensacionNo = "";
-    $ShowTextoProblemaCondensacion = "show";
-    $AdicionarSTW = "none";
-    $d_ProblemaCondensacion = "readonly";
-} else if (isset($row_nfo["ProblemaCondensacion"]) && $row_nfo["ProblemaCondensacion"] == '0') {
-    $ProblemaCondensacionSi = "";
-    $ProblemaCondensacionNo = "checked";
-    $ShowTextoProblemaCondensacion = "none";
-    $AdicionarSTW = "show";
-    $d_ProblemaCondensacion = "";
-} else {
-    $ProblemaCondensacionSi = "";
-    $ProblemaCondensacionNo = "";
-    $ShowTextoProblemaCondensacion = "none";
-    $AdicionarSTW = "none";
-    $d_ProblemaCondensacion = "";
+$query_etapas17  = $_form->get_formulario_etapas($id,'reaccion3');
+$row_etapas17    = $query_etapas17->fetch_assoc();
+if(isset($row_etapas17["Temperatura"]) && $row_etapas17["Temperatura"] != ''){
+    $tempreac3       = $row_etapas17["Temperatura"];
+    $d_tempreac3     = "readonly";
+}else{
+    $tempreac3       = "";
+    $d_tempreac3     = "";
 }
 
-if (isset($row_nfo["TextoProblemaCondensacion"]) && $row_nfo["TextoProblemaCondensacion"] != '') {
-    $TextoProblemaCondensacion = $row_nfo["TextoProblemaCondensacion"];
+if(isset($row_etapas17["Presion"]) && $row_etapas17["Presion"] != ''){
+    $presionreac3    = $row_etapas17["Presion"];
+    $d_presionreac3  = "readonly";
+}else{
+    $presionreac3    = "";
+    $d_presionreac3  = "";
+}
+
+if(isset($row_etapas17["Comentario"]) && $row_etapas17["Comentario"] != ''){
+    $comentarioreac3    = $row_etapas17["Comentario"];
+    $d_comentarioreac3  = "readonly";
+}else{
+    $comentarioreac3    = "";
+    $d_comentarioreac3  = "";
+}
+
+
+$query_etapas18  = $_form->get_formulario_etapas($id,'reaccion4');
+$row_etapas18    = $query_etapas18->fetch_assoc();
+if(isset($row_etapas18["Temperatura"]) && $row_etapas18["Temperatura"] != ''){
+    $tempreac4       = $row_etapas18["Temperatura"];
+    $d_tempreac4     = "readonly";
+}else{
+    $tempreac4       = "";
+    $d_tempreac4     = "";
+}
+
+if(isset($row_etapas18["Presion"]) && $row_etapas18["Presion"] != ''){
+    $presionreac4    = $row_etapas18["Presion"];
+    $d_presionreac4  = "readonly";
+}else{
+    $presionreac4    = "";
+    $d_presionreac4  = "";
+}
+
+if(isset($row_etapas18["Comentario"]) && $row_etapas18["Comentario"] != ''){
+    $comentarioreac4    = $row_etapas18["Comentario"];
+    $d_comentarioreac4  = "readonly";
+}else{
+    $comentarioreac4    = "";
+    $d_comentarioreac4  = "";
+}
+
+
+$query_etapas19  = $_form->get_formulario_etapas($id,'reaccion5');
+$row_etapas19    = $query_etapas19->fetch_assoc();
+if(isset($row_etapas19["Temperatura"]) && $row_etapas19["Temperatura"] != ''){
+    $tempreac5       = $row_etapas19["Temperatura"];
+    $d_tempreac5     = "readonly";
+}else{
+    $tempreac5       = "";
+    $d_tempreac5     = "";
+}
+
+if(isset($row_etapas19["Presion"]) && $row_etapas19["Presion"] != ''){
+    $presionreac5    = $row_etapas19["Presion"];
+    $d_presionreac5  = "readonly";
+}else{
+    $presionreac5    = "";
+    $d_presionreac5  = "";
+}
+
+if(isset($row_etapas19["Comentario"]) && $row_etapas19["Comentario"] != ''){
+    $comentarioreac5    = $row_etapas19["Comentario"];
+    $d_comentarioreac5  = "readonly";
+}else{
+    $comentarioreac5    = "";
+    $d_comentarioreac5  = "";
+}
+
+
+$query_etapas20  = $_form->get_formulario_etapas($id,'reaccion6');
+$row_etapas20    = $query_etapas20->fetch_assoc();
+if(isset($row_etapas20["Temperatura"]) && $row_etapas20["Temperatura"] != ''){
+    $tempreac6       = $row_etapas20["Temperatura"];
+    $d_tempreac6     = "readonly";
+}else{
+    $tempreac6       = "";
+    $d_tempreac6     = "";
+}
+
+if(isset($row_etapas20["Presion"]) && $row_etapas20["Presion"] != ''){
+    $presionreac6    = $row_etapas20["Presion"];
+    $d_presionreac6  = "readonly";
+}else{
+    $presionreac6    = "";
+    $d_presionreac6  = "";
+}
+
+if(isset($row_etapas20["Comentario"]) && $row_etapas20["Comentario"] != ''){
+    $comentarioreac6    = $row_etapas20["Comentario"];
+    $d_comentarioreac6  = "readonly";
+}else{
+    $comentarioreac6    = "";
+    $d_comentarioreac6  = "";
+}
+
+
+$query_etapas21  = $_form->get_formulario_etapas($id,'reaccion7');
+$row_etapas21    = $query_etapas21->fetch_assoc();
+if(isset($row_etapas21["Temperatura"]) && $row_etapas21["Temperatura"] != ''){
+    $tempreac7       = $row_etapas21["Temperatura"];
+    $d_tempreac7     = "readonly";
+}else{
+    $tempreac7       = "";
+    $d_tempreac7     = "";
+}
+
+if(isset($row_etapas21["Presion"]) && $row_etapas21["Presion"] != ''){
+    $presionreac7    = $row_etapas21["Presion"];
+    $d_presionreac7  = "readonly";
+}else{
+    $presionreac7    = "";
+    $d_presionreac7  = "";
+}
+
+if(isset($row_etapas21["Comentario"]) && $row_etapas21["Comentario"] != ''){
+    $comentarioreac7    = $row_etapas21["Comentario"];
+    $d_comentarioreac7  = "";
+}else{
+    $comentarioreac7    = "";
+    $d_comentarioreac7  = "";
+}
+
+if(isset($row_etapas21["HoraFin"]) && $row_etapas21["HoraFin"] != ''){
+    $horafinreac     = $row_etapas21["HoraFin"];
+    $d_horafinreac   = "readonly";
+}else{
+    $horafinreac     = "";
+    $d_horafinreac   = "";
+}
+
+
+if(isset($row_nfo["ProblemaCondensacion"]) && $row_nfo["ProblemaCondensacion"] == '1'){
+    $ProblemaCondensacionSi     = "checked";
+    $ProblemaCondensacionNo     = "";
+    $ShowTextoProblemaCondensacion  = "show";
+    $AdicionarSTW               = "show";
+    $d_ProblemaCondensacion     = "readonly";
+}else if(isset($row_nfo["ProblemaCondensacion"]) && $row_nfo["ProblemaCondensacion"] == '0'){
+    $ProblemaCondensacionSi     = "";
+    $ProblemaCondensacionNo     = "checked";
+    $ShowTextoProblemaCondensacion  = "none";
+    $AdicionarSTW               = "none";
+    $d_ProblemaCondensacion     = "";
+}else{
+    $ProblemaCondensacionSi     = "";
+    $ProblemaCondensacionNo     = "";
+    $ShowTextoProblemaCondensacion  = "none";
+    $AdicionarSTW               = "none";
+    $d_ProblemaCondensacion     = "";
+}
+
+if(isset($row_nfo["TextoProblemaCondensacion"]) && $row_nfo["TextoProblemaCondensacion"] != ''){
+    $TextoProblemaCondensacion   =  $row_nfo["TextoProblemaCondensacion"];
     $d_TextoProblemaCondensacion = "readonly";
-} else {
-    $TextoProblemaCondensacion = "";
+}else{
+    $TextoProblemaCondensacion   = "";
     $d_TextoProblemaCondensacion = "";
 }
 
 
 // Paso 10      114
-$query_etapas22 = $_form->get_formulario_etapas($id, 'adicionarstw');
-$row_etapas22 = $query_etapas22->fetch_assoc();
-if (isset($row_etapas22["HoraInicio"]) && $row_etapas22["HoraInicio"] != '') {
-    $horainicioadcstw2 = $row_etapas22["HoraInicio"];
-    $d_horainicioadcstw2 = "readonly";
-    $autoFocus1 = '';
-    $autoFocus2 = '';
-    $autoFocus3 = '';
-    $autoFocus4 = '';
-    $autoFocus8 = '';
-    $autoFocus5 = 'autofocus';
-} else {
-    $horainicioadcstw2 = "";
-    $d_horainicioadcstw2 = "";
+$query_etapas22  = $_form->get_formulario_etapas($id,'adicionarstw');
+$row_etapas22    = $query_etapas22->fetch_assoc();
+if(isset($row_etapas22["HoraInicio"]) && $row_etapas22["HoraInicio"] != ''){
+    $horainicioadcstw2      = $row_etapas22["HoraInicio"];
+    $d_horainicioadcstw2    = "readonly";
+}else{
+    $horainicioadcstw2      = "";
+    $d_horainicioadcstw2    = "";
 }
 
-if (isset($row_etapas22["Temperatura"]) && $row_etapas22["Temperatura"] != '') {
-    $tempadcstw2 = $row_etapas22["Temperatura"];
-    $d_tempadcstw2 = "readonly";
-} else {
-    $tempadcstw2 = "";
-    $d_tempadcstw2 = "";
+if(isset($row_etapas22["Temperatura"]) && $row_etapas22["Temperatura"] != ''){
+    $tempadcstw2        = $row_etapas22["Temperatura"];
+    $d_tempadcstw2      = "readonly";
+}else{
+    $tempadcstw2        = "";
+    $d_tempadcstw2      = "";
 }
 
-if (isset($row_etapas22["Presion"]) && $row_etapas22["Presion"] != '') {
-    $presionadcstw2 = $row_etapas22["Presion"];
-    $d_presionadcstw2 = "readonly";
-} else {
-    $presionadcstw2 = "";
-    $d_presionadcstw2 = "";
+if(isset($row_etapas22["Presion"]) && $row_etapas22["Presion"] != ''){
+    $presionadcstw2     = $row_etapas22["Presion"];
+    $d_presionadcstw2   = "readonly";
+}else{
+    $presionadcstw2     = "";
+    $d_presionadcstw2   = "";
 }
 
-if (isset($row_etapas22["HoraFin"]) && $row_etapas22["HoraFin"] != '') {
-    $horafinadcstw2 = $row_etapas22["HoraFin"];
-    $d_horafinadcstw2 = "readonly";
-} else {
-    $horafinadcstw2 = "";
-    $d_horafinadcstw2 = "";
+if(isset($row_etapas22["HoraFin"]) && $row_etapas22["HoraFin"] != ''){
+    $horafinadcstw2     = $row_etapas22["HoraFin"];
+    $d_horafinadcstw2   = "readonly";
+}else{
+    $horafinadcstw2     = "";
+    $d_horafinadcstw2   = "";
 }
 
 
-if (isset($row_nfo["SeguridadCSO"]) && $row_nfo["SeguridadCSO"] == '1') {
-    $SeguridadCSOSi = "checked";
-    $SeguridadCSONo = "";
-    $d_SeguridadCSO = "readonly";
-} else if (isset($row_nfo["SeguridadCSO"]) && $row_nfo["SeguridadCSO"] == '0') {
-    $SeguridadCSOSi = "";
-    $SeguridadCSONo = "checked";
-    $d_SeguridadCSO = "";
-} else {
-    $SeguridadCSOSi = "";
-    $SeguridadCSONo = "";
-    $d_SeguridadCSO = "";
+if(isset($row_nfo["SeguridadCSO"]) && $row_nfo["SeguridadCSO"] == '1'){
+    $SeguridadCSOSi     = "checked";
+    $SeguridadCSONo     = "";
+    $d_SeguridadCSO     = "readonly";
+}else if(isset($row_nfo["SeguridadCSO"]) && $row_nfo["SeguridadCSO"] == '0'){
+    $SeguridadCSOSi     = "";
+    $SeguridadCSONo     = "checked";
+    $d_SeguridadCSO     = "";
+}else{
+    $SeguridadCSOSi     = "";
+    $SeguridadCSONo     = "";
+    $d_SeguridadCSO     = "";
 }
 
-if (isset($row_nfo["EquipoCSO"]) && $row_nfo["EquipoCSO"] == '1') {
-    $EquipoCSOSi = "checked";
-    $EquipoCSONo = "";
-    $ReaccionNeutra = "show";
-    $d_EquipoCSO = "readonly";
-} else if (isset($row_nfo["EquipoCSO"]) && $row_nfo["EquipoCSO"] == '0') {
-    $EquipoCSOSi = "";
-    $EquipoCSONo = "checked";
-    $ReaccionNeutra = "none";
-    $d_EquipoCSO = "";
-} else {
-    $EquipoCSOSi = "";
-    $EquipoCSONo = "";
-    $ReaccionNeutra = "none";
-    $d_EquipoCSO = "";
+if(isset($row_nfo["EquipoCSO"]) && $row_nfo["EquipoCSO"] == '1'){
+    $EquipoCSOSi     = "checked";
+    $EquipoCSONo     = "";
+    $ReaccionNeutra  = "show";
+    $d_EquipoCSO     = "readonly";
+}else if(isset($row_nfo["EquipoCSO"]) && $row_nfo["EquipoCSO"] == '0'){
+    $EquipoCSOSi     = "";
+    $EquipoCSONo     = "checked";
+    $ReaccionNeutra  = "none";
+    $d_EquipoCSO     = "";
+}else{
+    $EquipoCSOSi     = "";
+    $EquipoCSONo     = "checked";
+    $ReaccionNeutra  = "none";
+    $d_EquipoCSO     = "";
 }
 
 // Paso 11
-$query_etapas23 = $_form->get_formulario_etapas($id, 'ReaccionNeutra1');
-$row_etapas23 = $query_etapas23->fetch_assoc();
-if (isset($row_etapas23["HoraInicio"]) && $row_etapas23["HoraInicio"] != '') {
-    $horainicioneut = $row_etapas23["HoraInicio"];
-    $d_horainicioneut = "readonly";
-    $autoFocus1 = '';
-    $autoFocus2 = '';
-    $autoFocus3 = '';
-    $autoFocus4 = '';
-    $autoFocus8 = '';
-    $autoFocus5 = '';
-    $autoFocus6 = 'autofocus';
-} else {
-    $horainicioneut = "";
-    $d_horainicioneut = "";
+$query_etapas23  = $_form->get_formulario_etapas($id,'ReaccionNeutra1');
+$row_etapas23    = $query_etapas23->fetch_assoc();
+if(isset($row_etapas23["HoraInicio"]) && $row_etapas23["HoraInicio"] != ''){
+    $horainicioneut     = $row_etapas23["HoraInicio"];
+    $d_horainicioneut   = "readonly";
+}else{
+    $horainicioneut     = "";
+    $d_horainicioneut   = "";
 }
 
-if (isset($row_etapas23["Temperatura"]) && $row_etapas23["Temperatura"] != '') {
-    $tempneut1 = $row_etapas23["Temperatura"];
-    $d_tempneut1 = "readonly";
-} else {
-    $tempneut1 = "";
-    $d_tempneut1 = "";
+if(isset($row_etapas23["Temperatura"]) && $row_etapas23["Temperatura"] != ''){
+    $tempneut1      = $row_etapas23["Temperatura"];
+    $d_tempneut1    = "readonly";
+}else{
+    $tempneut1      = "";
+    $d_tempneut1    = "";
 }
 
-if (isset($row_etapas23["Presion"]) && $row_etapas23["Presion"] != '') {
-    $presionneut1 = $row_etapas23["Presion"];
+if(isset($row_etapas23["Presion"]) && $row_etapas23["Presion"] != ''){
+    $presionneut1   = $row_etapas23["Presion"];
     $d_presionneut1 = "readonly";
-} else {
-    $presionneut1 = "";
+}else{
+    $presionneut1   = "";
     $d_presionneut1 = "";
 }
 
-if (isset($row_etapas23["Comentario"]) && $row_etapas23["Comentario"] != '') {
-    $comentarioneut1 = $row_etapas23["Comentario"];
-    $d_comentarioneut1 = "readonly";
-} else {
-    $comentarioneut1 = "";
-    $d_comentarioneut1 = "";
+if(isset($row_etapas23["Comentario"]) && $row_etapas23["Comentario"] != ''){
+    $comentarioneut1    = $row_etapas23["Comentario"];
+    $d_comentarioneut1  = "readonly";
+}else{
+    $comentarioneut1    = "";
+    $d_comentarioneut1  = "";
 }
 
 
-$query_etapas24 = $_form->get_formulario_etapas($id, 'ReaccionNeutra2');
-$row_etapas24 = $query_etapas24->fetch_assoc();
-if (isset($row_etapas24["Temperatura"]) && $row_etapas24["Temperatura"] != '') {
-    $tempneut2 = $row_etapas24["Temperatura"];
-    $d_tempneut2 = "readonly";
-} else {
-    $tempneut2 = "";
-    $d_tempneut2 = "";
+$query_etapas24  = $_form->get_formulario_etapas($id,'ReaccionNeutra2');
+$row_etapas24    = $query_etapas24->fetch_assoc();
+if(isset($row_etapas24["Temperatura"]) && $row_etapas24["Temperatura"] != ''){
+    $tempneut2      = $row_etapas24["Temperatura"];
+    $d_tempneut2    = "readonly";
+}else{
+    $tempneut2      = "";
+    $d_tempneut2    = "";
 }
 
-if (isset($row_etapas24["Presion"]) && $row_etapas24["Presion"] != '') {
-    $presionneut2 = $row_etapas24["Presion"];
+if(isset($row_etapas24["Presion"]) && $row_etapas24["Presion"] != ''){
+    $presionneut2   = $row_etapas24["Presion"];
     $d_presionneut2 = "readonly";
-} else {
-    $presionneut2 = "";
+}else{
+    $presionneut2   = "";
     $d_presionneut2 = "";
 }
 
-if (isset($row_etapas24["Comentario"]) && $row_etapas24["Comentario"] != '') {
-    $comentarioneut2 = $row_etapas24["Comentario"];
-    $d_comentarioneut2 = "readonly";
-} else {
-    $comentarioneut2 = "";
-    $d_comentarioneut2 = "";
+if(isset($row_etapas24["Comentario"]) && $row_etapas24["Comentario"] != ''){
+    $comentarioneut2    = $row_etapas24["Comentario"];
+    $d_comentarioneut2  = "readonly";
+}else{
+    $comentarioneut2    = "";
+    $d_comentarioneut2  = "";
 }
 
 
-$query_etapas25 = $_form->get_formulario_etapas($id, 'ReaccionNeutra3');
-$row_etapas25 = $query_etapas25->fetch_assoc();
-if (isset($row_etapas25["Temperatura"]) && $row_etapas25["Temperatura"] != '') {
-    $tempneut3 = $row_etapas25["Temperatura"];
-    $d_tempneut3 = "readonly";
-} else {
-    $tempneut3 = "";
-    $d_tempneut3 = "";
+$query_etapas25  = $_form->get_formulario_etapas($id,'ReaccionNeutra3');
+$row_etapas25    = $query_etapas25->fetch_assoc();
+if(isset($row_etapas25["Temperatura"]) && $row_etapas25["Temperatura"] != ''){
+    $tempneut3  = $row_etapas25["Temperatura"];
+    $d_tempneut3= "readonly";
+}else{
+    $tempneut3      = "";
+    $d_tempneut3    = "";
 }
 
-if (isset($row_etapas25["Presion"]) && $row_etapas25["Presion"] != '') {
-    $presionneut3 = $row_etapas25["Presion"];
+if(isset($row_etapas25["Presion"]) && $row_etapas25["Presion"] != ''){
+    $presionneut3   = $row_etapas25["Presion"];
     $d_presionneut3 = "readonly";
-} else {
-    $presionneut3 = "";
+}else{
+    $presionneut3   = "";
     $d_presionneut3 = "";
 }
 
-if (isset($row_etapas25["Comentario"]) && $row_etapas25["Comentario"] != '') {
-    $comentarioneut3 = $row_etapas25["Comentario"];
-    $d_comentarioneut3 = "readonly";
-} else {
-    $comentarioneut3 = "";
-    $d_comentarioneut3 = "";
+if(isset($row_etapas25["Comentario"]) && $row_etapas25["Comentario"] != ''){
+    $comentarioneut3    = $row_etapas25["Comentario"];
+    $d_comentarioneut3  = "readonly";
+}else{
+    $comentarioneut3    = "";
+    $d_comentarioneut3  = "";
 }
 
 
-$query_etapas26 = $_form->get_formulario_etapas($id, 'ReaccionNeutra4');
-$row_etapas26 = $query_etapas26->fetch_assoc();
-if (isset($row_etapas26["Temperatura"]) && $row_etapas26["Temperatura"] != '') {
-    $tempneut4 = $row_etapas26["Temperatura"];
-    $d_tempneut4 = "readonly";
-} else {
-    $tempneut4 = "";
-    $d_tempneut4 = "";
+$query_etapas26  = $_form->get_formulario_etapas($id,'ReaccionNeutra4');
+$row_etapas26    = $query_etapas26->fetch_assoc();
+if(isset($row_etapas26["Temperatura"]) && $row_etapas26["Temperatura"] != ''){
+    $tempneut4  = $row_etapas26["Temperatura"];
+    $d_tempneut4= "readonly";
+}else{
+    $tempneut4      = "";
+    $d_tempneut4    = "";
 }
 
-if (isset($row_etapas26["Presion"]) && $row_etapas26["Presion"] != '') {
-    $presionneut4 = $row_etapas26["Presion"];
+if(isset($row_etapas26["Presion"]) && $row_etapas26["Presion"] != ''){
+    $presionneut4   = $row_etapas26["Presion"];
     $d_presionneut4 = "readonly";
-} else {
-    $presionneut4 = "";
+}else{
+    $presionneut4   = "";
     $d_presionneut4 = "";
 }
 
-if (isset($row_etapas26["Comentario"]) && $row_etapas26["Comentario"] != '') {
-    $comentarioneut4 = $row_etapas26["Comentario"];
-    $d_comentarioneut4 = "readonly";
-} else {
-    $comentarioneut4 = "";
-    $d_comentarioneut4 = "";
+if(isset($row_etapas26["Comentario"]) && $row_etapas26["Comentario"] != ''){
+    $comentarioneut4    = $row_etapas26["Comentario"];
+    $d_comentarioneut4  = "readonly";
+}else{
+    $comentarioneut4    = "";
+    $d_comentarioneut4  = "";
 }
 
-if (isset($row_etapas26["HoraFin"]) && $row_etapas26["HoraFin"] != '') {
-    $horafinneut = $row_etapas26["HoraFin"];
-    $d_horafinneut = "readonly";
-} else {
-    $horafinneut = "";
-    $d_horafinneut = "";
+if(isset($row_etapas26["HoraFin"]) && $row_etapas26["HoraFin"] != ''){
+    $horafinneut    = $row_etapas26["HoraFin"];
+    $d_horafinneut  = "readonly";
+}else{
+    $horafinneut    = "";
+    $d_horafinneut  = "";
 }
 
 
-$query_etapas27 = $_form->get_formulario_etapas($id, 'homogenizacion');
-$row_etapas27 = $query_etapas27->fetch_assoc();
-if (isset($row_etapas27["HoraInicio"]) && $row_etapas27["HoraInicio"] != '') {
-    $horainiciohomoge = $row_etapas27["HoraInicio"];
+$query_etapas27  = $_form->get_formulario_etapas($id,'homogenizacion');
+$row_etapas27    = $query_etapas27->fetch_assoc();
+if(isset($row_etapas27["HoraInicio"]) && $row_etapas27["HoraInicio"] != ''){
+    $horainiciohomoge   = $row_etapas27["HoraInicio"];
     $d_horainiciohomoge = "readonly";
-} else {
-    $horainiciohomoge = "";
+}else{
+    $horainiciohomoge   = "";
     $d_horainiciohomoge = "";
 }
 
-if (isset($row_etapas27["Temperatura"]) && $row_etapas27["Temperatura"] != '') {
-    $temphomoge1 = $row_etapas27["Temperatura"];
-    $d_temphomoge1 = "readonly";
-} else {
-    $temphomoge1 = "";
-    $d_temphomoge1 = "";
+if(isset($row_etapas27["Temperatura"]) && $row_etapas27["Temperatura"] != ''){
+    $temphomoge1    = $row_etapas27["Temperatura"];
+    $d_temphomoge1  = "readonly";
+}else{
+    $temphomoge1    = "";
+    $d_temphomoge1  = "";
 }
 
-if (isset($row_etapas27["Presion"]) && $row_etapas27["Presion"] != '') {
-    $presionhomoge1 = $row_etapas27["Presion"];
-    $d_presionhomoge1 = "readonly";
-} else {
-    $presionhomoge1 = "";
-    $d_presionhomoge1 = "";
+if(isset($row_etapas27["Presion"]) && $row_etapas27["Presion"] != ''){
+    $presionhomoge1     = $row_etapas27["Presion"];
+    $d_presionhomoge1   = "readonly";
+}else{
+    $presionhomoge1     = "";
+    $d_presionhomoge1   = "";
 }
 
-if (isset($row_etapas27["Comentario"]) && $row_etapas27["Comentario"] != '') {
-    $comentariohomoge1 = $row_etapas27["Comentario"];
-    $d_comentariohomoge1 = "readonly";
-} else {
-    $comentariohomoge1 = "";
-    $d_comentariohomoge1 = "";
-}
-
-
-$query_etapas28 = $_form->get_formulario_etapas($id, 'homogenizacion2');
-$row_etapas28 = $query_etapas28->fetch_assoc();
-if (isset($row_etapas28["Temperatura"]) && $row_etapas28["Temperatura"] != '') {
-    $temphomoge2 = $row_etapas28["Temperatura"];
-    $d_temphomoge2 = "readonly";
-} else {
-    $temphomoge2 = "";
-    $d_temphomoge2 = "";
-}
-
-if (isset($row_etapas28["Presion"]) && $row_etapas28["Presion"] != '') {
-    $presionhomoge2 = $row_etapas28["Presion"];
-    $d_presionhomoge2 = "readonly";
-} else {
-    $presionhomoge2 = "";
-    $d_presionhomoge2 = "";
-}
-
-if (isset($row_etapas28["Comentario"]) && $row_etapas28["Comentario"] != '') {
-    $comentariohomoge2 = $row_etapas28["Comentario"];
-    $d_comentariohomoge2 = "readonly";
-} else {
-    $comentariohomoge2 = "";
-    $d_comentariohomoge2 = "";
+if(isset($row_etapas27["Comentario"]) && $row_etapas27["Comentario"] != ''){
+    $comentariohomoge1      = $row_etapas27["Comentario"];
+    $d_comentariohomoge1    = "readonly";
+}else{
+    $comentariohomoge1      = "";
+    $d_comentariohomoge1    = "";
 }
 
 
-$query_etapas29 = $_form->get_formulario_etapas($id, 'homogenizacion3');
-$row_etapas29 = $query_etapas29->fetch_assoc();
-if (isset($row_etapas29["Temperatura"]) && $row_etapas29["Temperatura"] != '') {
-    $temphomoge3 = $row_etapas29["Temperatura"];
-    $d_temphomoge3 = "readonly";
-} else {
-    $temphomoge3 = "";
-    $d_temphomoge3 = "";
+$query_etapas28  = $_form->get_formulario_etapas($id,'homogenizacion2');
+$row_etapas28    = $query_etapas28->fetch_assoc();
+if(isset($row_etapas28["Temperatura"]) && $row_etapas28["Temperatura"] != ''){
+    $temphomoge2    = $row_etapas28["Temperatura"];
+    $d_temphomoge2  = "readonly";
+}else{
+    $temphomoge2    = "";
+    $d_temphomoge2  = "";
 }
 
-if (isset($row_etapas29["Presion"]) && $row_etapas29["Presion"] != '') {
-    $presionhomoge3 = $row_etapas29["Presion"];
-    $d_presionhomoge3 = "readonly";
-} else {
-    $presionhomoge3 = "";
-    $d_presionhomoge3 = "";
+if(isset($row_etapas28["Presion"]) && $row_etapas28["Presion"] != ''){
+    $presionhomoge2     = $row_etapas28["Presion"];
+    $d_presionhomoge2   = "readonly";
+} else{
+    $presionhomoge2     = "";
+    $d_presionhomoge2   = "";
 }
 
-if (isset($row_etapas29["HoraFin"]) && $row_etapas29["HoraFin"] != '') {
-    $horafinhomoge = $row_etapas29["HoraFin"];
-    $d_horafinhomoge = "readonly";
-} else {
-    $horafinhomoge = "";
-    $d_horafinhomoge = "";
+if(isset($row_etapas28["Comentario"]) && $row_etapas28["Comentario"] != ''){
+    $comentariohomoge2      = $row_etapas28["Comentario"];
+    $d_comentariohomoge2    = "readonly";
+}else{
+    $comentariohomoge2      = "";
+    $d_comentariohomoge2    = "";
+}
+
+
+$query_etapas29  = $_form->get_formulario_etapas($id,'homogenizacion3');
+$row_etapas29    = $query_etapas29->fetch_assoc();
+if(isset($row_etapas29["Temperatura"]) && $row_etapas29["Temperatura"] != ''){
+    $temphomoge3    = $row_etapas29["Temperatura"];
+    $d_temphomoge3  = "readonly";
+}else{
+    $temphomoge3    = "";
+    $d_temphomoge3  = "";
+}
+
+if(isset($row_etapas29["Presion"]) && $row_etapas29["Presion"] != ''){
+    $presionhomoge3     = $row_etapas29["Presion"];
+    $d_presionhomoge3   = "readonly";
+}else{
+    $presionhomoge3     = "";
+    $d_presionhomoge3   = "";
+}
+
+if(isset($row_etapas29["HoraFin"]) && $row_etapas29["HoraFin"] != ''){
+    $horafinhomoge      = $row_etapas29["HoraFin"];
+    $d_horafinhomoge    = "readonly";
+}else{
+    $horafinhomoge      = "";
+    $d_horafinhomoge    = "";
 }
 
 //INICIO QUERY OLOR FORMOL
-$query_etapas30 = $_form->get_formulario_etapas($id, 'RevisionOlorFDO035_1');
-$row_etapas30 = $query_etapas30->fetch_assoc();
+$query_etapas30  = $_form->get_formulario_etapas($id,'RevisionOlorFDO035_1');
+$row_etapas30    = $query_etapas30->fetch_assoc();
 
-if (isset($row_etapas30["HoraInicio"]) && $row_etapas30["HoraInicio"] != '') {
-    $horaInicioFDO_1 = $row_etapas30["HoraFin"];
-    $d_horaInicioFDO_1 = "readonly";
-} else {
-    $horaInicioFDO_1 = "";
-    $d_horaInicioFDO_1 = "";
+if(isset($row_etapas30["HoraInicio"]) && $row_etapas30["HoraInicio"] != ''){
+    $horaInicioFDO_1      = $row_etapas30["HoraFin"];
+    $d_horaInicioFDO_1    = "readonly";
+}else{
+    $horaInicioFDO_1      = "";
+    $d_horaInicioFDO_1   = "";
 }
 
-if (isset($row_etapas30["Temperatura"]) && $row_etapas30["Temperatura"] != '') {
-    $temperaturaFDO_1 = $row_etapas30["Temperatura"];
-    $d_temperaturaFDO_1 = "readonly";
-} else {
-    $temperaturaFDO_1 = "";
-    $d_temperaturaFDO_1 = "";
+if(isset($row_etapas30["Temperatura"]) && $row_etapas30["Temperatura"] != ''){
+    $temperaturaFDO_1    = $row_etapas30["Temperatura"];
+    $d_temperaturaFDO_1  = "readonly";
+}else{
+    $temperaturaFDO_1    = "";
+    $d_temperaturaFDO_1  = "";
 }
 
-if (isset($row_etapas30["Presion"]) && $row_etapas30["Presion"] != '') {
-    $presionFDO_1 = $row_etapas30["Presion"];
-    $d_presionFDO_1 = "readonly";
-} else {
-    $presionFDO_1 = "";
-    $d_presionFDO_1 = "";
+if(isset($row_etapas30["Presion"]) && $row_etapas30["Presion"] != ''){
+    $presionFDO_1     = $row_etapas30["Presion"];
+    $d_presionFDO_1   = "readonly";
+}else{
+    $presionFDO_1    = "";
+    $d_presionFDO_1   = "";
 }
 
-if (isset($row_etapas30["HoraFin"]) && $row_etapas30["HoraFin"] != '') {
-    $horaFinFDO_1 = $row_etapas30["HoraFin"];
-    $d_horaFinFDO_1 = "readonly";
-} else {
-    $horaFinFDO_1 = "";
-    $d_horaFinFDO_1 = "";
+if(isset($row_etapas30["HoraFin"]) && $row_etapas30["HoraFin"] != ''){
+    $horaFinFDO_1      = $row_etapas30["HoraFin"];
+    $d_horaFinFDO_1    = "readonly";
+}else{
+    $horaFinFDO_1      = "";
+    $d_horaFinFDO_1   = "";
 }
 //FIN QUERY OLOR FORMOL
 
 //INICIO QUERY OLOR FORMOL
-$query_etapas30 = $_form->get_formulario_etapas($id, 'RevisionOlorFDO035_2');
-$row_etapas30 = $query_etapas30->fetch_assoc();
+$query_etapas30  = $_form->get_formulario_etapas($id,'RevisionOlorFDO035_2');
+$row_etapas30    = $query_etapas30->fetch_assoc();
 
-if (isset($row_etapas30["HoraInicio"]) && $row_etapas30["HoraInicio"] != '') {
-    $horaInicioFDO_2 = $row_etapas30["HoraFin"];
-    $d_horaInicioFDO_2 = "readonly";
-} else {
-    $horaInicioFDO_2 = "";
-    $d_horaInicioFDO_2 = "";
+if(isset($row_etapas30["HoraInicio"]) && $row_etapas30["HoraInicio"] != ''){
+    $horaInicioFDO_2      = $row_etapas30["HoraFin"];
+    $d_horaInicioFDO_2    = "readonly";
+}else{
+    $horaInicioFDO_2      = "";
+    $d_horaInicioFDO_2   = "";
 }
 
-if (isset($row_etapas30["Temperatura"]) && $row_etapas30["Temperatura"] != '') {
-    $temperaturaFDO_2 = $row_etapas30["Temperatura"];
-    $d_temperaturaFDO_2 = "readonly";
-} else {
-    $temperaturaFDO_2 = "";
-    $d_temperaturaFDO_2 = "";
+if(isset($row_etapas30["Temperatura"]) && $row_etapas30["Temperatura"] != ''){
+    $temperaturaFDO_2    = $row_etapas30["Temperatura"];
+    $d_temperaturaFDO_2  = "readonly";
+}else{
+    $temperaturaFDO_2    = "";
+    $d_temperaturaFDO_2  = "";
 }
 
-if (isset($row_etapas30["Presion"]) && $row_etapas30["Presion"] != '') {
-    $presionFDO_2 = $row_etapas30["Presion"];
-    $d_presionFDO_2 = "readonly";
-} else {
-    $presionFDO_2 = "";
-    $d_presionFDO_2 = "";
+if(isset($row_etapas30["Presion"]) && $row_etapas30["Presion"] != ''){
+    $presionFDO_2     = $row_etapas30["Presion"];
+    $d_presionFDO_2   = "readonly";
+}else{
+    $presionFDO_2    = "";
+    $d_presionFDO_2   = "";
 }
 
-if (isset($row_etapas30["HoraFin"]) && $row_etapas30["HoraFin"] != '') {
-    $horaFinFDO_2 = $row_etapas30["HoraFin"];
-    $d_horaFinFDO_2 = "readonly";
-} else {
-    $horaFinFDO_2 = "";
-    $d_horaFinFDO_2 = "";
+if(isset($row_etapas30["HoraFin"]) && $row_etapas30["HoraFin"] != ''){
+    $horaFinFDO_2      = $row_etapas30["HoraFin"];
+    $d_horaFinFDO_2    = "readonly";
+}else{
+    $horaFinFDO_2      = "";
+    $d_horaFinFDO_2   = "";
 }
 //FIN QUERY OLOR FORMOL
 
 
-$ProcesoDescarga = "none";
-$ProcesoDescargaFinal = "none";
-if (isset($row_nfo["OlorFormol"]) && $row_nfo["OlorFormol"] == '1') {
-    $OlorFormolSi = "checked";
-    $OlorFormolNo = "";
+if(isset($row_nfo["OlorFormol"]) && $row_nfo["OlorFormol"] == '1'){
+    $OlorFormolSi     = "checked";
+    $OlorFormolNo     = "";
     $RevisionOlorFDO035 = "show";
     //$Enfriet85        = "show";
-    // $ProcesoDescarga  = "none";
-    $d_OlorFormol = "readonly";
-} else if (isset($row_nfo["OlorFormol"]) && $row_nfo["OlorFormol"] == '0') {
-    $OlorFormolSi = "";
-    $OlorFormolNo = "checked";
+    $d_OlorFormol     = "readonly";
+}else if(isset($row_nfo["OlorFormol"]) && $row_nfo["OlorFormol"] == '0'){
+    $OlorFormolSi     = "";
+    $OlorFormolNo     = "checked";
     $RevisionOlorFDO035 = "none";
     //$Enfriet85        = "none";
-    // $ProcesoDescarga  = "show";
-    $d_OlorFormol = "";
-} else {
-    $OlorFormolSi = "";
-    $OlorFormolNo = "";
+    $d_OlorFormol     = "";
+}else{
+    $OlorFormolSi     = "";
+    $OlorFormolNo     = "";
     $RevisionOlorFDO035 = "none";
     //$Enfriet85        = "none";
-    // $ProcesoDescarga  = "none";
-    $d_OlorFormol = "";
+    $d_OlorFormol     = "";
 }
 
 if (isset($row_nfo["OlorFormol2"]) && $row_nfo["OlorFormol2"] == '1') {
@@ -1755,65 +1715,67 @@ if (isset($row_nfo["OlorFormol2"]) && $row_nfo["OlorFormol2"] == '1') {
     $d_OlorFormol2 = "";
 }
 
-$query_etapas24 = $_form->get_formulario_etapas($id, 'Enfriet85-');
-$row_etapas24 = $query_etapas24->fetch_assoc();
-if (isset($row_etapas24["Temperatura"]) && $row_etapas24["Temperatura"] != '') {
-    $temp85 = $row_etapas24["Temperatura"];
-    $d_temp85 = "readonly";
-} else {
-    $temp85 = "";
-    $d_temp85 = "";
+$query_etapas24  = $_form->get_formulario_etapas($id,'Enfriet85-');
+$row_etapas24    = $query_etapas24->fetch_assoc();
+if(isset($row_etapas24["Temperatura"]) && $row_etapas24["Temperatura"] != ''){
+    $temp85             =  $row_etapas24["Temperatura"];
+    $d_temp85           = "readonly";
+}else{
+    $temp85             = "";
+    $d_temp85           = "";
 }
 
-if (isset($row_etapas24["HoraInicio"]) && $row_etapas24["HoraInicio"] != '') {
-    $horainiciostw85 = $row_etapas24["HoraInicio"];
-    $d_horainiciostw85 = "readonly";
-} else {
-    $horainiciostw85 = "";
-    $d_horainiciostw85 = "";
+if(isset($row_etapas24["HoraInicio"]) && $row_etapas24["HoraInicio"] != ''){
+    $horainiciostw85    =  $row_etapas24["HoraInicio"];
+    $d_horainiciostw85  = "readonly";
+}else{
+    $horainiciostw85    = "";
+    $d_horainiciostw85  = "";
 }
 
-if (isset($row_etapas24["HoraFin"]) && $row_etapas24["HoraFin"] != '') {
-    $horafinstw85 = $row_etapas24["HoraFin"];
-    $d_horafinstw85 = "readonly";
-} else {
-    $horafinstw85 = "";
-    $d_horafinstw85 = "";
+if(isset($row_etapas24["HoraFin"]) && $row_etapas24["HoraFin"] != ''){
+    $horafinstw85       =  $row_etapas24["HoraFin"];
+    $d_horafinstw85     = "readonly";
+}else{
+    $horafinstw85       = "";
+    $d_horafinstw85     = "";
 }
 
 
-if (isset($row["ph10"]) && $row["ph10"] != '') {
-    $ph10 = $row["ph10"];
-    $d_ph10 = "readonly";
-} else {
-    $ph10 = "";
-    $d_ph10 = "";
+if(isset($row["ph10"]) && $row["ph10"] != ''){
+    $ph10             = $row["ph10"];
+    $d_ph10           = "readonly";
+}else{
+    $ph10             = "";
+    $d_ph10           = "";
 }
 
-if (isset($row["Csc050Ajuste"]) && $row["Csc050Ajuste"] != '') {
-    $Csc050Ajuste = $row["Csc050Ajuste"];
-    $d_Csc050Ajuste = "readonly";
-} else {
-    $Csc050Ajuste = "";
-    $d_Csc050Ajuste = "";
+if(isset($row["Csc050Ajuste"]) && $row["Csc050Ajuste"] != ''){
+    $Csc050Ajuste       = $row["Csc050Ajuste"];
+    $d_Csc050Ajuste     = "readonly";
+}else{
+    $Csc050Ajuste       = "";
+    $d_Csc050Ajuste     = "";
 }
 
-if (isset($row["Stw00Ajuste"]) && $row["Stw00Ajuste"] != '') {
-    $Stw00Ajuste = $row["Stw00Ajuste"];
-    $d_Stw00Ajuste = "readonly";
-} else {
-    $Stw00Ajuste = "";
-    $d_Stw00Ajuste = "";
+if(isset($row["Stw00Ajuste"]) && $row["Stw00Ajuste"] != ''){
+    $Stw00Ajuste      =  $row["Stw00Ajuste"];
+    $d_Stw00Ajuste    = "readonly";
+}else{
+    $Stw00Ajuste      = "";
+    $d_Stw00Ajuste    = "";
 }
 
-if (isset($row["ph10Fin"]) && $row["ph10Fin"] != '') {
-    $ph10Fin = $row["ph10Fin"];
-    $d_ph10Fin = "readonly";
-} else {
-    $ph10Fin = "";
-    $d_ph10Fin = "";
+if(isset($row["ph10fin"]) && $row["ph10fin"] != ''){
+    $ph10fin          =  $row["ph10fin"];
+    $d_ph10fin        = "readonly";
+}else{
+    $ph10fin          = "";
+    $d_ph10fin        = "";
 }
 
+$ProcesoDescarga = "none";
+$ProcesoDescargaFinal = "none";
 if (isset($row_nfo["ProductoBrillante"]) && $row_nfo["ProductoBrillante"] == '1') {
     $ProductoBrillanteSi = "checked";
     $ProductoBrillanteNo = "";
@@ -1834,22 +1796,21 @@ if (isset($row_nfo["ProductoBrillante"]) && $row_nfo["ProductoBrillante"] == '1'
     $ProcesoDescarga = "none";
 }
 
-if (isset($row["HoraInicioLukas"]) && $row["HoraInicioLukas"] != '') {
-    $HoraInicioLukas = $row["HoraInicioLukas"];
-    $d_HoraInicioLukas = "readonly";
-} else {
-    $HoraInicioLukas = "";
-    $d_HoraInicioLukas = "";
+if(isset($row["HoraInicioLukas"]) && $row["HoraInicioLukas"] != ''){
+    $HoraInicioLukas    = $row["HoraInicioLukas"];
+    $d_HoraInicioLukas  = "readonly";
+}else{
+    $HoraInicioLukas    = "";
+    $d_HoraInicioLukas  = "";
 }
 
-if (isset($row["HoraFinLukas"]) && $row["HoraFinLukas"] != '') {
-    $HoraFinLukas = $row["HoraFinLukas"];
-    $d_HoraFinLukas = "readonly";
-} else {
-    $HoraFinLukas = "";
-    $d_HoraFinLukas = "";
+if(isset($row["HoraFinLukas"]) && $row["HoraFinLukas"] != ''){
+    $HoraFinLukas       = $row["HoraFinLukas"];
+    $d_HoraFinLukas     = "readonly";
+}else{
+    $HoraFinLukas       = "";
+    $d_HoraFinLukas     = "";
 }
-
 
 if (isset($row_nfo["ProductoBrillante"]) && $row_nfo["ProductoBrillante"] == '0') {
     if (isset($row_nfo["ProductoBrillante2"]) && $row_nfo["ProductoBrillante2"] == '1') {
@@ -1912,73 +1873,65 @@ if (isset($row_nfo["AutorizaDescarga"]) && $row_nfo["AutorizaDescarga"] == '1') 
     $ProcesoDescargaFinal = "none";
 }
 
-$queryProcesos = $_form->get_formulario_procesos($id);
-$rowProcesos = $queryProcesos->fetch_assoc();
-if (isset($rowProcesos["HoraFinal"]) && $rowProcesos["HoraFinal"] != '') {
-    $HoraFinal = $rowProcesos["HoraFinal"];
-    $d_HoraFinal = "readonly";
-} else {
-    $HoraFinal = "";
-    $d_HoraFinal = "";
+$queryProcesos  = $_form->get_formulario_procesos($id);
+$rowProcesos    = $queryProcesos->fetch_assoc();
+if(isset($rowProcesos["HoraFinal"]) && $rowProcesos["HoraFinal"] != ''){
+    $HoraFinal      = $rowProcesos["HoraFinal"];
+    $d_HoraFinal    = "readonly";
+}else{
+    $HoraFinal      = "";
+    $d_HoraFinal    = "";
 }
 
 // Paso 12
-if (isset($row["SegNFO"]) && $row["SegNFO"] == '1') {
-    $SegNFO = "checked";
-    $d_SegNFO = "readonly";
-    $autoFocus1 = '';
-    $autoFocus2 = '';
-    $autoFocus3 = '';
-    $autoFocus4 = '';
-    $autoFocus5 = '';
-    $autoFocus6 = '';
-    $autoFocus8 = '';
-    $autoFocus7 = 'autofocus';
-} else {
-    $SegNFO = "";
-    $d_SegNFO = "";
+if(isset($row["SegNFO"]) && $row["SegNFO"] == '1'){
+    $SegNFO     = "checked";
+    $d_SegNFO   = "readonly";
+}else{
+    $SegNFO     = "";
+    $d_SegNFO   = "";
 }
 
-if (isset($row_nfo["EquipoNFO"]) && $row_nfo["EquipoNFO"] == '1') {
-    $EquipoNFOSi = "checked";
-    $EquipoNFONo = "";
+if(isset($row_nfo["EquipoNFO"]) && $row_nfo["EquipoNFO"] == '1'){
+    $EquipoNFOSi        = "checked";
+    $EquipoNFONo        = "";
     $SuspendioAgitacion = "show";
-    $d_EquipoNFO = "readonly";
-} else if (isset($row_nfo["EquipoNFO"]) && $row_nfo["EquipoNFO"] == '0') {
-    $EquipoNFOSi = "";
-    $EquipoNFONo = "checked";
+    $d_EquipoNFO        = "readonly";
+}else if(isset($row_nfo["EquipoNFO"]) && $row_nfo["EquipoNFO"] == '0'){
+    $EquipoNFOSi        = "";
+    $EquipoNFONo        = "checked";
     $SuspendioAgitacion = "none";
-    $d_EquipoNFO = "";
-} else {
-    $EquipoNFOSi = "";
-    $EquipoNFONo = "";
+    $d_EquipoNFO        = "";
+}else{
+    $EquipoNFOSi        = "";
+    $EquipoNFONo        = "";
     $SuspendioAgitacion = "none";
-    $d_EquipoNFO = "";
+    $d_EquipoNFO        = "";
 }
 
 // Paso 13     160
-if (isset($row["AgitacionOff"]) && $row["AgitacionOff"] == '1') {
-    $AgitacionOff = "checked";
+if(isset($row["AgitacionOff"]) && $row["AgitacionOff"] == '1'){
+    $AgitacionOff   = "checked";
     $d_AgitacionOff = "readonly";
-} else {
-    $AgitacionOff = "";
-    $d_AgitacionOff = "";
+}else{
+    $AgitacionOff       = "";
+    $d_AgitacionOff     = "";
 }
-if (isset($row["TalegoDescarga"]) && $row["TalegoDescarga"] == '1') {
-    $TalegoDescarga = "checked";
-    $d_TalegoDescarga = "readonly";
-} else {
-    $TalegoDescarga = "";
-    $d_TalegoDescarga = "";
+if(isset($row["TalegoDescarga"]) && $row["TalegoDescarga"] == '1'){
+    $TalegoDescarga     = "checked";
+    $d_TalegoDescarga   = "readonly";
+}else{
+    $TalegoDescarga     = "";
+    $d_TalegoDescarga   = "";
 }
 
 // descripcionResiduo
-if (isset($row["DescripcionResiduo"]) && $row["DescripcionResiduo"] != '') {
-    $descripcionResiduo = $row["DescripcionResiduo"];
+if(isset($row["DescripcionResiduo"]) && $row["DescripcionResiduo"] != ''){
+    $descripcionResiduo   = $row["DescripcionResiduo"];
     $d_descripcionResiduo = "readonly";
-} else {
-    $descripcionResiduo = "";
-    $d_descripcionResiduo = "";
+}else{
+    $descripcionResiduo       = "";
+    $d_descripcionResiduo     = "";
 }
 
 // responsableDescarga
@@ -2256,141 +2209,141 @@ if (isset($row["PreviaAprobadaPor2"]) && $row["PreviaAprobadaPor2"] != '') {
     $d_PreviaAprobadaPorInput2 = 'style = "display: none"';
 }
 
-$query_etapas25 = $_form->get_formulario_etapas($id, 'DescargaIbc');
-$row_etapas25 = $query_etapas25->fetch_assoc();
-if (isset($row_etapas25["HoraInicio"]) && $row_etapas25["HoraInicio"] != '') {
-    $horainiciodescarga = $row_etapas25["HoraInicio"];
-    $d_horainiciodescarga = "readonly";
-} else {
-    $horainiciodescarga = "";
-    $d_horainiciodescarga = "";
+$query_etapas25  = $_form->get_formulario_etapas($id,'DescargaIbc');
+$row_etapas25    = $query_etapas25->fetch_assoc();
+if(isset($row_etapas25["HoraInicio"]) && $row_etapas25["HoraInicio"] != ''){
+    $horainiciodescarga     = $row_etapas25["HoraInicio"];
+    $d_horainiciodescarga   = "readonly";
+}else{
+    $horainiciodescarga     = "";
+    $d_horainiciodescarga   = "";
 }
 
-if (isset($row_etapas25["HoraFin"]) && $row_etapas25["HoraFin"] != '') {
-    $horafindescarga = $row_etapas25["HoraFin"];
-    $d_horafindescarga = "readonly";
-} else {
-    $horafindescarga = "";
-    $d_horafindescarga = "";
+if(isset($row_etapas25["HoraFin"]) && $row_etapas25["HoraFin"] != ''){
+    $horafindescarga    =  $row_etapas25["HoraFin"];
+    $d_horafindescarga  = "readonly";
+}else{
+    $horafindescarga    = "";
+    $d_horafindescarga  = "";
 }
 
 
-if (isset($row_nfo["ResiduoTalego"]) && $row_nfo["ResiduoTalego"] == '1') {
-    $ResiduoTalegoSi = "checked";
-    $ResiduoTalegoNo = "";
-    $d_ResiduoTalego = "readonly";
-} else if (isset($row_nfo["ResiduoTalego"]) && $row_nfo["ResiduoTalego"] == '0') {
-    $ResiduoTalegoSi = "";
-    $ResiduoTalegoNo = "checked";
-    $d_ResiduoTalego = "";
-} else {
-    $ResiduoTalegoSi = "";
-    $ResiduoTalegoNo = "";
-    $d_ResiduoTalego = "";
+if(isset($row_nfo["ResiduoTalego"]) && $row_nfo["ResiduoTalego"] == '1'){
+    $ResiduoTalegoSi        = "checked";
+    $ResiduoTalegoNo        = "";
+    $d_ResiduoTalego        = "readonly";
+}else if(isset($row_nfo["ResiduoTalego"]) && $row_nfo["ResiduoTalego"] == '0'){
+    $ResiduoTalegoSi        = "";
+    $ResiduoTalegoNo        = "checked";
+    $d_ResiduoTalego        = "";
+}else{
+    $ResiduoTalegoSi        = "";
+    $ResiduoTalegoNo        = "";
+    $d_ResiduoTalego        = "";
 }
 
-if (isset($row["EnviarMuestraFinal"]) && $row["EnviarMuestraFinal"] == '1') {
-    $EnviarMuestraFinal = "checked";
-    $d_EnviarMuestraFinal = "readonly";
-} else {
-    $EnviarMuestraFinal = "";
-    $d_EnviarMuestraFinal = "";
+if(isset($row["EnviarMuestraFinal"]) && $row["EnviarMuestraFinal"] == '1'){
+    $EnviarMuestraFinal     = "checked";
+    $d_EnviarMuestraFinal   = "readonly";
+}else{
+    $EnviarMuestraFinal     = "";
+    $d_EnviarMuestraFinal   = "";
 }
 
-if (isset($row["Aspecto"])) {
-    $Aspecto = $row["Aspecto"];
-    $d_Aspecto = ""; //MODIFICADO PARA EDITABLE
-} else {
-    $Aspecto = "";
-    $d_Aspecto = "";
+if(isset($row["Aspecto"])){
+    $Aspecto   = $row["Aspecto"] ;
+    $d_Aspecto = "readonly";
+}else{
+    $Aspecto    = "";
+    $d_Aspecto  = "";
 }
 
-if (isset($row["PorcentajeSolidos"])) {
-    $PorcentajeSolidos = $row["PorcentajeSolidos"];
-    $d_PorcentajeSolidos = ""; //MODIFICADO PARA EDITABLE
-} else {
-    $PorcentajeSolidos = "";
-    $d_PorcentajeSolidos = "";
+if(isset($row["PorcentajeSolidos"])){
+    $PorcentajeSolidos    =  $row["PorcentajeSolidos"];
+    $d_PorcentajeSolidos  = "readonly";
+}else{
+    $PorcentajeSolidos    = "";
+    $d_PorcentajeSolidos  = "";
 }
 
-if (isset($row["pH10Final"])) {
-    $pH10Final = $row["pH10Final"];
-    $d_pH10Final = ""; //MODIFICADO PARA EDITABLE
-} else {
-    $pH10Final = "";
-    $d_pH10Final = "";
+if(isset($row["pH10Final"])){
+    $pH10Final      =  $row["pH10Final"];
+    $d_pH10Final    = "readonly";
+}else{
+    $pH10Final      = "";
+    $d_pH10Final    = "";
 }
 
-if (isset($row["Solubilidad10"])) {
-    $Solubilidad10 = $row["Solubilidad10"];
-    $d_Solubilidad10 = ""; //MODIFICADO PARA EDITABLE
-} else {
-    $Solubilidad10 = "";
-    $d_Solubilidad10 = "";
+if(isset($row["Solubilidad10"])){
+    $Solubilidad10    =  $row["Solubilidad10"] ;
+    $d_Solubilidad10  = "readonly";
+}else{
+    $Solubilidad10    = "";
+    $d_Solubilidad10  = "";
 }
 
-if (isset($row["Solubilidad40"])) {
-    $Solubilidad40 = $row["Solubilidad40"];
-    $d_Solubilidad40 = "";
-} else {
-    $Solubilidad40 = "";
-    $d_Solubilidad40 = "";
+if(isset($row["Solubilidad40"])){
+    $Solubilidad40    = $row["Solubilidad40"] ;
+    $d_Solubilidad40  = "";
+}else{
+    $Solubilidad40    = "";
+    $d_Solubilidad40  = "";
 }
 
-if (isset($row["Rendimiento"]) && $row["Rendimiento"] != '') {
-    $Rendimiento = $row["Rendimiento"];
-    $d_Rendimiento = "readonly";
-} else {
-    $Rendimiento = "";
-    $d_Rendimiento = "";
+if(isset($row["Rendimiento"])){
+    $Rendimiento      =  $row["Rendimiento"] ;
+    $d_Rendimiento    = "readonly";
+}else{
+    $Rendimiento      = "";
+    $d_Rendimiento    = "";
 }
 
-if (isset($row_nfo["ProcesoDif"]) && $row_nfo["ProcesoDif"] == '1') {
-    $ProcesoDifSi = "checked";
-    $ProcesoDifNo = "";
-    $relavarReactor = "show";
-    $d_ProcesoDif = "readonly";
-} else if (isset($row_nfo["ProcesoDif"]) && $row_nfo["ProcesoDif"] == '0') {
-    $ProcesoDifSi = "";
-    $ProcesoDifNo = "checked";
-    $relavarReactor = "none";
-    $d_ProcesoDif = "";
-} else {
-    $ProcesoDifSi = "";
-    $ProcesoDifNo = "";
-    $relavarReactor = "none";
-    $d_ProcesoDif = "";
+if(isset($row_nfo["ProcesoDif"]) && $row_nfo["ProcesoDif"] == '1'){
+    $ProcesoDifSi        = "checked";
+    $ProcesoDifNo        = "";
+    $d_ProcesoDif        = "readonly";
+    $relavarReactor      = "show";
+}else if(isset($row_nfo["ProcesoDif"]) && $row_nfo["ProcesoDif"] == '0'){
+    $ProcesoDifSi        = "";
+    $ProcesoDifNo        = "checked";
+    $d_ProcesoDif        = "";
+    $relavarReactor      = "none";
+}else{
+    $ProcesoDifSi        = "";
+    $ProcesoDifNo        = "";
+    $d_ProcesoDif        = "";
+    $relavarReactor      = "none";
 }
 
-$query_etapas26 = $_form->get_formulario_etapas($id, 'PasoFinal');
-$row_etapas26 = $query_etapas26->fetch_assoc();
-if (isset($row_etapas26["HoraInicio"]) && $row_etapas26["HoraInicio"] != '') {
-    $horainiciolavado = $row_etapas26["HoraInicio"];
+$query_etapas26  = $_form->get_formulario_etapas($id,'PasoFinal');
+$row_etapas26    = $query_etapas26->fetch_assoc();
+if(isset($row_etapas26["HoraInicio"]) && $row_etapas26["HoraInicio"] != ''){
+    $horainiciolavado   = $row_etapas26["HoraInicio"];
     $d_horainiciolavado = "readonly";
-} else {
-    $horainiciolavado = "";
+}else{
+    $horainiciolavado   = "";
     $d_horainiciolavado = "";
 }
-if (isset($row_etapas26["HoraFin"]) && $row_etapas26["HoraFin"] != '') {
-    $horafinlavado = $row_etapas26["HoraFin"];
-    $d_horafinlavado = "readonly";
-} else {
-    $horafinlavado = "";
-    $d_horafinlavado = "";
+if(isset($row_etapas26["HoraFin"]) && $row_etapas26["HoraFin"] != ''){
+    $horafinlavado      =  $row_etapas26["HoraFin"]; 
+    $d_horafinlavado    = "readonly";
+}else{
+    $horafinlavado      = "";
+    $d_horafinlavado    = "";
 }
 
-if (isset($row["KgEnjuague"]) && $row["KgEnjuague"] != '') {
-    $KgEnjuague = $row["KgEnjuague"];
-    $d_KgEnjuague = "readonly";
-} else {
-    $KgEnjuague = "";
-    $d_KgEnjuague = "";
+if(isset($row["KgEnjuague"]) && $row["KgEnjuague"] != ''){
+    $KgEnjuague     = $row["KgEnjuague"];
+    $d_KgEnjuague   = "readonly";
+}else{
+    $KgEnjuague     = "";
+    $d_KgEnjuague   = "";
 }
-if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
-    $KgLavado = $row["KgLavado"];
+if(isset($row["KgLavado"]) && $row["KgLavado"] != ''){
+    $KgLavado   = $row["KgLavado"] ;
     $d_KgLavado = "readonly";
-} else {
-    $KgLavado = "";
+}else{
+    $KgLavado   = "";
     $d_KgLavado = "";
 }
 
@@ -2414,15 +2367,6 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
     
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <title>Document</title>
-    <script>
-        function valueChanged()
-        {
-            if($('#CapacidadTanque').is(":checked"))   
-                $("#Carga700").show();
-            else
-                $("#Carga700").hide();
-        }
-    </script>
 </head>
 
 <body>
@@ -2613,7 +2557,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             </div>
 
                             <hr>
-
+                            
                             <div style="display: block;">
                                 <h4 style="font-weight: bold;">MATERIA PRIMA STW000</h4>
                                 <br>
@@ -2624,7 +2568,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                     </div>
                                     <div>
                                         <label for="stw0003">CANTIDAD</label>
-                                        <input type="number" id="stw0003" placeholder="Kg"  name="stw0003" value="<?php echo $stw0003; ?>" <?php echo $d_stw0003; ?> required /> 
+                                        <input type="number" id="stw0003" placeholder="Kg"  name="stw0003" value="<?php echo $stw0003; ?>" <?php echo $d_stw0003; ?> required />
                                     </div>
                                 </div>
                             </div>
@@ -2670,12 +2614,11 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                 </u>
                             </i>
                         </div>
-                        <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
                         <hr>
                 </form>
                 <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
                         <!-- Paso 2 -->
-                        <div class="container" id="CheckEquipo" style="display: <?php echo $displayMatPriSeparada; ?>;">
+                        <div class="container" id="CheckEquipo" style="display: <?php echo $displayMatPriSeparada;?>;">
                             <input type="hidden" name="id" value="<?php echo $id; ?>">
                             <input type="hidden" name="pasos" value="2">
                             <br><br>
@@ -2684,13 +2627,13 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <p>¿El reactor está completamente limpio?</p>
                             <table class="table" style="width:50%;">
                                 <tr>
-                                    <td align="center"><label>Si</label><input <?php echo $autoFocus1; ?> type="radio" id="ReactorLimpioSi" name="ReactorLimpio" value="1" <?php echo $ReactorLimpioSi . ' ' . $d_ReactorLimpio; ?>/></td>
+                                    <td align="center"><label>Si</label><input type="radio" id="ReactorLimpioSi" name="ReactorLimpio" value="1" <?php echo $ReactorLimpioSi . ' ' . $d_ReactorLimpio; ?>/></td>
                                     <td align="center"><label>No</label><input type="radio" id="ReactorLimpioNo" name="ReactorLimpio" value="0" <?php echo $ReactorLimpioNo . ' ' . $d_ReactorLimpio; ?>/></td>
                                 </tr>
                             </table>
                             <i>Si la respuesta en negativa, realizar limpieza nuevamente.</i>
                             
-                            <div class="container" id="limpiezaEquipo" style="display: <?php echo $displayReactorLimpio; ?>;">
+                            <div class="container" id="limpiezaEquipo" style="display: <?php echo $displayReactorLimpio;?>;">
                                 <p>¿ Revisó la hermeticidad del reactor y líneas de traslado para evitar fugas de FDO035 y 700NAN000 sublimado?</p>
                                 <table class="table" style="width:50%;">
                                     <tr>
@@ -2752,7 +2695,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                     
                                     <i>Si la respuesta en negativa, realizar cambio de la soda caustica para continuar con el proceso</i><br />
                                     
-                                    <div id="CondensadorFunciona" style="display: <?php echo $displayCondensadorFunciona; ?>">
+                                    <div id="CondensadorFunciona" style="display: <?php echo $displayCondensadorFunciona;?>">
                                         <p>¿ El condensador funciona correctamente ?</p>
                                         <table class="table" style="width:50%;">
                                             <tr>
@@ -2768,7 +2711,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                         </div>
                         <!-- Paso 3 -->
                         
-                        <div class="container" id="checkEquipo2" style="display: <?php echo $displayCondensadorFunciona; ?>;">
+                        <div class="container" id="checkEquipo2" style="display: <?php echo $displayCondensadorFunciona;?>;">
                             <b>¿Aprueba Inicio del Proceso?</b><br />
                             <table class="table" style="width:50%;">
                                 <tr>
@@ -2776,11 +2719,10 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                     <td align="center"><label>No <input type="radio" id="ApruebaInicioNo" name="ApruebaInicio" value="0" <?php echo $ApruebaInicioNo . ' ' . $d_ApruebaInicio; ?>> </label></td>
                                 </tr>
                             </table>
-                            <div style="display: <?php echo $displayRazonesNoAprob; ?>;">
+                            <div style="display: <?php echo $displayRazonesNoAprob;?>;">
                                 <p>En caso de respuesta negativa, indique las razones (contacte a mantenimiento y dejar el proceso en espera hasta dar solucion):</p>
                                 <input id="RazonesNoAprob" type="text" name="RazonesNoAprob" value="<?php echo $RazonesNoAprob; ?>" <?php echo $d_RazonesNoAprob; ?> />
                             </div>
-                            <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
                             <hr>
                             <br />
                         </div>
@@ -2789,21 +2731,22 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="pasos" value="3">
                         <!-- Paso 4 -->
-                        <div class="container" id="InicioProceso" style="display: <?php echo $displayInicioProceso; ?>;">
+                        <div class="container" id="InicioProceso" style="display: <?php echo $displayInicioProceso;?>;">
                             <br><br>
                             <h1>INICIO DEL PROCESO</h1>
                             <br>
+
                             <h1>CARGA DEL NAN000</h1>
                             <br>
 
                             <b>¿Leyó la ficha y hoja de seguridad (FS-01y FS-01-1) para este producto?</b><br />
-                            <a href="img/FDS Naftaleno tecnico.pdf" target="popup" onclick="window.open('img/FDS Naftaleno tecnico.pdf','popup','width=888,height=550'); return false;">
+                            <a href="img/SeguridadNaftaleno.PNG" target="popup" onclick="window.open('img/SeguridadNaftaleno.PNG','popup','width=888,height=234'); return false;">
                                 Ver Ficha de Seguridad
                             </a>
                             <br />
                             <table class="table" style="width:50%;">
                                 <tr>
-                                    <td align="center"><label>Si <input <?php echo $autoFocus2; ?> type="radio" id="SeguridadNaftalenoSi" name="SeguridadNaftaleno" value="1" <?php echo $SeguridadNaftalenoSi . ' ' . $d_SeguridadNaftaleno; ?>> </label></td>
+                                    <td align="center"><label>Si <input type="radio" id="SeguridadNaftalenoSi" name="SeguridadNaftaleno" value="1" <?php echo $SeguridadNaftalenoSi . ' ' . $d_SeguridadNaftaleno; ?>> </label></td>
                                     <td align="center"><label>No <input type="radio" id="SeguridadNaftalenoNo" name="SeguridadNaftaleno" value="0" <?php echo $SeguridadNaftalenoNo . ' ' . $d_SeguridadNaftaleno; ?>> </label></td>
                                 </tr>
                             </table>
@@ -2814,7 +2757,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                         <br />
                         
                         <!-- Paso 5 -->
-                        <div class="container" id="EquipoSeguridad" style="display: <?php echo $EquipoSeguridad; ?>;">
+                        <div class="container" id="EquipoSeguridad" style="display: <?php echo $EquipoSeguridad;?>;">
                             <b>¿Cuenta con el equipo de seguridad adecuado para el manejo?</b>
                             <br />
                             <table class="table" style="width:50%;">
@@ -2826,13 +2769,13 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             
                             <br />
                             <i>En caso de respuesta negativa, contactar a Salud Ocupacional para reemplazo o entrega del EPP apropiado.</i> <br />
-                        
+
                         </div>		
                         
-                        <div class="container" id="TrituradoSaco" style="display: <?php echo $TrituradoSaco; ?>;">
+                        <div class="container" id="TrituradoSaco" style="display: <?php echo $TrituradoSaco;?>;">
                             
-                            <label> <b>¿Cerró el sistema de enfriamiento del condensador (Válvula:<font color="#33ccff">Se-13</font>) para evitar obstrucción de las lineas con 700NAN000 sublimado?</b> 
-                            <input type="checkbox" id="EnfriamientoCerrado" name="EnfriamientoCerrado" value="1" <?php echo $EnfriamientoCerrado; ?> <?php echo $d_EnfriamientoCerrado; ?> ></label>
+                            <label> <b>¿Cerró el sistema de enfriamiento del condensador para evitar obstrucción de las lineas con 700NAN000 sublimado?</b> 
+                            <input type="checkbox" id="EnfriamientoCerrado" name="EnfriamientoCerrado" value="1" <?php echo $EnfriamientoCerrado; ?> <?php echo $d_EnfriamientoCerrado;?> ></label>
                             <br />
     
                             <p style="color: red;"><i><u>NOTA: Para esta etapa el condensador y la torre debe estar sin enfriamiento, además SIN reflujo directo.</i></u></p>
@@ -2841,7 +2784,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             
                             <div class="container" id="TrituradoSaco2" style="display: <?php echo $TrituradoSaco2; ?>;">
                                 <input type="hidden" name="triturado" value="triturado">
-                                <p>Con la valvula de principal abierta (<font color="#ff6600">P-49</font>) y la auxilar cerrada (<font color="#ff6600">P-49</font>), adicionar de 4 a 5 kilos de agua, para evitar obstrucciones en la descarga.</p>
+                                <p>Con la valvula de principal abierta y la auxilar cerrada, adicionar de 4 a 5 kilos de agua, para evitar obstrucciones en la descarga.</p>
                                 <b>Cargue el (1)700NAN000, triturando si es necesario los sacos</b>
                                 <br />
                                 <label for="horainiciocarganaf">Hora de Inicio:</label>
@@ -2850,14 +2793,14 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                 <input type="time" id="horafincarganaf" name="horafincarganaf" value="<?php echo $horafincarganaf; ?>" <?php echo $d_horafincarganaf; ?>/>
                                 <br />
                                 <br />
-                                <label> <b>Cierre válvulas (<font color="#ffcc00">VØ-23,VØ-24</font>)(<font color="#ff6600">P-28, P-29, P-30, P-31, P-32, P-33, P-35, P-36, P-37, P-38, P-44</font>) para bloquear el equipo</b> 
+                                <label> <b>Cierre todas las válvulas y bloquee el equipo</b> 
                                 <input type="checkbox" id="ValvBloqueo" name="ValvBloqueo" value="1" <?php echo $ValvBloqueo; ?> <?php echo $d_ValvBloqueo; ?> /></label>
                                 <br />
                                 <label> <b>Abra el sistema de control de olores TANAN e inicie enfriamiento a su camisa.</b> 
                                 <input type="checkbox" id="AbrirControlOlores" name="AbrirControlOlores" value="1" <?php echo $AbrirControlOlores; ?> <?php echo $d_AbrirControlOlores; ?> /></label>
                                 <br />
                                 <input type="hidden" name="fusion" value="fusion">
-                                <b>Inicie Fusion del naftaleno presurizando la camisa del reactor máximo a 60 PSI hasta que la tempertura alcance T= 95-100°C. Válvulas: <font color="#b8b894">V-0, V-1 ,V-2, V-3, V-4, V-5</font> </b>             <br />
+                                <b>Inicie Fusion del naftaleno calentando la camisa del reactor máximo a 60 psi hasta que la tempertura alcance T= 95-100°C.</b>             <br />
                                 <label for="horainiciofusionnaf">Hora de Inicio:</label>
                                 <input type="time" id="horainiciofusionnaf" name="horainiciofusionnaf" value="<?php echo $horainiciofusionnaf; ?>" <?php echo $d_horainiciofusionnaf; ?> /> 
                                 <p style="color: red;"><i><u>IMPORTANTE: No sobrepasar esta temperatura, para evitar reacción violenta con (2)SWF098.</u></i></p>
@@ -2868,8 +2811,8 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                 <br />
                                 <label for="temp1">Temperatura: </label>
                                 <input type="number" id="temp1" name="temp1" placeholder="°C" value="<?php echo $temp1; ?>" <?php echo $d_temp1; ?>/>
-                                <label for="presion1">Presión de Vapor: </label>
-                                <input type="number" id="presion1" name="presion1" placeholder="PSI" value="<?php echo $presion1; ?>" <?php echo $d_presion1; ?> />
+                                <label for="presion1">Presión: </label>
+                                <input type="number" id="presion1" name="presion1" value="<?php echo $presion1; ?>" <?php echo $d_presion1; ?> />
                                 <label for="horafinfusionnaf">Hora de Fin:</label>
                                 <input type="time" id="horafinfusionnaf" name="horafinfusionnaf" value="<?php echo $horafinfusionnaf; ?>" <?php echo $d_horafinfusionnaf; ?> /> 
                                 <br />
@@ -2891,14 +2834,12 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                         <td align="center"><label>No <input type="radio" id="ProblemaFundNo" name="ProblemaFund" value="0" <?php echo $ProblemaFundNo . ' ' . $d_ProblemaFund; ?>/></label></td>
                                     </tr>
                                 </table>
-                                <!-- Agregar aquí casilla de comentarios -->
                                 <div class="container" id="AfirmativaRespuesta" style="display: <?php echo $AfirmativaRespuesta; ?>">
                                     <i>Si la respuesta es afirmativa, mencione lo ocurrido y notifique al area encargada para dar solución.</i>
                                     <input type="text" name="ProblemaFundirNaf" value="<?php echo $ProblemaFundirNaf; ?>" <?php echo $d_ProblemaFundirNaf; ?>>
                                     <hr>
                                 </div>
                                 <hr>
-                                <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
                                 </div>
                         </div>
                 </form>
@@ -2912,10 +2853,10 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <h1>CARGA DEL 710SWF098</h1>
                             <br>
                             <b>¿Leyó la ficha y hoja de seguridad (FS-01y FS-01-1) para este producto?</b><br />
-                            <a href="img/FDS Acido Sulfúrico.pdf" target="popup" onclick="window.open('img/FDS Acido Sulfúrico.pdf','popup','width=889,height=550'); return false;">Ver Ficha de Seguridad</a><br />
+                            <a href="img/SeguridadSulfurico.PNG" target="popup" onclick="window.open('img/SeguridadSulfurico.PNG','popup','width=889,height=522'); return false;">Ver Ficha de Seguridad</a><br />
                             <table class="table" style="width:50%;">
                                 <tr>
-                                    <td align="center"><label>Si <input <?php echo $autoFocus3; ?> type="radio" id="SeguridadSulfuricoSi" name="SeguridadSulfurico" value="1" <?php echo $SeguridadSulfuricoSi . ' ' . $d_SeguridadSulfurico; ?>/> </label></td>
+                                    <td align="center"><label>Si <input type="radio" id="SeguridadSulfuricoSi" name="SeguridadSulfurico" value="1" <?php echo $SeguridadSulfuricoSi . ' ' . $d_SeguridadSulfurico; ?>/> </label></td>
                                     <td align="center"><label>No <input type="radio" id="SeguridadSulfuricoNo" name="SeguridadSulfurico" value="0" <?php echo $SeguridadSulfuricoNo . ' ' . $d_SeguridadSulfurico; ?>/> </label></td>
                                 </tr>
                             </table>
@@ -2934,28 +2875,28 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
 
                         <!-- Paso 7 -->
                         <div class="container" id="CargueSWF098" style="display: <?php echo $CargueSWF098; ?>;">
-                            <b>Cargue al tanque de adición (2) SWF098 garrafas) mediante vacío desde el 3 nivel del módulo.  Válvula: <font color="#ff6600">P-25</font></b><br />
+                            <b>Cargue al tanque de adición (2) SWF098 garrafas) mediante vacío desde el 3 nivel del módulo. </b><br />
                             <input type="hidden" name="sulfurico" value="sulfurico">
                             <label for="horainiciocargaswfo">Hora de Inicio:</label>
                             <input type="time" id="horainiciocargaswfo" name="horainiciocargaswfo" value="<?php echo $horafincargaswfo; ?>" <?php echo $d_horainiciocargaswfo; ?>/>
                             <label for="horafincargaswfo">Hora de Fin:</label>
                             <input type="time" id="horafincargaswfo" name="horafincargaswfo" value="<?php echo $horafincargaswfo; ?>" <?php echo $d_horafincargaswfo; ?>/>
                             <br />
-                            <label> <b>Cierre sistema de control de olores TANAN. Válvulas: <font color="#ff6600">P-44, P-65, P-66, P-69</font></b> 
+                            <label> <b>Cierre sistema de control de olores TANAN.</b> 
                             <input type="checkbox" id="CierreControlOlores" name="CierreControlOlores" value="1" <?php echo $CierreControlOlores; ?> <?php echo $d_CierreControlOlores; ?>/></label>
                             <br />
-                            <b>Sin cerrar vapor inicie adición de (2) SWF098 al reactor en 30 minutos maximo. aproximadamente entre T = 98-100°C. Válvulas: <font color="#ff6600">P-25,P-26, P-27, P-28</font> </b><br />
+                            <b>Sin cerrar vapor inicie adición de (2) SWF098 al reactor en 60 minutos aproximadamente.</b><br />
                             <input type="hidden" name="sulfurico1" value="sulfurico1">
                             <label for="horainiciocargaswfo2">Hora de Inicio:</label>
                             <input type="time" id="horainiciocargaswfo2" name="horainiciocargaswfo2" value="<?php echo $horainiciocargaswfo2; ?>" <?php echo $d_horainiciocargaswfo2; ?> />
                             <label for="horafincargaswfo2">Hora de Fin:</label>
                             <input type="time" id="horafincargaswfo2" name="horafincargaswfo2" value="<?php echo $horainiciocargaswfo2; ?>" <?php echo $d_horafincargaswfo2; ?> />
-                            <p style="color: red;"><i><u>Durante la adición se puede formar vacío dentro del equipo, controla. aprovechar elvacio para la adicion del acido sulfurico. <br> El sisteme de emisiones siempre debe estar abierto.</u></i></p>
-                            <b>Verificar temperatura de reacción, si esta no sube por sí sola a T=150-155°C máximo, suministrar vapor para alcanzarla. </b><br />
+                            <p style="color: red;"><i><u>Durante la adición se puede formar vacío dentro del equipo, controla. aprovechar elvacio para la adicion del acido sulfurico. <br> El sisteme de emisiones siempre debe estar abierto. </u></i></p>
+                            <b>Verificar temperatura de reacción, si esta no sube por sí sola a T=140-150°C máximo, suministrar vapor para alcanzarla. </b><br />
                             <label for="tempswfo1">Temperatura: </label>
-                            <input type="number" id="tempswfo1" placeholder="°C" name="tempswfo1" value="<?php echo $tempswfo1; ?>" <?php echo $d_tempswfo1; ?>/>
-                            <label for="presionswfo1">Presión de Vapor: </label>
-                            <input type="number" id="presionswfo1" name="presionswfo1" placeholder="PSI" value="<?php echo $presionswfo1; ?>" <?php echo $d_presionswfo1; ?>/> 
+                            <input type="number" id="tempswfo1" placeholder="°C" name="tempswfo1" value="<?php echo $tempswfo1;?>" <?php echo $d_tempswfo1; ?>/>
+                            <label for="presionswfo1">Presión: </label>
+                            <input type="number" id="presionswfo1" name="presionswfo1" value="<?php echo $presionswfo1;?>" <?php echo $d_presionswfo1; ?>/> 
                             <b>Suministro Vapor</b><br />
                             <table class="table" style="width:50%;">
                                 <tr>
@@ -2967,7 +2908,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <b>Con vapor sostener temperatura T = 155°C y reacción durante 3 horas.</b><br />
                             <label for="horainiciosostenertemp">Hora de Inicio:</label>
                             <input type="hidden" name="sostener1" value="sostener1">
-                            <input type="time" id="horainiciosostenertemp" name="horainiciosostenertemp" value="<?php echo $horainiciosostenertemp; ?>" <?php echo $d_horainiciosostenertemp; ?>/>
+                            <input type="time" id="horainiciosostenertemp" name="horainiciosostenertemp" value="<?php echo $horainiciosostenertemp;?>" <?php echo $d_horainiciosostenertemp; ?>/>
                             <hr>
                             <br>
                             <h2 style="font-weight: bold !important;">SEGUIMIENTO DE LA REACCIÓN</h2>
@@ -2975,23 +2916,23 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <!-- Validar para que aparezcan los campos cuando se llenen -->
                             <b>Hora 1</b><br />
                             <label for="temphr1">Temperatura: </label>
-                            <input type="number" id="temphr1" placeholder="°C" name="temphr1" value="<?php echo $temphr1; ?>" <?php echo $d_temphr1; ?>/>
-                            <label for="presionhr1">Presión de Vapor:</label>
-                            <input type="number" id="presionhr1" name="presionhr1" placeholder="PSI" value="<?php echo $presionhr1; ?>" <?php echo $d_presionhr1; ?>/><hr>
+                            <input type="number" id="temphr1" placeholder="°C" name="temphr1" value="<?php echo $temphr1;?>" <?php echo $d_temphr1; ?>/>
+                            <label for="presionhr1">Presión:</label>
+                            <input type="number" id="presionhr1" name="presionhr1" value="<?php echo $presionhr1;?>" <?php echo $d_presionhr1; ?>/><hr>
                             <b>Hora 2</b><br />
                             <input type="hidden" name="sostener2" value="sostener2">
                             <label for="temphr2">Temperatura: </label>
-                            <input type="number" id="temphr2" placeholder="°C" name="temphr2" value="<?php echo $temphr2; ?>" <?php echo $d_temphr2; ?>/>
-                            <label for="presionhr2">Presión de Vapor:</label>
-                            <input type="number" id="presionhr2" name="presionhr2" placeholder="PSI" value="<?php echo $presionhr2; ?>" <?php echo $d_presionhr2; ?>/><hr>
+                            <input type="number" id="temphr2" placeholder="°C" name="temphr2" value="<?php echo $temphr2;?>" <?php echo $d_temphr2; ?>/>
+                            <label for="presionhr2">Presión:</label>
+                            <input type="number" id="presionhr2" name="presionhr2" value="<?php echo $presionhr2;?>" <?php echo $d_presionhr2; ?>/><hr>
                             <b>Hora 3</b><br />
                             <input type="hidden" name="sostener3" value="sostener3">
                             <label for="temphr3">Temperatura: </label>
-                            <input type="number" id="temphr3" placeholder="°C" name="temphr3" value="<?php echo $temphr3; ?>" <?php echo $d_temphr3; ?>/>
-                            <label for="presiohr3">Presión de Vapor: </label>
-                            <input type="number" id="presionhr3" name="presionhr3" placeholder="PSI" value="<?php echo $presionhr3; ?>" <?php echo $d_presionhr3; ?>/><hr>
+                            <input type="number" id="temphr3" placeholder="°C" name="temphr3" value="<?php echo $temphr3;?>" <?php echo $d_temphr3; ?>/>
+                            <label for="presiohr3">Presión: </label>
+                            <input type="number" id="presionhr3" name="presionhr3" value="<?php echo $presionhr3;?>" <?php echo $d_presionhr3; ?>/><hr>
                             <label for="horafinsostenertemp">Hora de Fin:</label>
-                            <input type="time" id="horafinsostenertemp" name="horafinsostenertemp" value="<?php echo $horafinsostenertemp; ?>" <?php echo $d_horafinsostenertemp; ?>/><hr>
+                            <input type="time" id="horafinsostenertemp" name="horafinsostenertemp" value="<?php echo $horafinsostenertemp;?>" <?php echo $d_horafinsostenertemp; ?>/><hr>
                             <b>Cerrar vapor Si y solo Si ya se alcanzo la T =150°C y se haya finalizado la adicion</b><br>
                             <b>¿ Se presento algún problema al adicionar el ácido sulfúrico ?</b><br />
                             <table class="table" style="width:50%;">
@@ -3006,36 +2947,50 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                 <b>En caso de ser positiva la respuesta indique el problema presentado:</b>
                                 <input type="text" size="2" id="TextoProblemaSWFO" name="TextoProblemaSWFO" value="<?php echo $TextoProblemaSWFO; ?>"> <br />
                             </div>
-                            <b>Terminadas las 3 horas de reacción. Enfríe (Abrir válvula <font color="">Ee-9</font>) a T = 110°C,  con reflujo directo y restablezca el suministro de agua en el condensador. Válvula<font color="#33ccff">Se-13</font></b><br />
+                            <b>Terminadas las 3 horas de reacción. Enfrie  a T = 110°C,  con reflujo directo y restablezca el suministro de agua en el condensador.</b><br />
+                            <table class="table" style="width:50%;">
+                                <tr>
+                                    <td align="center"><label>Si <input type="radio" id="EnfriarOkSi" name="EnfriarOk" value="1" <?php echo $EnfriarOkSi . ' ' . $d_EnfriarOk; ?> /></label></td>
+                                    <td align="center"><label>No <input type="radio" id="EnfriarOkNo" name="EnfriarOk" value="0" <?php echo $EnfriarOkNo . ' ' . $d_EnfriarOk; ?> /></label></td>
+                                </tr>
+                            </table>
                             <input type="hidden" name="enfriado1" value="enfriado1">
                             <label for="tempenfriado">Temperatura: </label>
                             <input type="number" id="tempenfriado" name="tempenfriado" placeholder="°C" value="<?php echo $tempenfriado; ?>" <?php echo $d_tempenfriado; ?>/>
-                            <label for="presionenfriado">Presión de Vapor: </label>
-                            <input type="number" id="presionenfriado" name="presionenfriado" placeholder="PSI" value="<?php echo $presionenfriado; ?>" <?php echo $d_presionenfriado; ?>/> 
-                            <b>En T = 110°C cerrar enfriamiento (Válvula <font color="">Ee-9</font>)</b>
+                            <label for="presionenfriado">Presión: </label>
+                            <input type="number" id="presionenfriado" name="presionenfriado" value="<?php echo $presionenfriado; ?>" <?php echo $d_presionenfriado; ?>/> 
+                            <b>En T = 110°C cerrar enfriamiento</b>
                             <b>El producto debe ser negro, muy brillante como una brea.</b>
-
                             <hr>
                             <br><br>
                             <h1>CARGA DEL 700STW00</h1>
                             <br>
-                            
-                            <b>Adicione (3) STW000 en 1 hora como tiempo maximo (Válvulas: <font color="#ff6600">P-25,P-26,P-27,P-28</font>) con reflujo directo (Válvulas: <font color="#ff6600">P-31</font> ) (puede bajar  una temperatura T = 82°C, esta temperatura se consigue solo con la adicion de agua.)</b><br />
+                            <b>Adicione (3) STW000 en 1 hora como tiempo maximo con reflujo directo (puede bajar  una temperatura T = 82°C, esta temperatura se consigue solo con la adicion de agua. </b><br />
                             <input type="hidden" name="enfriado2" value="enfriado2">
                             <label for="tempadicionstw">Temperatura: </label>
                             <input type="number" id="tempadicionstw" name="tempadicionstw" placeholder="°C" value="<?php echo $tempadicionstw; ?>" <?php echo $d_tempadicionstw; ?>/>
-                            <label for="presionadicionstw">Presión de Vapor: </label>
-                            <input type="number" id="presionadicionstw" name="presionadicionstw" placeholder="PSI" value="<?php echo $presionadicionstw; ?>" <?php echo $d_presionadicionstw; ?>/>
+                            <label for="presionadicionstw">Presión: </label>
+                            <input type="number" id="presionadicionstw" name="presionadicionstw" value="<?php echo $presionadicionstw; ?>" <?php echo $d_presionadicionstw; ?>/>
                             <br />
                             
-                            
+                            <!--<label> <b>Evacue la camisa del reactor, para evitar que siga bajando la temperatura.</b> 
+                            <input type="checkbox" id="EvacuarCamisa" name="EvacuarCamisa" value="1" <?php echo $EvacuarCamisa; ?> <?php echo $d_EvacuarCamisa; ?>/></label>
+                            <p style="color: red;"><i><u>Con la adición del agua la temperatura puede bajar aproximadamente entre T = 70-75°C. Subir con vapor si es necesario para obtener T=85-90°C.							
+                            </u></i></p>
+                            <b>¿Suministro Vapor?</b>
+                            <br />
+                            <table class="table" style="width:50%;">
+                                <tr>
+                                    <td align="center"><label>Si <input type="radio" id="SuministroVaporSi" name="SuministroVapor" value="1" <?php echo $SuministroVaporSi . ' ' . $d_SuministroVapor; ?>></label></td>
+                                    <td align="center"><label>No <input type="radio" id="SuministroVaporNo" name="SuministroVapor" value="0" <?php echo $SuministroVaporNo . ' ' . $d_SuministroVapor; ?>></label></td>
+                                </tr>
+                            </table>-->
                             <hr>
                             <br><br>
                             <h1>CARGA DEL 700FDO035 Y 710MYO000</h1>
                             <br>
                             <b>¿Leyó la ficha y hoja de seguridad (FS-01y FS-01-1) para estos productos?</b> <br />
-                            <a href="img/FDS Formol al 37_.pdf" target="popup" onclick="window.open('img/FDS Formol al 37_.pdf','popup','width=861,height=550'); return false;">Ver Ficha de Seguridad Formol</a>
-                            <a href="img/FDS Metanol.pdf" target="popup" onclick="window.open('img/FDS Metanol.pdf','popup','width=861,height=550'); return false;">Ver Ficha de Seguridad Metanol</a>
+                            <a href="img/FormolMetanolseguridad.PNG" target="popup" onclick="window.open('img/FormolMetanolseguridad.PNG','popup','width=861,height=317'); return false;">Ver Ficha de Seguridad</a>
                             <br />
                             <table class="table" style="width:50%;">
                                 <tr>
@@ -3053,7 +3008,6 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                 </tr>
                             </table>
                             <i>En caso de respuesta negativa, contactar a Salud Ocupacional para reemplazo o entrega del EPP apropiado.</i><br />
-                            <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
                         </div>
                     </form>
                     <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
@@ -3063,19 +3017,19 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                         <div class="container" id="RevisoConexion" style="display: <?php echo $RevisoConexion; ?>;">
                             <!-- todos deben validarse para mostrar el paso 9 -->
                             <label> <b>Reviso la conexión de línea a tierra en compañía de mantenimiento.</b> 
-                            <input <?php echo $autoFocus4; ?> type="checkbox" id="LineaTierraOk" name="LineaTierraOk" value="1" <?php echo $LineaTierraOk; ?> <?php echo $d_LineaTierraOk; ?> /></label>
+                            <input type="checkbox" id="LineaTierraOk" name="LineaTierraOk" value="1" <?php echo $LineaTierraOk; ?> <?php echo $d_LineaTierraOk;?> /></label>
                             <label> <b>Para el bombeo del 710MYO000 Y 700FDO037 (Inflamables) lo hara con una bomba de vacio (usar bomba 1).</b> 
-                            <input type="checkbox" id="BombaNeumaticaOk" name="BombaNeumaticaOk" value="1" <?php echo $BombaNeumaticaOk; ?> <?php echo $d_BombaNeumaticaOk; ?> /></label>
+                            <input type="checkbox" id="BombaNeumaticaOk" name="BombaNeumaticaOk" value="1" <?php echo $BombaNeumaticaOk; ?> <?php echo $d_BombaNeumaticaOk;?> /></label>
                             <label> <b>Los acoples de manguera y tubería estén bien hechas.</b> 
-                            <input type="checkbox" id="ConexionOk" name="ConexionOk" value="1" <?php echo $ConexionOk; ?> <?php echo $d_ConexionOk; ?> /></label>
+                            <input type="checkbox" id="ConexionOk" name="ConexionOk" value="1" <?php echo $ConexionOk; ?> <?php echo $d_ConexionOk;?> /></label>
                             <label> <b>El tramo de manguera a usar en la carga se encuentra sin uniones, en buen estado y abrazaderas resistentes al bombeo</b> 
-                            <input type="checkbox" id="MangueraOk" name="MangueraOk" value="1" <?php echo $MangueraOk; ?> <?php echo $d_MangueraOk; ?> /></label>
-                            <label> <b>La línea de carga se encuentra sin escapes.</b> 
-                            <input type="checkbox" id="LineaCargaOk" name="LineaCargaOk" value="1" <?php echo $LineaCargaOk; ?> <?php echo $d_LineaCargaOk; ?> /></label><br />
-                            <label> <b>Las válvulas del tanque de adición al reactor estan cerradas para realizar carga.</b> 
-                            <input type="checkbox" id="ValvulasCerradas" name="ValvulasCerradas" value="1" <?php echo $ValvulasCerradas; ?> <?php echo $d_ValvulasCerradas; ?> /></label>
+                            <input type="checkbox" id="MangueraOk" name="MangueraOk" value="1" <?php echo $MangueraOk; ?> <?php echo $d_MangueraOk;?> /></label>
+                            <br><label> <b>La línea de carga se encuentra sin escapes.</b> 
+                            <input type="checkbox" id="LineaCargaOk" name="LineaCargaOk" value="1" <?php echo $LineaCargaOk; ?> <?php echo $d_LineaCargaOk;?> /></label>
+                            <br><label> <b>Las válvulas del tanque de adición al reactor estan cerradas para realizar carga.</b> 
+                            <input type="checkbox" id="ValvulasCerradas" name="ValvulasCerradas" value="1" <?php echo $ValvulasCerradas; ?> <?php echo $d_ValvulasCerradas;?> /></label>
                             <label> <b>Conoce la capacidad del tanque de adición para que no haya rebose al momento de la carga.</b> 
-                            <input type="checkbox" id="CapacidadTanque" name="CapacidadTanque" value="1" <?php echo $CapacidadTanque; ?> <?php echo $d_CapacidadTanque; ?> onclick='valueChanged()' /></label>
+                            <input type="checkbox" id="CapacidadTanque" name="CapacidadTanque" value="1" <?php echo $CapacidadTanque; ?> <?php echo $d_CapacidadTanque;?> /></label>
                             <br />
                             <i>Capacidad del tanque de adición: 500 Litros</i>
                         </div>
@@ -3086,81 +3040,69 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <br><br>
                             <h1>INICIO DE CARGA DEL 700FDO035 Y 710MYO000</h1>
                             <br>
-                        
                             <i><u>IMPORTANTE TENER EN CUENTA: En el cargue del FDO037 al tanque de adición, usar una barrera en el orificio de entrada al tambor o garrafa por donde entra la manguera o tubo, de manera que se evite la salida de los vapores del FDO037.  Así mismo se debe ubicar la persona que va a realizar el cargue en contra del viento para disminuir exposición.	</u></i>
                             <br />
-                            <i><u>"Inicie la adicion Sin vapor de la mezcla  (4) FDO037 y  (5) MYO000 en T=90°C, Adicionar en 4 horas. Válvulas: <font color="#ff6600">P-25,P-26,P-27,P-28</font> <br> Durante el proximo seguimiento y durante la adicion de FDO037 / MYO000 l la temperatura subira gradualmente, si esto no se presenta ayudar con pase de vapor."</u></i><br />
+                            <i><u>"Inicie la adicion Sin vapor de la mezcla  (4) FDO037 y  (5) MYO000. Adicionar en 4 horas.Durante el proximo seguimiento y durante la adicion de FDO037 / MYO000 l la temperatura subira gradualmente, si esto no se presenta ayudar con pase de vapor."</u></i><br />
                             <hr>
                             <br>
                             <h2 style="font-weight: bold !important;">SEGUIMIENTO DE LA ADICIÓN</h2>
                             <br>
                             <label for="horainicioadc">Hora de Inicio:</label>
                             <input type="hidden" name="carga7001" value="carga7001">
-                            <input type="time" id="horainicioadc" name="horainicioadc" value="<?php echo $horainicioadc; ?>" <?php echo $d_horainicioadc; ?>  /><br />
+                            <input type="time" id="horainicioadc" name="horainicioadc" value="<?php echo $horainicioadc; ?>" <?php echo $d_horainicioadc;?>  /><br />
                             <!-- Seguimiento por horas y que cuando 1 hora muestre la segunda -->
                             <b>Hora 1</b><br />
                             <label for="tempadc1">Temperatura: </label>
-                            <input type="number" id="tempadc1" name="tempadc1" value="<?php echo $tempadc1; ?>" placeholder="°C" <?php echo $d_tempadc1; ?>  />
-                            <label for="presionadc1">Presión de Vapor:</label>
-                            <input type="number" id="presionadc1" name="presionadc1" placeholder="PSI" value="<?php echo $presionadc1; ?>" <?php echo $d_presionadc1; ?>  />
+                            <input type="number" id="tempadc1" name="tempadc1" value="<?php echo $tempadc1; ?>" placeholder="°C" <?php echo $d_tempadc1;?>  />
+                            <label for="presionadc1">Presión:</label>
+                            <input type="number" id="presionadc1" name="presionadc1" value="<?php echo $presionadc1; ?>" <?php echo $d_presionadc1;?>  />
                             <b>Observaciones/Comentarios</b>
-                            <input type="text" name="comentarioadc1" value="<?php echo $comentarioadc1; ?>" <?php echo $d_comentarioadc1; ?>  /><hr>
+                            <input type="text" name="comentarioadc1" value="<?php echo $comentarioadc1; ?>" <?php echo $d_comentarioadc1;?>  /><hr>
                             <b>Hora 2</b><br />
                             <input type="hidden" name="carga7002" value="carga7002">
                             <label for="tempadc2">Temperatura: </label>
-                            <input type="number" id="tempadc2" name="tempadc2" value="<?php echo $tempadc2; ?>" placeholder="°C" <?php echo $d_tempadc2; ?>  />
-                            <label for="presionadc2">Presión de Vapor:</label>
-                            <input type="number" id="presionadc2" name="presionadc2" placeholder="PSI" value="<?php echo $presionadc2; ?>" <?php echo $d_presionadc2; ?>  />
+                            <input type="number" id="tempadc2" name="tempadc2" value="<?php echo $tempadc2; ?>" placeholder="°C" <?php echo $d_tempadc2;?>  />
+                            <label for="presionadc2">Presión:</label>
+                            <input type="number" id="presionadc2" name="presionadc2" value="<?php echo $presionadc2; ?>" <?php echo $d_presionadc2;?>  />
                             <b>Observaciones/Comentarios</b>
-                            <input type="text" name="comentarioadc2" value="<?php echo $comentarioadc2; ?>" <?php echo $d_comentarioadc2; ?>  /><hr>
+                            <input type="text" name="comentarioadc2" value="<?php echo $comentarioadc2; ?>" <?php echo $d_comentarioadc2;?>  /><hr>
                             <b>Hora 3</b><br />
                             <input type="hidden" name="carga7003" value="carga7003">
                             <label for="tempadc3">Temperatura: </label>
-                            <input type="number" id="tempadc3" name="tempadc3" value="<?php echo $tempadc3; ?>" placeholder="°C" <?php echo $d_tempadc3; ?>  />
-                            <label for="presionadc3">Presión de Vapor: </label>
-                            <input type="number" id="presionadc3" name="presionadc3" placeholder="PSI" value="<?php echo $presionadc3; ?>" <?php echo $d_presionadc3; ?>  />
+                            <input type="number" id="tempadc3" name="tempadc3" value="<?php echo $tempadc3; ?>" placeholder="°C" <?php echo $d_tempadc3;?>  />
+                            <label for="presionadc3">Presión: </label>
+                            <input type="number" id="presionadc3" name="presionadc3" value="<?php echo $presionadc3; ?>" <?php echo $d_presionadc3;?>  />
                             <b>Observaciones/Comentarios</b>
-                            <input type="text" name="comentarioadc3" value="<?php echo $comentarioadc3; ?>" <?php echo $d_comentarioadc3; ?>  /><hr>
+                            <input type="text" name="comentarioadc3" value="<?php echo $comentarioadc3; ?>" <?php echo $d_comentarioadc3;?>  /><hr>
                             <b>Hora 4</b><br />
                             <input type="hidden" name="carga7004" value="carga7004">
                             <label for="tempadc4">Temperatura: </label>
-                            <input type="number" id="tempadc4" name="tempadc4" value="<?php echo $tempadc4; ?>" placeholder="°C" <?php echo $d_tempadc4; ?>  />
-                            <label for="presionadc4">Presión de Vapor:</label>
-                            <input type="number" id="presionadc4" name="presionadc4" placeholder="PSI" value="<?php echo $presionadc4; ?>" <?php echo $d_presionadc4; ?>  />
+                            <input type="number" id="tempadc4" name="tempadc4" value="<?php echo $tempadc4; ?>" placeholder="°C" <?php echo $d_tempadc4;?>  />
+                            <label for="presionadc4">Presión:</label>
+                            <input type="number" id="presionadc4" name="presionadc4" value="<?php echo $presionadc4; ?>" <?php echo $d_presionadc4;?>  />
                             <b>Observaciones/Comentarios</b>
-                            <input type="text" name="comentarioadc4" value="<?php echo $comentarioadc4; ?>" <?php echo $d_comentarioadc4; ?>  /> <br>
-                            <b>En caso de necesitar tiempo adicional, agregar los datos a continuación:</b>
+                            <input type="text" name="comentarioadc4" value="<?php echo $comentarioadc4; ?>" <?php echo $d_comentarioadc4;?>  /> <br>
+                            <b>En caso de necesitar tiempo adicional, agregar datos a continuación</b>
                             <hr>
                             <b>Tiempo adicional</b><br />
                             <input type="hidden" name="carga7005" value="carga7005">
                             <label for="tempadc5">Temperatura: </label>
-                            <input type="number" id="tempadc5" name="tempadc5" value="<?php echo $tempadc5; ?>" placeholder="°C" <?php echo $d_tempadc5; ?>  />
-                            <label for="presionadc5">Presión de Vapor: </label>
-                            <input type="number" id="presionadc5" name="presionadc5" placeholder="PSI" value="<?php echo $presionadc5; ?>" <?php echo $d_presionadc5; ?>  />
+                            <input type="number" id="tempadc5" name="tempadc5" value="<?php echo $tempadc5; ?>" placeholder="°C" <?php echo $d_tempadc5;?>  />
+                            <label for="presionadc5">Presión: </label>
+                            <input type="number" id="presionadc5" name="presionadc5" value="<?php echo $presionadc5; ?>" <?php echo $d_presionadc5;?>  />
                             <b>Observaciones/Comentarios</b>
-                            <input type="text" name="comentarioadc5" value="<?php echo $comentarioadc5; ?>" <?php echo $d_comentarioadc5; ?> />
+                            <input type="text" name="comentarioadc5" value="<?php echo $comentarioadc5; ?>" <?php echo $d_comentarioadc5;?> />
                             <br />
                             <label for="horafinadc">Hora de Fin:</label>
-                            <input type="time" id="horafinadc" name="horafinadc" value="<?php echo $horafinadc; ?>" <?php echo $d_horafinadc; ?> />
-                            <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
-                            <hr>
-                            <br />
-                        </div>
-                    </form>
-                    <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                        <input type="hidden" name="pasos" value="55">
-                        <div class="container" id="RevisoConexion" style="display: <?php echo $RevisoConexion; ?>;">
+                            <input type="time" id="horafinadc" name="horafinadc" value="<?php echo $horafinadc; ?>" <?php echo $d_horafinadc;?> /><hr>
                             <b>Sostener durante 7 horas a T = 100 - 102 °C. <i> <u>Si es necesario dar pase de vapor por poco tiempo para sostener la temperatura en el rango T = 100 - 102°C.</u></i></b>
                             <br><b>**El proceso debe presentar reflujo</b>
                             <br><b>**Si el proceso se nota cafe claro, se debe obligar a reflujar el subiendo temperatura, ademas de dar reaccion hasta que pase a negro o cafe oscuro (2 horas aprox).</b>
-
+                            
                             <br /><b><u>IMPORTANTE:</u> Cargar parte de (6)STW000 al tanque de adicion, como precaucion en caso que se observe alta viscosidad durante la reaccion de condensacion y asi evitar polimerizacion rapida del producto.  Si se presenta este caso adicionar y continuar hasta completar el tiempo de reacción.</b>  <hr>
-                            <br>
-                            <h2 style="font-weight: bold !important;">SEGUIMIENTO DE REACCIÓN DE ADICIÓN</h2>
-                            <br>
+                            <h4>Seguimiento de Reacción de Adición</h4><br />
                             <b>Hora de Inicio</b><br />
-                            <label <?php echo $autoFocus8; ?> for="horainicioreac">Hora de Inicio:</label>
+                            <label for="horainicioreac">Hora de Inicio:</label>
                             <input type="hidden" name="reaccion1" value="reaccion1">
                             <input type="time" id="horainicioreac" name="horainicioreac" value="<?php echo $horainicioreac; ?>" <?php echo $d_horainicioreac; ?>/>
                             <br />
@@ -3168,40 +3110,40 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <!-- Seguimiento por horas y que cuando 1 hora muestre la segunda -->
                             <label for="tempreac1">Temperatura: </label>
                             <input type="number" id="tempreac1" name="tempreac1" value="<?php echo $tempreac1; ?>"placeholder="°C" <?php echo $d_tempreac1; ?> />
-                            <label for="presionreac1">Presión de Vapor:</label>
-                            <input type="number" id="presionreac1" name="presionreac1" placeholder="PSI" value="<?php echo $presionreac1; ?>" <?php echo $d_presionreac1; ?>/>
+                            <label for="presionreac1">Presión:</label>
+                            <input type="number" id="presionreac1" name="presionreac1" value="<?php echo $presionreac1; ?>" <?php echo $d_presionreac1; ?>/>
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioreac1" value="<?php echo $comentarioreac1; ?>" <?php echo $d_comentarioreac1; ?>/><hr>
                             <b>Hora 2</b><br />
                             <input type="hidden" name="reaccion2" value="reaccion2">
                             <label for="tempreac2">Temperatura: </label>
-                            <input type="number" id="tempreac2" name="tempreac2"  value="<?php echo $tempreac2; ?>"placeholder="°C" <?php echo $d_tempreac2; ?> />
-                            <label for="presionreac2">Presión de Vapor:</label>
-                            <input type="number" id="presionreac2" name="presionreac2" placeholder="PSI" value="<?php echo $presionreac2; ?>" <?php echo $d_presionreac2; ?>/>
+                            <input type="number" id="tempreact2" name="tempreact2" value="<?php echo $tempreact2; ?>"placeholder="°C" <?php echo $d_tempreact2; ?> />
+                            <label for="presionreact2">Presión:</label>
+                            <input type="number" id="presionreact2" name="presionreact2" value="<?php echo $presionreact2; ?>" <?php echo $d_presionreact2; ?>/>
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioreac2" value="<?php echo $comentarioreac2; ?>" <?php echo $d_comentarioreac2; ?>/><hr>
                             <b>Hora 3</b><br />
                             <input type="hidden" name="reaccion3" value="reaccion3">
                             <label for="tempreac3">Temperatura: </label>
                             <input type="number" id="tempreac3" name="tempreac3" value="<?php echo $tempreac3; ?>"placeholder="°C" <?php echo $d_tempreac3; ?> />
-                            <label for="presionreac3">Presión de Vapor: </label>
-                            <input type="number" id="presionreac3" name="presionreac3" placeholder="PSI" value="<?php echo $presionreac3; ?>" <?php echo $d_presionreac3; ?>/>
+                            <label for="presionreac3">Presión: </label>
+                            <input type="number" id="presionreac3" name="presionreac3" value="<?php echo $presionreac3; ?>" <?php echo $d_presionreac3; ?>/>
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioreac3" value="<?php echo $comentarioreac3; ?>" <?php echo $d_comentarioreac3; ?>/><hr>
                             <b>Hora 4</b><br />
                             <label for="tempreac4">Temperatura: </label>
                             <input type="hidden" name="reaccion4" value="reaccion4">
                             <input type="number" id="tempreac4" name="tempreac4" value="<?php echo $tempreac4; ?>" placeholder="°C" <?php echo $d_tempreac4; ?> />
-                            <label for="presionreac4">Presión de Vapor:</label>
-                            <input type="number" id="presionreac4" name="presionreac4" placeholder="PSI" value="<?php echo $presionreac4; ?>" <?php echo $d_presionreac4; ?>/>
+                            <label for="presionreac4">Presión:</label>
+                            <input type="number" id="presionreac4" name="presionreac4" value="<?php echo $presionreac4; ?>" <?php echo $d_presionreac4; ?>/>
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioreac4" value="<?php echo $comentarioreac4; ?>" <?php echo $d_comentarioreac4; ?>/><hr>
                             <b>Hora 5</b><br />
                             <label for="tempreac5">Temperatura: </label>
                             <input type="hidden" name="reaccion5" value="reaccion5">
                             <input type="number" id="tempreac5" name="tempreac5" value="<?php echo $tempreac5; ?>"placeholder="°C" <?php echo $d_tempreac5; ?> />
-                            <label for="presionreac5">Presión de Vapor: </label>
-                            <input type="number" id="presionreac5" name="presionreac5" placeholder="PSI" value="<?php echo $presionreac5; ?>" <?php echo $d_presionreac5; ?>/>
+                            <label for="presionreac5">Presión: </label>
+                            <input type="number" id="presionreac5" name="presionreac5" value="<?php echo $presionreac5; ?>" <?php echo $d_presionreac5; ?>/>
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioreac5" value="<?php echo $comentarioreac5; ?>" <?php echo $d_comentarioreac5; ?>/>
                             <br />
@@ -3209,20 +3151,20 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <input type="hidden" name="reaccion6" value="reaccion6">
                             <label for="tempreac6">Temperatura: </label>
                             <input type="number" id="tempreac6" name="tempreac6" value="<?php echo $tempreac6; ?>"placeholder="°C" <?php echo $d_tempreac6; ?> />
-                            <label for="presionreac6">Presión de Vapor:</label>
-                            <input type="number" id="presionreac6" name="presionreac6" placeholder="PSI" value="<?php echo $presionreac6; ?>" <?php echo $d_presionreac6; ?> />
+                            <label for="presionreac6">Presión:</label>
+                            <input type="number" id="presionreac6" name="presionreac6" value="<?php echo $presionreac6; ?>" <?php echo $d_presionreac6; ?> />
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioreac6" value="<?php echo $comentarioreac6; ?>" <?php echo $d_comentarioreac6; ?> /><hr>
                             <b>Hora 7</b><br />
                             <input type="hidden" name="reaccion7" value="reaccion7">
                             <label for="tempreac7">Temperatura: </label>
-                            <input type="number" id="tempreac7" name="tempreac7" value="<?php echo $tempreac7; ?>" placeholder="°C" <?php echo $d_tempreac7; ?>/>
-                            <label for="presionreac7">Presión de Vapor: </label>
-                            <input type="number" id="presionreac7" name="presionreac7" placeholder="PSI" value="<?php echo $presionreac7; ?>" <?php echo $d_presionreac7; ?>/>
+                            <input type="number" id="tempreac7" name="tempreac7" value="<?php echo $tempreac7; ?>" placeholder="°C" <?php echo $d_tempreac7;?>/>
+                            <label for="presionreac7">Presión: </label>
+                            <input type="number" id="presionreac7" name="presionreac7" value="<?php echo $presionreac7; ?>" <?php echo $d_presionreac7;?>/>
                             <b>Observaciones/Comentarios</b>
-                            <input type="text" name="comentarioreac7" value="<?php echo $comentarioreac7; ?>" <?php echo $d_comentarioreac7; ?>/><br />
+                            <input type="text" name="comentarioreac7" value="<?php echo $comentarioreac7; ?>" <?php echo $d_comentarioreac7;?>/><br />
                             <label for="horafinreac">Hora de Fin:</label>
-                            <input type="time" id="horafinreac" name="horafinreac" value="<?php echo $horafinreac; ?>" <?php echo $d_horafinreac; ?>/><hr>
+                            <input type="time" id="horafinreac" name="horafinreac" value="<?php echo $horafinreac; ?>" <?php echo $d_horafinreac;?>/><hr>
                             <b>¿ Se presento algún problema en el equipo en este punto de reacción ?</b><br />
                             <table class="table" style="width:50%;">
                                 <tr>
@@ -3232,9 +3174,8 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             </table>
                             <div  class="container" id="TextoProblemaCondensacion" style="display: <?php echo $ShowTextoProblemaCondensacion; ?>">
                                 <b>¿Cuál? (Si la respuesta es afirmativa)</b>
-                                <input type="text" name="TextoProblemaCondensacion" value="<?php echo $TextoProblemaCondensacion; ?>" <?php echo $d_TextoProblemaCondensacion; ?>><br />
+                                <input type="text" name="TextoProblemaCondensacion" value="<?php echo $TextoProblemaCondensacion; ?>" <?php echo $d_TextoProblemaCondensacion;?>><br />
                             </div>
-                            <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
                             <br />
                             <br />
                         </div>
@@ -3243,22 +3184,20 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="pasos" value="6">
                         <!-- Paso 10 -->
-                        <div class="container" id="AdicionarSTW" style="display: <?php echo $AdicionarSTW; ?>;">
-                            <b>Adicionar (6) STW000 en 20 minutos como tiempo máximo. Válvulas: <font color="#ff6600">P-25,P-26,P-27,P-28</font></b><br />
+                        <div class="container" id="AdicionarSTW" style="display: <?php echo $AdicionarSTW;?>;">
+                            <b>Adicionar (6) STW000 a T = 85°C en 20 minutos como tiempo máximo.</b><br />
                             <input type="hidden" name="adicionarstw" value="adicionarstw" <?php echo $disabled; ?>>
                             <label for="horainicioadcstw2">Hora de Inicio:</label>
-                            <input <?php echo $autoFocus5; ?> type="time" id="horainicioadcstw2" name="horainicioadcstw2" value="<?php echo $horainicioadcstw2; ?>" <?php echo $d_horainicioadcstw2; ?>/>
+                            <input type="time" id="horainicioadcstw2" name="horainicioadcstw2" value="<?php echo $horainicioadcstw2; ?>" <?php echo $d_horainicioadcstw2; ?>/>
                             <label for="tempadcstw2">Temperatura: </label>
                             <input type="number" id="tempadcstw2" name="tempadcstw2" value="<?php echo $tempadcstw2; ?>" placeholder="°C" <?php echo $d_tempadcstw2; ?>/>
-                            <label for="presionadcstw2">Presión de Vapor:</label>
-                            <input type="number" id="presionadcstw2" name="presionadcstw2" placeholder="PSI" value="<?php echo $presionadcstw2; ?>" <?php echo $d_presionadcstw2; ?>/>
+                            <label for="presionadcstw2">Presión:</label>
+                            <input type="number" id="presionadcstw2" name="presionadcstw2" value="<?php echo $presionadcstw2; ?>" <?php echo $d_presionadcstw2; ?>/>
                             <label for="horafinadcstw2">Hora de Fin:</label>
                             <input type="time" id="horafinadcstw2" name="horafinadcstw2" value="<?php echo $horafinadcstw2; ?>" <?php echo $d_horafinadcstw2; ?>/><hr>
-                            <br>
-                            <h2 style="font-weight: bold !important;">ADICIÓN DE 710CSO050 Y 700STW000</h2>
-                            <br>
+                            <h4>Adición de 710CSO050 Y 700STW000</h4><br />
                             <b>¿Leyó la ficha y hoja de seguridad (FS-01y FS-01-1) para estos productos?</b><br />
-                            <a href="img/FDS Soda Caustica Liquida.pdf" target="popup" onclick="window.open('img/FDS Soda Caustica Liquida.pdf','popup','width=859,height=550'); return false;">Ver Ficha de Seguridad</a><br />
+                            <a href="img/Sodaseguridad.PNG" target="popup" onclick="window.open('img/Sodaseguridad.PNG','popup','width=859,height=230'); return false;">Ver Ficha de Seguridad</a><br />
                             <table class="table" style="width:50%;">
                                 <tr>
                                     <td align="center"><label>Si <input type="radio" id="SeguridadCSOSi" name="SeguridadCSO" value="1" <?php echo $SeguridadCSOSi . ' ' . $d_SeguridadCSO; ?> /> </label></td>
@@ -3274,9 +3213,8 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                     <td align="center"><label>No <input type="radio" id="EquipoCSONo" name="EquipoCSO" value="0" <?php echo $EquipoCSONo . ' ' . $d_EquipoCSO; ?> /></label></td>
                                 </tr>
                             </table>
-                            <i>En caso de respuesta negativa, contactar a Salud Ocupacional para reemplazo o entrega del EPP apropiado.</i>
                             <br />
-                            <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
+                            <i>En caso de respuesta negativa, contactar a Salud Ocupacional para reemplazo o entrega del EPP apropiado.</i>
                         </div>
                     </form>
                     <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
@@ -3284,8 +3222,8 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                         <input type="hidden" name="pasos" value="7">
                         <br />
                         <!-- Paso 11 -->
-                        <div class="container" id="ReaccionNeutra" style="display: <?php echo $ReaccionNeutra; ?>;">
-                            <b>Sin vapor adicionar (7) CSC050 en 4 horas como tiempo máximo conservando T = 94 - 98 °C. Válvulas: <font color="#ff6600">P-25,P-26,P-27,P-28</font></b>
+                        <div class="container" id="ReaccionNeutra" style="display: <?php echo $ReaccionNeutra;?>;">
+                            <b>Sin vapor adicionar (7) CSC050 en 4 horas como tiempo máximo conservando T = 94 - 98 °C.</b>
                             <br><br>
                             <h2 style="font-weight: bold !important;">SEGUIMIENTO DE REACCIÓN DE NEUTRALIZACIÓN</h2>
                             <h4>(Si se presenta reflujo, mencionarlo en observaciones)</h4>
@@ -3293,13 +3231,13 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <b>Hora de Inicio</b><br />
                             <input type="hidden" name="ReaccionNeutra1" value="ReaccionNeutra1">
                             <label for="horainicioneut">Hora de Inicio:</label>
-                            <input <?php echo $autoFocus6; ?> type="time" id="horainicioneut" name="horainicioneut" value="<?php echo $horainicioneut; ?>" <?php echo $d_horainicioneut; ?> /><br />
+                            <input type="time" id="horainicioneut" name="horainicioneut" value="<?php echo $horainicioneut; ?>" <?php echo $d_horainicioneut; ?> /><br />
                             <!-- Validar horas para que aparezcan las siguientes cuando se llenen -->
                             <b>Hora 1</b><br />
                             <label for="tempneut1">Temperatura: </label>
                             <input type="number" id="tempneut1" name="tempneut1" value="<?php echo $tempneut1; ?>" placeholder="°C" <?php echo $d_tempneut1; ?> />
-                            <label for="presionneut1">Presión de Vapor:</label>
-                            <input type="number" id="presionneut1" name="presionneut1" placeholder="PSI" value="<?php echo $presionneut1; ?>" <?php echo $d_presionneut1; ?> />
+                            <label for="presionneut1">Presión:</label>
+                            <input type="number" id="presionneut1" name="presionneut1" value="<?php echo $presionneut1; ?>" <?php echo $d_presionneut1; ?> />
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioneut1" value="<?php echo $comentarioneut1; ?>" <?php echo $d_comentarioneut1; ?> />
                             <hr>
@@ -3307,8 +3245,8 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <input type="hidden" name="ReaccionNeutra2" value="ReaccionNeutra2">
                             <label for="tempneut2">Temperatura: </label>
                             <input type="number" id="tempneut2" name="tempneut2" value="<?php echo $tempneut2; ?>" placeholder="°C" <?php echo $d_tempneut2; ?> />
-                            <label for="presionneut2">Presión de Vapor:</label>
-                            <input type="number" id="presionneut2" name="presionneut2" placeholder="PSI" value="<?php echo $presionneut2; ?>" <?php echo $d_presionneut2; ?> />
+                            <label for="presionneut2">Presión:</label>
+                            <input type="number" id="presionneut2" name="presionneut2" value="<?php echo $presionneut2; ?>" <?php echo $d_presionneut2; ?> />
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioneut2" value="<?php echo $comentarioneut2; ?>" <?php echo $d_comentarioneut2; ?> />
                             <hr>
@@ -3316,8 +3254,8 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <label for="tempneut3">Temperatura: </label>
                             <input type="hidden" name="ReaccionNeutra3" value="ReaccionNeutra3">
                             <input type="number" id="tempneut3" name="tempneut3" value="<?php echo $tempneut3; ?>" placeholder="°C" <?php echo $d_tempneut3; ?> />
-                            <label for="presionneut3">Presión de Vapor: </label>
-                            <input type="number" id="presionneut3" name="presionneut3" placeholder="PSI" value="<?php echo $presionneut3; ?>" <?php echo $d_presionneut3; ?> />
+                            <label for="presionneut3">Presión: </label>
+                            <input type="number" id="presionneut3" name="presionneut3" value="<?php echo $presionneut3; ?>" <?php echo $d_presionneut3; ?> />
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioneut3" value="<?php echo $comentarioneut3; ?>" <?php echo $d_comentarioneut3; ?> />
                             <hr>
@@ -3325,8 +3263,8 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <input type="hidden" name="ReaccionNeutra4" value="ReaccionNeutra4">
                             <label for="tempneut4">Temperatura: </label>
                             <input type="number" id="tempneut4" name="tempneut4" value="<?php echo $tempneut4; ?>" placeholder="°C" <?php echo $d_tempneut4; ?> />
-                            <label for="presionreac4">Presión de Vapor:</label>
-                            <input type="number" id="presionneut4" name="presionneut4" placeholder="PSI" value="<?php echo $presionneut4; ?>" <?php echo $d_presionneut4; ?> />
+                            <label for="presionreac4">Presión:</label>
+                            <input type="number" id="presionneut4" name="presionneut4" value="<?php echo $presionneut4; ?>" <?php echo $d_presionneut4; ?> />
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentarioneut4" value="<?php echo $comentarioneut4; ?>" <?php echo $d_comentarioneut4; ?> />
                             <hr>
@@ -3344,8 +3282,8 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <b>Hora 1</b><br />
                             <label for="temphomoge1">Temperatura: </label>
                             <input type="number" id="temphomoge1" name="temphomoge1" value="<?php echo $temphomoge1; ?>" placeholder="°C" <?php echo $d_temphomoge1; ?> />
-                            <label for="presionhomoge1">Presión de Vapor:</label>
-                            <input type="number" id="presionhomoge1" name="presionhomoge1" placeholder="PSI" value="<?php echo $presionhomoge1; ?>" <?php echo $d_presionhomoge1; ?> />
+                            <label for="presionhomoge1">Presión:</label>
+                            <input type="number" id="presionhomoge1" name="presionhomoge1" value="<?php echo $presionhomoge1; ?>" <?php echo $d_presionhomoge1; ?> />
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentariohomoge1" value="<?php echo $comentariohomoge1; ?>" <?php echo $d_comentariohomoge1; ?> >
                             <hr>
@@ -3353,21 +3291,21 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <input type="hidden" name="homogenizacion2" value="homogenizacion2">
                             <label for="temphomoge2">Temperatura: </label>
                             <input type="number" id="temphomoge2" name="temphomoge2" value="<?php echo $temphomoge2; ?>" placeholder="°C" <?php echo $d_temphomoge2; ?> />
-                            <label for="presionhomoge2">Presión de Vapor:</label>
-                            <input type="number" id="presionhomoge2" name="presionhomoge2" placeholder="PSI" value="<?php echo $presionhomoge2; ?>" <?php echo $d_presionhomoge2; ?> />
+                            <label for="presionhomoge2">Presión:</label>
+                            <input type="number" id="presionhomoge2" name="presionhomoge2" value="<?php echo $presionhomoge2; ?>" <?php echo $d_presionhomoge2; ?> />
                             <b>Observaciones/Comentarios</b>
                             <input type="text" name="comentariohomoge2" value="<?php echo $comentariohomoge2; ?>" <?php echo $d_comentariohomoge2; ?> ><hr>
                             <b>Hora 3</b><br />
                             <input type="hidden" name="homogenizacion3" value="homogenizacion3">
                             <label for="temphomoge3">Temperatura: </label>
                             <input type="number" id="temphomoge3" name="temphomoge3" value="<?php echo $temphomoge3; ?>" placeholder="°C" <?php echo $d_temphomoge3; ?> />
-                            <label for="presionhomoge3">Presión de Vapor: </label>
-                            <input type="number" id="presionhomoge3" name="presionhomoge3" placeholder="PSI" value="<?php echo $presionhomoge3; ?>" <?php echo $d_presionhomoge3; ?> />
+                            <label for="presionhomoge3">Presión: </label>
+                            <input type="number" id="presionhomoge3" name="presionhomoge3" value="<?php echo $presionhomoge3; ?>" <?php echo $d_presionhomoge3; ?> />
                             <br />
                             <label for="horafinhomoge">Hora de Fin:</label>
                             <input type="time" id="horafinhomoge" name="horafinhomoge" value="<?php echo $horafinhomoge; ?>" <?php echo $d_horafinhomoge; ?> />
                             <hr>
-                            <b>Evaluar presencia de formol, si hay presencia dar una hora más de reacción. Válvula <font color="#ff6600">P-43</font></b><br />
+                            <b>Evaluar presencia de formol, si hay presencia adicionar CSC050.</b><br />
                             <b>Hay presencia de FDO035? </b><br />
                             <table class="table" style="width:50%;">
                                 <tr>
@@ -3377,7 +3315,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             </table>
 
                             <!--formulario presencia de formol-->
-                            <div class="container" id="RevisionOlorFDO035" style="display: <?php echo $RevisionOlorFDO035; ?>;">
+                            <div class="container" id="RevisionOlorFDO035" style="display: <?php echo $RevisionOlorFDO035;?>;">
                                 <br>
                                 <h2><b>REVISIÓN DE OLOR A FDO035</b></h2>
                                 <br>
@@ -3391,7 +3329,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                     <label for="presionFDO_1">Presión de Vapor</label>
                                     <input type="number" id="presionFDO_1" name="presionFDO_1" placeholder="PSI" value="<?php echo $presionFDO_1; ?>" <?php echo $d_presionFDO_1; ?> />
                                     <br>
-                                    <label for="horaFinFDO_1">Hora de Fin</label>
+                                    <label for="horaFinFDO_1">Hora de Fin FDO035 1</label>
                                     <input type="time" id="horaFinFDO_1" name="horaFinFDO_1" value="<?php echo $horaFinFDO_1; ?>" <?php echo $d_horaFinFDO_1; ?> />
                                 </div>
                                 <br>
@@ -3423,19 +3361,18 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                 </div>
                                 <br>
                             </div>
-                            <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
                         </div>
                     </form>
                     <hr>
                     <form id="formNfo" name="formNfo" method="POST" action="guardarFormulario.php">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="pasos" value="8">
-                        <div class="container" id="Enfriet85"> <!--style="display: <?php //echo $Enfriet85; ?>"-->
-                            <br /><b></b><br />
+                        <div class="container" id="Enfriet85">
+                            <b></b><br />
                             <input type="hidden" name="Enfriet85-" value="Enfriet85-">
                             <label for="temp85">Temperatura: </label>
                             <input type="number" id="temp85" name="temp85" value="<?php echo $temp85; ?>" placeholder="°C" <?php echo $d_temp85; ?> />
-                            <b>Adicione (6)STW000 a 85°C</b><br />
+                            <b>Adicione (6)STW000 a 85°C</b>
                             <label for="horainciostw85">Hora de Inicio:</label>
                             <input type="time" id="horainiciostw85" name="horainiciostw85" value="<?php echo $horainiciostw85; ?>" <?php echo $d_horainiciostw85; ?> />
                             <br />
@@ -3445,23 +3382,26 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <b>Muestree y ajuste pH(10%) = 7.8 - 8.0.  (CSC050 / SWF098).</b>
                             <br />
                             <label for="ph10">pH(10%): </label>
-                            <input type="number" step="any" id="ph10" name="ph10" value="<?php echo $ph10; ?>" placeholder="pH" <?php echo $d_ph10; ?> />
+                            <input type="number" id="ph10" name="ph10" value="<?php echo $ph10; ?>" placeholder="pH" <?php echo $d_ph10; ?> />
                             <br />
                             <b>Es necesario el ajuste? En caso se ser positiva la respuesta indique la cantidad total usada de CSO050 Y/O SWF098 en kilos:</b><br />
                             <label for="csc050aj">CSC050:</label>
                             <input type="number" id="Csc050Ajuste" name="Csc050Ajuste" value="<?php echo $Csc050Ajuste; ?>" placeholder="Kg" <?php echo $d_Csc050Ajuste; ?> />
-                            <label for="stw000aj">SWF098: </label>
+                            <label for="stw000aj">STW000: </label>
                             <input type="number" id="Stw00Ajuste" name="Stw00Ajuste" value="<?php echo $Stw00Ajuste; ?>" placeholder="Kg" <?php echo $d_Stw00Ajuste; ?> />
-                            <label for="ph10Fin">pH(10%) Final: </label>
-                            <input type="number" step="any" id="ph10Fin" name="ph10Fin" value="<?php echo $ph10Fin; ?>" placeholder="pH" <?php echo $d_ph10Fin; ?> />
+                            <label for="ph10fin">pH(10%) Final: </label>
+                            <input type="number" id="ph10fin" name="ph10fin" value="<?php echo $ph10fin; ?>" placeholder="pH" <?php echo $d_ph10fin; ?> />
                             <br />
                             <b>El aspecto final del producto es brillante, sin sedimento y sin turbidez?</b><br />
                             <table class="table" style="width:50%;">
                                 <tr>
-                                    <td align="center"><label>Si <input type="radio" id="ProductoBrillanteSi" name="ProductoBrillante" value="1" <?php echo $ProductoBrillanteSi . ' ' . $d_ProductoBrillante; ?> /></label></td>
-                                    <td align="center"><label>No <input type="radio" id="ProductoBrillanteNo" name="ProductoBrillante" value="0" <?php echo $ProductoBrillanteNo . ' ' . $d_ProductoBrillante; ?> /></label></td>
+                                    <td align="center"><label>Si <input type="radio" id="ProductoBrillanteSi" name="ProductoBrillante" value="1" <?php echo $ProductoBrillanteSi . ' ' . $d_ProductoBrillante;?> /></label></td>
+                                    <td align="center"><label>No <input type="radio" id="ProductoBrillanteNo" name="ProductoBrillante" value="0" <?php echo $ProductoBrillanteNo . ' ' . $d_ProductoBrillante;?> /></label></td>
                                 </tr>
                             </table>
+                            <br />
+                            <!-- Validar con el no -->
+                            <!-- Falta filtrado con el no. -->
                             <div id="FiltroLukas" style="display: <?php echo $FiltroLukas; ?>;">
                                 <i>Si la respuesta es negativa, filtre por el Filtro lukas directamente desde el reactor</i><br />
                                 <label for="HoraInicioLukas">Hora de Inicio:</label>
@@ -3487,7 +3427,6 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                 <br />
                             </div>
                             <br />
-                            <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3"> 
                         </div>
                     </form>
                     <br>
@@ -3821,8 +3760,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                         <td align="center"><label>No <input type="radio" id="AutorizaDescargaNo" name="AutorizaDescarga" value="0" <?php echo $AutorizaDescargaNo . ' ' . $d_AutorizaDescarga; ?> /></label></td>
                                     </tr>
                                 </table>
-                            </div>
-                            <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
+                            </div>                            
                             <br />
                             <br />
                         </div>
@@ -3837,31 +3775,32 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                             <br>
                             <h1>PROCESO DE DESCARGA</h1>
                             <br>
+
                             <!-- NUEVO CAMPO RESPONSABLE-->
                             <label for="responsableDescarga">Responsable de la Descarga</label>
                             <input type="text" name="responsableDescarga_hidden" value="<?php echo $responsableDescarga; ?>" <?php echo $d_responsableDescargaInput ?> readonly>
                             <select name="responsableDescarga" id="responsableDescarga" <?php echo $d_responsableDescarga; ?>>
-                                <?php
+                                <?php 
                                 if ($responsableDescarga == '') {
-                                    echo '<option value="" selected>Seleccione el Responsable</option>';
-                                }
-
+                                        echo '<option value="" selected>Seleccione el Responsable</option>';
+                                    } 
+                             
                                 $query_operator = $_user->get_users_rol(1);
                                 while ($operator = $query_operator->fetch_array(MYSQLI_BOTH)) {
                                     if ($responsableDescarga == $operator["Nombre"] . ' ' . $operator["Apellido"]) {
-                                        $selected = 'selected';
+                                            $selected = 'selected';
                                     } else {
-                                        $selected = '';
-                                    }
+                                            $selected = '';
+                                        }
                                     echo '<option value="' . $operator["Nombre"] . ' ' . $operator["Apellido"] . '" ' . $selected . '>' . $operator["Nombre"] . ' ' . $operator["Apellido"] . '</option>';
-                                }
+                                    }
                                 ?>        
                             </select>
                             <br>
                             <!--FIN NUEVO CAMPO RESPONSABLE-->
 
-                            <label> <b>¿Leyó la ficha y hoja de seguridad (FS-01y FS-01-1) para eL 720NFO000?</b> 
-                            <input <?php echo $autoFocus7; ?> type="checkbox" id="SegNFO" name="SegNFO" value="1" <?php echo $SegNFO; ?> <?php echo $d_SegNFO; ?> /></label>
+                            <label> <b>¿Leyó la ficha y hoja de seguridad ( FS-01y FS-01-1) para eL 720NFO000?</b> 
+                            <input type="checkbox" id="SegNFO" name="SegNFO" value="1" <?php echo $SegNFO;?> <?php echo $d_SegNFO;?> /></label>
                             <br />
                             <a href="img/SeguridadFiltradoDescarga.PNG" target="popup" onclick="window.open('img/SeguridadFiltradoDescarga.PNG','popup','width=886,height=260'); return false;">Ver Ficha de Seguridad</a>
                             <br />
@@ -3884,12 +3823,12 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                         <div class="container" id="SuspendioAgitacion" style="display: <?php echo $SuspendioAgitacion; ?> ">
                         <!-- Validar los dos check que no continuen sino estan checkeados -->
                             <label> <b>¿Suspendió la agitación del equipo?</b> 
-                            <input type="checkbox" id="AgitacionOff" name="AgitacionOff" value="1" <?php echo $AgitacionOff; ?> <?php echo $d_AgitacionOff; ?>/></label>
+                            <input type="checkbox" id="AgitacionOff" name="AgitacionOff" value="1" <?php echo $AgitacionOff;?> <?php echo $d_AgitacionOff; ?>/></label>
                             
                             <label> <b>¿Instalo talego de nylon para la descarga?</b> 
-                            <input type="checkbox" id="TalegoDescarga" value="1" name="TalegoDescarga" <?php echo $TalegoDescarga; ?> <?php echo $d_TalegoDescarga; ?>/></label>
+                            <input type="checkbox" id="TalegoDescarga" value="1" name="TalegoDescarga" <?php echo $TalegoDescarga;?> <?php echo $d_TalegoDescarga; ?>/></label>
                             <br />
-                            <b>Realice la descarga a IBC (contenedores) para posterior proceso de secado. Válvulas: <font color="#ff6600">P-48,P-49</font></b>
+                            <b>Realice la descarga a IBC (contenedores) para posterior proceso de secado</b>
                             <br />
                             <input type="hidden" name="DescargaIbc" value="DescargaIbc">
                             <label for="horainiciodescarga">Hora de Inicio:</label>
@@ -3975,7 +3914,6 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
                                 <label for="horafinlavado">Hora de Fin:</label>
                                 <input type="time" id="horafinlavado" name="horafinlavado" value="<?php echo $horafinlavado; ?>" <?php echo $d_horafinlavado; ?>/>
                             </div>
-                            <input type="submit" value="Guardar y Continuar" class="boton boton-opcion rounded-3">
                             <br />
                             <br />
                         </div>
@@ -4116,9 +4054,9 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
         });
 
         // Paso 9
-        // $("#CapacidadTanque").click(function() {
-        //     $("#Carga700").toggle();
-        // });
+        $("#CapacidadTanque").click(function() {
+            $("#Carga700").toggle();
+        });
 
         // Paso 10
         $("#ProblemaCondensacionSi").click(function() {
@@ -4155,7 +4093,7 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
         $("#OlorFormolNo2").click(function() {
             $("#OlorFormolSigue").hide();
         });
-
+        
         // Paso 12
         $("#ProductoBrillanteSi").click(function() {
             $("#FiltroLukas").hide();
@@ -4165,14 +4103,6 @@ if (isset($row["KgLavado"]) && $row["KgLavado"] != '') {
             $("#FiltroLukas").show();
             $("#ProcesoDescarga").hide();
         });
-        
-        // Paso 12
-        /*$("#ProductoBrillante2Si").click(function() {
-            $("#ProcesoDescargaFinal").show();
-        });
-        $("#ProductoBrillante2No").click(function() {
-            $("#ProcesoDescargaFinal").hide();
-        });*/
         
         // Paso 13
         $("#EquipoNFOSi").click(function() {
